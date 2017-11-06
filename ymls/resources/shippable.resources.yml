@@ -1,0 +1,112 @@
+resources:
+
+#CLICONFIG
+  - name: yd-dockercli
+    type: cliConfig
+    integration: "docker"
+
+#CLUSTERS
+  - name: yd-ddccluster
+    type: cluster
+    integration: ddc
+    pointer:
+      sourceName : "nothing" #we can anything because it is mandatory but ddc doesnot have clusters
+
+#DOCKER OPTIONS
+  - name: yd-dockeroptions
+    type: dockerOptions
+    version:
+      memory: 100
+
+#FILES
+  - name: yd-files
+    type: file
+    integration: docker
+    pointer:
+      sourceName: "random"
+    seed:
+      versionName: "random-2"
+
+#GITREPO:
+  - name: yd-gitrepo
+    type: gitRepo
+    integration: "github"
+    pointer:
+      sourceName: "Varsha-Arun/sample_pipelines"
+      branch: master
+      #tags:
+       # only:
+        #  - v1.*
+      buildOnCommit: true    
+      buildOnPullRequest: true
+      buildOnRelease: true
+      buildOnTagPush: true
+      
+#IMAGES
+  - name: yd-image
+    type: image
+    integration: docker
+    pointer:
+      sourceName: "shippabledocker/pipelinev2"
+    seed:
+      versionName: "deploy.1"
+
+#INTEGRATION
+  - name: yd-dockerintegration
+    type: integration
+    integration: "docker"
+
+#LOAD BALANCER
+  - name: yd-loadbalancer
+    type: loadBalancer
+    pointer:
+      sourceName: EC2Contai-EcsElast-GPCOXIIKWPUJSREYA
+
+#NOTIFICATIONS
+  - name: yd-slack
+    type: notification
+    integration: "slack"
+    pointer:
+      recipients:
+        - "#pipeline-pvt"
+        - "#pipeline-public"
+        - "@shiphitchcock1"
+        - "#random"
+
+#PARAMS
+  - name: yd-params
+    type: params
+    version:
+      params:
+        foo: bar
+        #secure: Xuq1cwGOn1lR1UTMfcwhdPUhJJXr0FeeG/M0/l4v7HFcjIRdrML13//R4RbMWxIeUtmdRWT1y3HRgQSqsRbYRIYF/6rTYH3/eazkowA2hHPZpT8vNfr3tFZJwQeSTf0qGtZOMO1iOacgaFOBgAdBCheJA8tN3ARHapUWk5bxuj7CpIq/LNWEbR/TcNNWaZJkyoWeK6/4U61xNPbVgyL1e73m3WmHPcGwpgTyxW+T1jqgh5m99D3p87UrfTeS6ss5YNA8lkZmFpdYZrq2LIKBMSJuq46Vj1VwRrtRGXYN2eYzmyDvpevciShm6Ai8w8o18eY6dwKrch8PSNloCVDHDA== 
+        DB_HOST: "ds015700.mlab.com"
+        DB_NAME: "ayeaye"
+        DB_PORT: "15700"
+        DB_USERNAME: "aye0aye"
+        DB_PASSWORD: "aye0aye"
+        ENVIRONMENT: "test-aws"
+       
+#REPLICAS
+  - name: yd-replica
+    type: replicas
+    version:
+      count: 2
+
+#STATE
+  - name: yd-state
+    type: state
+    
+#TIME
+  - name: yd-testtime
+    type: time
+    seed:
+      interval: "1 1 1 * *" #"*/9 * 9 9 *"
+      
+#VERSIONS
+
+  - name: yd-version
+    type: version
+    seed:
+      versionName: "6.1.2"
+      
