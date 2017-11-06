@@ -1,0 +1,96 @@
+jobs:
+
+#DEPLOY  
+  - name: yd-ddcdeploy
+    type: deploy
+    allowPublicAccess: true
+    steps:
+      - IN: yd-ddccluster
+      - IN: yd-manifest
+        switch: off
+      - IN: yd-params
+      - IN: yd-dockeroptions
+      - IN: yd-replica
+        #versionNumber: 1000 
+        
+#JENKINSJOB
+  - name: yd-jenkins                 # a memorable, unique name. this is how your job will be referred to in shippable pipelines
+    type: jenkinsJob                  # The type of the job (should not be changed by the user)
+    integration: "jenkins"            # The name of your Jenkins integration (created via accountSettings page)
+    pointer:
+      sourceName: "firstjob1"         # The name of your Jenkins job
+    steps:
+      - OUT: "yd-files" 
+
+#MANIFESTS
+  - name: yd-manifest
+    type: manifest
+    steps:
+      - IN: yd-image
+      # versionNumber: 100
+      #- OUT: yd-image4invalidformat
+      - IN: iar-tg1
+    allowPublicAccess: true
+
+#PROVISION
+  - name: yd-provision                                              #required
+    type: provision                                                  #required
+    steps:
+      - IN: yd-files 
+      
+#RELEASE
+  - name: yd-release
+    type: release
+    #allowPublicAccess: true
+    on_start:
+      - NOTIFY: yd-slack
+    steps:
+      - IN: yd-version
+         #versionName: testrelease
+      - IN: yd-inrunSh
+      - TASK: managed
+        bump: rc
+    flags:
+      - yd-release    
+    on_success:
+      - NOTIFY: yd-slack
+    on_failure:
+      - NOTIFY: yd-slack
+
+#RUNSH      
+  - name: yd-inrunSh
+    type: runSh
+    allowPublicAccess: true
+    on_start:
+      - NOTIFY: yd-slack
+      - script: echo 'on start'
+    steps:
+      - IN: yd-gitrepo
+      # versionName: testsha
+      - TASK:
+        - script: ls
+        - script: ./IN/yd-gitrepo/gitRepo/echo.sh
+        - script: export FOO=foo1
+        - script: echo $FOO
+     # - OUT: yd-image2invalidimg    
+    on_success:
+      - script: echo 'Success'
+    on_failure:
+      - script: echo 'Failure runSh'
+      - NOTIFY: iar-slack
+
+#RUNCLI      
+  - name: yd-inrunCLI
+    type: runCLI
+    allowPublicAccess: true
+    steps:
+      - IN: yd-gitrepo
+      # versionName: testsha
+      - IN: yd-dockercli
+      - IN: yd-testtime
+      - IN: yd-loadbalancer
+      - IN: yd-files
+      - TASK:
+        - script: ls
+        - script: ./IN/yd-gitrepo/gitRepo/echo.sh
+        
