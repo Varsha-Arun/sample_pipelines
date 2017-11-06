@@ -1,0 +1,235 @@
+# Language setting
+language: python
+
+# Version number
+python:
+  - 2.7
+
+build:
+  ci:
+    - python --version
+
+resources:
+
+#CLICONFIG
+  - name: iar-dockercli
+    type: cliConfig
+    integration: "docker"
+
+#CLUSTERS
+  - name: iar-ddccluster
+    type: cluster
+    integration: ddc
+    pointer:
+      sourceName : "nothing" #we can anything because it is mandatory but ddc doesnot have clusters
+
+#DOCKER OPTIONS
+  - name: iar-dockeroptions
+    type: dockerOptions
+    version:
+      memory: 100
+
+#FILES
+  - name: iar-files
+    type: file
+    integration: docker
+    pointer:
+      sourceName: "random"
+    seed:
+      versionName: "random-2"
+
+#GITREPO:
+  - name: iar-gitrepo
+    type: gitRepo
+    integration: "github"
+    pointer:
+      sourceName: "Varsha-Arun/sample_pipelines"
+      branch: master
+      #tags:
+       # only:
+        #  - v1.*
+      buildOnCommit: true    
+      buildOnPullRequest: true
+      buildOnRelease: true
+      buildOnTagPush: true
+      
+#IMAGES
+  - name: iar-image
+    type: image
+    integration: docker
+    pointer:
+      sourceName: "shippabledocker/pipelinev2"
+    seed:
+      versionName: "deploy.1"
+
+#INTEGRATION
+  - name: iar-dockerintegration
+    type: integration
+    integration: "docker"
+
+#LOAD BALANCER
+  - name: iar-loadbalancer
+    type: loadBalancer
+    pointer:
+      sourceName: EC2Contai-EcsElast-GPCOXIIKWPUJSREYA
+
+#NOTIFICATIONS
+  - name: iar-slack
+    type: notification
+    integration: "slack"
+    pointer:
+      recipients:
+        - "#pipeline-pvt"
+        - "#pipeline-public"
+        - "@shiphitchcock1"
+        - "#random"
+
+#PARAMS
+  - name: iar-params
+    type: params
+    version:
+      params:
+        foo: bar
+        #secure: Xuq1cwGOn1lR1UTMfcwhdPUhJJXr0FeeG/M0/l4v7HFcjIRdrML13//R4RbMWxIeUtmdRWT1y3HRgQSqsRbYRIYF/6rTYH3/eazkowA2hHPZpT8vNfr3tFZJwQeSTf0qGtZOMO1iOacgaFOBgAdBCheJA8tN3ARHapUWk5bxuj7CpIq/LNWEbR/TcNNWaZJkyoWeK6/4U61xNPbVgyL1e73m3WmHPcGwpgTyxW+T1jqgh5m99D3p87UrfTeS6ss5YNA8lkZmFpdYZrq2LIKBMSJuq46Vj1VwRrtRGXYN2eYzmyDvpevciShm6Ai8w8o18eY6dwKrch8PSNloCVDHDA== 
+        DB_HOST: "ds015700.mlab.com"
+        DB_NAME: "ayeaye"
+        DB_PORT: "15700"
+        DB_USERNAME: "aye0aye"
+        DB_PASSWORD: "aye0aye"
+        ENVIRONMENT: "test-aws"
+       
+#REPLICAS
+  - name: iar-replica
+    type: replicas
+    version:
+      count: 2
+
+#STATE
+  - name: iar-state
+    type: state
+    
+#TIME
+  - name: iar-testtime
+    type: time
+    seed:
+      interval: "1 1 1 * *" #"*/9 * 9 9 *"
+      
+#VERSIONS
+
+  - name: iar-version
+    type: version
+    seed:
+      versionName: "6.1.2"
+
+jobs:
+
+#DEPLOY  
+  - name: iar-ddcdeploy
+    type: deploy
+    allowPublicAccess: true
+    steps:
+      - IN: iar-ddccluster
+      - IN: iar-manifest
+        switch: off
+      - IN: iar-params
+      - IN: iar-dockeroptions
+      - IN: iar-replica
+        #versionNumber: 1000 
+        
+#JENKINSJOB
+  - name: iar-jenkins                 # a memorable, unique name. this is how your job will be referred to in shippable pipelines
+    type: jenkinsJob                  # The type of the job (should not be changed by the user)
+    integration: "jenkins"            # The name of your Jenkins integration (created via accountSettings page)
+    pointer:
+      sourceName: "firstjob1"         # The name of your Jenkins job
+    steps:
+      - OUT: "iar-files" 
+
+#MANIFESTS
+  - name: iar-manifest
+    type: manifest
+    steps:
+      - IN: iar-image
+      # versionNumber: 100
+      #- OUT: iar-image4invalidformat
+      - IN: iar-tg1
+    allowPublicAccess: true
+
+#PROVISION
+  - name: iar-provision                                              #required
+    type: provision                                                  #required
+    steps:
+      - IN: iar-files 
+      
+#RELEASE
+  - name: iar-release
+    type: release
+    #allowPublicAccess: true
+    on_start:
+      - NOTIFY: iar-slack
+    steps:
+      - IN: iar-version
+         #versionName: testrelease
+      - IN: iar-inrunSh
+      - TASK: managed
+        bump: rc
+    flags:
+      - iar-release    
+    on_success:
+      - NOTIFY: iar-slack
+    on_failure:
+      - NOTIFY: iar-slack
+
+#RUNCI
+  - name: sample_pipelines_runCI
+    type: runCI
+    #allowPublicAccess: true
+    steps:
+      - IN: iar-dockercli
+         #versionName: testrelease
+
+#RUNSH      
+  - name: iar-inrunSh
+    type: runSh
+    allowPublicAccess: true
+    on_start:
+      - NOTIFY: iar-slack
+      - script: echo 'on start'
+    steps:
+      - IN: iar-gitrepo
+      # versionName: testsha
+      - TASK:
+        - script: ls
+        - script: ./IN/iar-gitrepo/gitRepo/echo.sh
+        - script: export FOO=foo1
+        - script: echo $FOO
+     # - OUT: iar-image2invalidimg    
+    on_success:
+      - script: echo 'Success'
+    on_failure:
+      - script: echo 'Failure runSh'
+      - NOTIFY: iar-slack
+
+#RUNCLI      
+  - name: iar-inrunCLI
+    type: runCLI
+    allowPublicAccess: true
+    steps:
+      - IN: iar-gitrepo
+      # versionName: testsha
+      - IN: iar-dockercli
+      - IN: iar-testtime
+      - IN: iar-loadbalancer
+      - IN: iar-files
+      - TASK:
+        - script: ls
+        - script: ./IN/iar-gitrepo/gitRepo/echo.sh
+
+triggers:
+
+#TRIGGER
+  - name: iar-tg1
+    type: trigger
+    version:
+      counter: 0
+      
