@@ -23,7 +23,7 @@ resources:
     integration: ddc
     pointer:
       sourceName : "nothing" #we can anything because it is mandatory but ddc doesnot have clusters
-    flag: iar-ddccluster
+    flags: iar-ddccluster
     
 #DOCKER OPTIONS
   - name: iar-dockeroptions
@@ -59,7 +59,7 @@ resources:
       buildOnPullRequest: true
       buildOnRelease: true
       buildOnTagPush: true
-    flag: iar-gitrepo
+    flags: iar-gitrepo
     
 #IMAGES
   - name: iar-image
@@ -74,7 +74,7 @@ resources:
   - name: iar-dockerintegration
     type: integration
     integration: "docker"
-    flag: iar-dockerintegration
+    flags: iar-dockerintegration
     
 #LOAD BALANCER
   - name: iar-loadbalancer
@@ -144,7 +144,7 @@ jobs:
       - IN: iar-dockeroptions
       - IN: iar-replica
         #versionNumber: 1000 
-    flag: iar-ddcdeploy
+    flags: iar-ddcdeploy
         
 #JENKINSJOB
 #  - name: iar-jenkins                 # a memorable, unique name. this is how your job will be referred to in shippable pipelines
@@ -164,7 +164,7 @@ jobs:
       #- OUT: iar-image4invalidformat
       - IN: iar-tg1
     allowPublicAccess: true
-    flag: iar-manifes
+    flags: iar-manifest
 
 #PROVISION
   - name: iar-provision                                              #required
@@ -247,5 +247,5 @@ triggers:
     type: trigger
     version:
       counter: 0
-    flag: iar-tg1
+    flags: iar-tg1
     
