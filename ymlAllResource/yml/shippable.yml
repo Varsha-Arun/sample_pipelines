@@ -12,7 +12,7 @@ build:
 resources:
 
 #CLICONFIG
-  - name: iar-dockerclitest
+  - name: iar-dockercli
     type: cliConfig
     integration: "docker"
 
