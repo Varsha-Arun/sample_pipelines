@@ -23,7 +23,8 @@ resources:
     integration: ddc
     pointer:
       sourceName : "nothing" #we can anything because it is mandatory but ddc doesnot have clusters
-
+    flag: iar-ddccluster
+    
 #DOCKER OPTIONS
   - name: iar-dockeroptions
     type: dockerOptions
@@ -58,7 +59,8 @@ resources:
       buildOnPullRequest: true
       buildOnRelease: true
       buildOnTagPush: true
-      
+    flag: iar-gitrepo
+    
 #IMAGES
   - name: iar-image
     type: image
@@ -72,7 +74,8 @@ resources:
   - name: iar-dockerintegration
     type: integration
     integration: "docker"
-
+    flag: iar-dockerintegration
+    
 #LOAD BALANCER
   - name: iar-loadbalancer
     type: loadBalancer
@@ -141,6 +144,7 @@ jobs:
       - IN: iar-dockeroptions
       - IN: iar-replica
         #versionNumber: 1000 
+    flag: iar-ddcdeploy
         
 #JENKINSJOB
 #  - name: iar-jenkins                 # a memorable, unique name. this is how your job will be referred to in shippable pipelines
@@ -160,6 +164,7 @@ jobs:
       #- OUT: iar-image4invalidformat
       - IN: iar-tg1
     allowPublicAccess: true
+    flag: iar-manifes
 
 #PROVISION
   - name: iar-provision                                              #required
@@ -193,6 +198,7 @@ jobs:
     steps:
       - IN: iar-dockercli
          #versionName: testrelease
+    flag: sample_pipelines_runCI
 
 #RUNSH      
   - name: iar-inrunSh
@@ -215,6 +221,9 @@ jobs:
     on_failure:
       - script: echo 'Failure runSh'
       - NOTIFY: iar-slack
+    flags: 
+      - iar-inrunSh
+      - iar-inrunShmultipleflagsinyml
 
 #RUNCLI      
  # - name: iar-inrunCLI
@@ -238,3 +247,5 @@ triggers:
     type: trigger
     version:
       counter: 0
+    flag: iar-tg1
+    
