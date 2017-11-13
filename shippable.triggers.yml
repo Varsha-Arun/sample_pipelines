@@ -1,15 +1,11 @@
 triggers:
-   - name: triggersp1
+   - name: aws-trigger1
      type: trigger
      version:
-       counter: 8
+       counter: 0
+   
+   - name: aws-trigger2
+     type: trigger
+     version:
+       counter: 0
        
-   - name: triggersp2
-     type: trigger
-     version:
-       counter: 7
-       
-   - name: triggersp3
-     type: trigger
-     version:
-       counter: 1
