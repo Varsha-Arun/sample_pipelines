@@ -34,11 +34,11 @@ build:
     - docker push $IMAGE_NAME:$IMAGE_TAG
 
 integrations:
-  #hub: 
+  hub: 
   #ecr with new integration using "hub" tag in integrations
-   # - integrationName: awskeys
-   #   region: us-east-1
-   #   type: amazonKeys
+    - integrationName: awskeys
+      region: us-west-2
+      type: amazonKeys
   
   #deploy: 
   #elastic beanstalk with new awskeys integrations using "deploy" tag in integrations
