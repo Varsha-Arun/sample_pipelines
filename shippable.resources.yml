@@ -6,7 +6,13 @@ resources:
     pointer:
       sourceName : "testrc" #name of the cluster we are deploying
       region: "us-east-1"
-
+  
+  - name: aws-cliconfig
+    type: cliConfig
+    integration: "awskeys"
+    pointer:
+      region: "us-east-1"
+   
   - name: aws-image1
     type: image
     integration: docker
