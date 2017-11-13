@@ -11,6 +11,7 @@ resources:
     type: cliConfig
     integration: "awskeys"
     pointer:
+      sourceName : "testrc"
       region: "us-east-1"
    
   - name: aws-image1
