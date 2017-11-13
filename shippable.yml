@@ -62,7 +62,7 @@ integrations:
   
     - integrationName: awskeys
       type: amazonKeys
-      scopes: ecr #new
+      scope: ecr #new
       region: us-east-1      
     #  branches: #Testing the wildcards for branches exclude
       #  except:
