@@ -80,6 +80,7 @@ jobs:
     steps:
       - IN: aws-repo
       - IN: aws-cliconfig
+        scope: ecr
       - TASK:
         - script: ls
         - script: echo AWSCLICONFIG_INTEGRATION_ACCESSKEY=$AWSCLICONFIG_INTEGRATION_ACCESSKEY
