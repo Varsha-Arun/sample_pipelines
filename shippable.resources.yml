@@ -43,7 +43,14 @@ resources:
         DB_USERNAME: "aye0aye"
         DB_PASSWORD: "aye0aye"
         ENVIRONMENT: "test-aws"
-
+  
+  - name: aws-params2
+    type: params
+    version:
+      params:
+        TEST: rc
+        secure: jSG65hVDJRaBuT/bRxTvpAC6rFcQswtSXpMYg46lnutNJ2sOsReYNTxXMvPoymro7MKlH9UiaKXndgMFrOkymzg9Tog3RqGXCKvaTLsa0gK7e/SFOs5TxeX27KcRut6e1TiL0Y3opTVJgWnTMkslWitFRcjXwGyrvzQrEQr78q+xhnLal72xvc4ojFaWUdTL72g3iNLklhoI4EsMoOj5KQnTZ2tgR+4/pYTKn6cCKzzK58T/rZXSqGb8QSSXTTGk3OH0rjKWd29Al082BRvPbcscPR2AfEdaAwtE7BJ06JPqBc+vDeFKD/bg00Euo02fed4uGh5T6W61FrdqZig/LA==
+        
   - name: aws-scale1
     type: replicas
     version:
