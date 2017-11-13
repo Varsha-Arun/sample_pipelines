@@ -1,101 +1,86 @@
 jobs:
-  - name: sp-manifest1
+  - name: aws-manifest1
     type: manifest
     steps:
-      - IN: sp-image1
-        pull: false
-      - IN: sp-tpdopts
-      - IN: sp-params1
+      - IN: aws-image1
+        pull: true
+      - IN: aws-ecscluster
+      - IN: aws-params1
       #  applyTo:
-       #   - sp-image1
+       #   - aws-image1
       - TASK: managed
-      - IN: triggersp1
+      - IN: aws-trigger1
     #on_success:
      # - echo 'this is on_success step of dv-man of type manifest'
     #on_failure:
      # - echo 'this is on_failure step of dv-man of type manifest'
      
-  - name: sp-manifest2
+  - name: aws-manifest2
     type: manifest
     steps:
-      - IN: sp-image2
+      - IN: aws-image2
         pull: false
-      - IN: sp-tpdopts1
-      - IN: triggersp2
-      - IN: sp-params2
-      - TASK: managed
-  
-  #- name: sp-tpdeploy1
-   # type: tripubDeploy
-    #steps:
-     # - IN: sp-manifest1
-      #- IN: sp-manifest2
-      #- IN: tripub-cluster
-      #- TASK: managed
-       # deployMethod: upgrade
+      - IN: aws-dopts1
+      - IN: aws-trigger2
+      - IN: aws-params2
         
-  - name: sp-tpdeploy2
-    type: tripubDeploy
+  - name: aws-deploybluegreendownlevel
+    type: deploy
     steps:
-      - IN: sp-manifest1
-      - IN: sp-manifest2
-      - IN: tripub-cluster
+      - IN: aws-manifest1
+      - IN: aws-ecscluster
       - TASK: managed
         deployMethod: blueGreen
         
- # - name: release-one
-  #  type: release
-   # steps:
-    #  - IN: version-resource
-     # - IN: sp-manifest1
-      #- TASK: managed
-       # bump: patch
-
- # - name: dv-test
-  #  type: ecsDeploy
-   # steps:
-    #  - IN: dv-man
-     # - IN: env-test
-      #- TASK: managed
-       # deployMethod: upgrade
-    #on_success:
-     # - echo 'this is on_success step of dv-test of type ecsDeploy'
-
-  #- name: box-test
-   # type: ecsDeploy
-    #steps:
-     # - IN: box-man
-      #- IN: env-test
-    #  - TASK: managed
-     #   deployMethod: upgrade
-
-  #- name: box-dcl
-   # type: dclDeploy
-    #steps:
-     # - IN: box-man
-      #- IN: env-dcl
-      #- TASK: managed
-
-  #- name: box-gke
-    #type: gkeDeploy
-   # steps:
-    #  - IN: box-man
-     # - IN: env-gke
-      #- TASK: managed
-
-  #- name: multi-manifest
-   # type:  ecsDeploy
-    #steps:
-     # - IN: box-man
-      #- IN: dv-man
-      #- IN: env-test
-      #- TASK: managed
-       # deployMethod: upgrade
-
-  #- name: infra-provision
-   # type: runSh
-    #steps:
-     # - IN: infra-repo
-      #- TASK:
-       # - script: ls
-        #- script: ./GET/infra-repo/infra-repo/provision.sh
+  - name: aws-deployupgradedownlevel
+    type: deploy
+    steps:
+      - IN: aws-manifest1
+      - IN: aws-ecscluster
+      - TASK: managed
+        deployMethod: upgarde
+        
+  - name: aws-deployreplacedownlevel
+    type: deploy
+    steps:
+      - IN: aws-manifest1
+      - IN: aws-ecscluster
+      - TASK: managed
+        deployMethod: replace
+  
+  - name: aws-deploybluegreentoplevel
+    type: deploy
+    method: blueGreen
+    workflow: parallel
+    steps:
+      - IN: aws-manifest1
+      - IN: aws-manifest2
+      - IN: aws-ecscluster
+        
+  - name: aws-deployupgradetoplevel
+    type: deploy
+    method: upgrade
+    workflow: parallel
+    steps:
+      - IN: aws-manifest1
+      - IN: aws-manifest2
+      - IN: aws-ecscluster
+        
+  - name: aws-deployreplacetoplevel
+    type: deploy
+    method: replace
+    workflow: parallel
+    steps:
+      - IN: aws-manifest1
+      - IN: aws-manifest2
+      - IN: aws-ecscluster
+        
+  - name: aws-runshclis
+    type: runSh
+    steps:
+      - IN: aws-repo
+      - IN: aws-cliconfig
+      - TASK:
+        - script: ls
+        - script: AWSCLICONFIG_INTEGRATION_ACCESSKEY=$AWSCLICONFIG_INTEGRATION_ACCESSKEY
+        - script: AWSCLICONFIG_INTEGRATION_SECRETKEY=${#AWSCLICONFIG_INTEGRATION_SECRETKEY}
