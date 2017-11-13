@@ -56,9 +56,9 @@ integrations:
       type: amazonKeys
       scope: ebs #new
       platform: Node.js
-      application_name: sample-node-eb-pass-app
-      env_name: sample-node-eb-paas-env
-      region: us-east-1
+      application_name: sample-app
+      env_name: SampleApp-env
+      region: us-west-2
   
     - integrationName: awskeys
       type: amazonKeys
