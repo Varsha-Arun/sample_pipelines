@@ -1,9 +1,9 @@
 # Language setting
-language: python
+language: node_js
 
 # Version number
-python:
-  - 3.6
+node_js:
+  - 6.11
     
 build:
   pre_ci:
@@ -31,5 +31,16 @@ integrations:
       target: eb_paas
       platform: Node.js
       application_name: sample-app
-      env_name: sample-appEnv
+      env_name: SampleApp-env
       region: us-east-1
+    
+    - integrationName: awskeys
+      type: amazonKeys
+      target: eb_docker
+      application_name: "sample-docker"
+      env_name: "SampleDocker-env-1"
+      bucket_name: "push-to-s3"
+      region: "us-east-1"
+      image_name: "shippabledocker/sample_node"
+      image_tag: "$BRANCH.$BUILD_NUMBER"
+      
