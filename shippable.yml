@@ -9,6 +9,7 @@ env:
   global:
     - AWS_S3_BUCKET='s3://push-to-s3'
     - AWS_S3_REGION='us-east-1'
+    - secure: pQqRalKM5e837IcFWC+ENe/c+gtXAJgFO3oddbF7JOyojw6LOsQZdQrR4FL32wz7d2OLbiiQqEm77mY3K+MAbtElwx0e+IA4NM6yykEqu+8n1pmNab+fCfUs7XyuMUqU/Z/Gx34qZ69zuPYgFnwCjda0Psq9fyW+1oWXTkYmyDIGIcqsMZa2STFIqjUzbQ+h8PFiYOuQ72+vNwRSwTnSuns0sM2rNIAv/UPuuHYwgj1P+H6x8BEgNGltr3WgaqpavRbsMbR33Sn96fOIZBv9nHFM20yoaiu1MsdXtdF2srDZ24yGRdm6tVw3Yb9tjjsd/WpHA0OajiUaxlj9cHDrNA==
     
 build:
   pre_ci:
