@@ -46,5 +46,5 @@ integrations:
   
     - integrationName: awskeys
       type: amazonKeys
-      scope: ecr #new
+      #scope: ecr #new
       region: us-west-2
