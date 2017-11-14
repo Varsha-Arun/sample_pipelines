@@ -38,14 +38,14 @@ integrations:
       target: eb_paas
       platform: Node.js
       application_name: sample-app
-      env_name: SampleApp-env-1
+      env_name: SampleApp-env
       region: us-east-1
     
     - integrationName: awskeys
       type: amazonKeys
       target: eb_docker
       application_name: "sample-docker"
-      env_name: SampleDocker-env-2
+      env_name: SampleDocker-env
       bucket_name: "push-to-s3"
       region: "us-east-1"
       image_name: "shippabledocker/sample_node"
