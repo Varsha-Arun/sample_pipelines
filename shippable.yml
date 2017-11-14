@@ -52,13 +52,13 @@ integrations:
       
   cli:
   #elastic beanstalk using "cli" tag in integrations
-    - integrationName: awskeys
-      type: amazonKeys
-      scope: ebs #new
-      platform: Node.js
-      application_name: sample-app
-      env_name: SampleApp-env
-      region: us-west-2
+   # - integrationName: awskeys
+     # type: amazonKeys
+     # scope: ebs #new
+    #  platform: Node.js
+    #  application_name: sample-app
+    #  env_name: SampleApp-env
+     # region: us-west-2
   
     - integrationName: awskeys
       type: amazonKeys
