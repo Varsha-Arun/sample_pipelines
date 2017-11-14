@@ -50,7 +50,7 @@ integrations:
     #  env_name: sample-appEnv
     #  region: us-east-1
       
-  cli:
+  #cli:
   #elastic beanstalk using "cli" tag in integrations
    # - integrationName: awskeys
      # type: amazonKeys
@@ -60,10 +60,7 @@ integrations:
     #  env_name: SampleApp-env
      # region: us-west-2
   
-    - integrationName: awskeys
-      type: amazonKeys
-      scope: ecr #new
-      region: us-east-1      
-    #  branches: #Testing the wildcards for branches exclude
-      #  except:
-     #   - n*
+   # - integrationName: awskeys
+   #   type: amazonKeys
+   #   scope: ecr #new
+   #   region: us-east-1      
