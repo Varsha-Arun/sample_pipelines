@@ -9,7 +9,7 @@ env:
   global:
     - AWS_S3_BUCKET='s3://push-to-s3'
     - AWS_S3_REGION='us-east-1'
-    - secure: i1asR78CGO6V/DCJOAY2XHPecFXhj/F0qlWUUPwlpBZSDYo6HVcBEDFCFw0SCklLs5hwfttxWE+opU5TLeH//Hl1OUwgKsivgi9x7gxGcupmHRZN4asjW9Cw0gsOXgke/x0CcU+7HRtx1vSDHxi6aZAjf9WIFOZv0qDqn9PDBn3Iw9bSqbtcG2Lxrg3Ib6aiP4bw6ccb7jIHgywJdUMiT+Bo7i+yrt6e94Z92YAawRBSqDSOZz3NtDXI4sz+JzICXBhf4q/Q4LzpVtZ8wc5DVrJL1Ashhl7FunC3KBeSW6hvz2FfZsCpNDDg7652Vsb4QvF2jD8APnOQw4mV5EY+Ug==
+    - secure: 7PMKeEjdH/5Wb+uGyL5jjiFZGrZdegNICH5AqpGMBAijZQAQnFMrWgQzZFP9aUc7GxxOK05Gmfoi2/IiL9+VTwckyAKN4KnpHVoAnz8VfEleXD4spv2Znb4/BaMxlPs4P+lhJ1BSZfyq0tEw0J1+pqzCR9tg3muUHa0SF0i13TzhsHrmTmQcYIvE0B96rYh0pmrfablLbcKvnQC2jg37crNBZVZ5BygQo7I4qzmnvfX39nK/4DaTpa04cmPPyFyPIajy9QXwLmQGPlGeCIk2RPaNJRzL2GweYReXYUE+tIOT6Uhqga2svbSnMjX4CeR8unrh+JfTa+J6D/MMzsG16w==
     
 build:
   pre_ci:
