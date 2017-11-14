@@ -18,11 +18,11 @@ build:
     - docker push 742038439709.dkr.ecr.us-west-2.amazonaws.com/sample_node:latest
 
 integrations:
-  hub: 
+  #hub: 
   #ecr with new integration using "hub" tag in integrations
-    - integrationName: awskeys
-      type: amazonKeys
-      region: us-west-2      
+   # - integrationName: awskeys
+   #   type: amazonKeys
+   #   region: us-west-2      
   
   #deploy: 
   #elastic beanstalk with new awskeys integrations using "deploy" tag in integrations
@@ -34,7 +34,7 @@ integrations:
     #  env_name: sample-appEnv
     #  region: us-east-1
       
-  #cli:
+  cli:
   #elastic beanstalk using "cli" tag in integrations
    # - integrationName: awskeys
      # type: amazonKeys
@@ -44,7 +44,7 @@ integrations:
     #  env_name: SampleApp-env
      # region: us-west-2
   
-   # - integrationName: awskeys
-   #   type: amazonKeys
-   #   scope: ecr #new
-   #   region: us-east-1      
+    - integrationName: awskeys
+      type: amazonKeys
+      scope: ecr #new
+      region: us-west-2
