@@ -4,6 +4,15 @@ language: node_js
 # Version number
 node_js:
   - 6.11
+
+env:
+  global:
+    - TEST_RESULTS_DIR=$SHIPPABLE_REPO_DIR/shippable/testresults
+    - CODE_COVERAGE_DIR=$SHIPPABLE_REPO_DIR/shippable/codecoverage
+    - TESTS_LOC_DIR=$SHIPPABLE_REPO_DIR/tests
+    - MOD_LOC=$SHIPPABLE_REPO_DIR/node_modules/.bin/
+    - AWS_S3_BUCKET='s3://push-to-s3'
+    - AWS_S3_REGION='us-east-1'
     
 build:
   pre_ci:
@@ -13,9 +22,17 @@ build:
   ci:
     - python --version
     - docker pull 742038439709.dkr.ecr.us-west-2.amazonaws.com/sample_node
+    - shippable_retry npm install
+    - mkdir -p $TEST_RESULTS_DIR && mkdir -p $CODE_COVERAGE_DIR
+    - pushd $TESTS_LOC_DIR
+    - $MOD_LOC/mocha --recursive "$TESTS_LOC_DIR/**/*.spec.js" -R mocha-junit-reporter --reporter-options mochaFile=$TEST_RESULTS_DIR/testresults.xml
+    - $MOD_LOC/istanbul --include-all-sources cover -root "$SHIPPABLE_REPO_DIR/routes" $SHIPPABLE_REPO_DIR/node_modules/mocha/bin/_mocha -- -R spec-xunit-file --recursive "$TESTS_LOC_DIR/**/*.spec.js"
+    - $MOD_LOC/istanbul report cobertura --dir $CODE_COVERAGE_DIR
+    - popd
   
   post_ci:
     - docker push 742038439709.dkr.ecr.us-west-2.amazonaws.com/sample_node
+    - aws s3 sync $SHIPPABLE_BUILD_DIR "$AWS_S3_BUCKET" --region "$AWS_S3_REGION"
 
 integrations:
   hub: 
