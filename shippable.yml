@@ -39,3 +39,11 @@ integrations:
       type: amazonKeys
       scope: ecr
       region: us-west-2
+      
+    - integrationName: awskeys
+      type: amazonKeys
+      scope: ebs
+      platform: Node.js
+      application_name: sample-app
+      env_name: sample-appEnv
+      region: us-east-1
