@@ -18,15 +18,14 @@ build:
     - docker push 742038439709.dkr.ecr.us-west-2.amazonaws.com/sample_node
 
 integrations:
-  hub: 
+  #hub: 
   #ecr with new integration using "hub" tag in integrations
+   # - integrationName: awskeys
+   #   type: amazonKeys
+    #  region: us-west-2  
+      
+  cli:
     - integrationName: awskeys
       type: amazonKeys
-      region: us-west-2  
-      
-  #cli:
-  #  - integrationName: awskeys
-  #    type: amazonKeys
-  #    scope: ecr
-  #    region: us-west-2
- 
+      scope: ecr
+      region: us-west-2
