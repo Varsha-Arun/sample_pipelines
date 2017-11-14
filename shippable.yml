@@ -3,7 +3,7 @@ language: python
 
 # Version number
 python:
-  - 2.7
+  - 3.6
     
 build:
   pre_ci:
@@ -22,28 +22,11 @@ integrations:
   #ecr with new integration using "hub" tag in integrations
     - integrationName: awskeys
       type: amazonKeys
-      region: us-west-2      
-  
-  deploy: 
-  #elastic beanstalk with new awskeys integrations using "deploy" tag in integrations
-    - integrationName: awskeys
-      type: amazonKeys
-      target: eb_paas
-      platform: Node.js
-      application_name: sample-app
-      env_name: sample-appEnv
-      region: us-east-1
+      region: us-west-2  
       
   #cli:
   #  - integrationName: awskeys
   #    type: amazonKeys
   #    scope: ecr
   #    region: us-west-2
-      
-  #  - integrationName: awskeys
-  #    type: amazonKeys
-  #    scope: ebs
-  #    platform: Node.js
-  #    application_name: sample-app
-  #    env_name: sample-appEnv
-  #    region: us-east-1
+ 
