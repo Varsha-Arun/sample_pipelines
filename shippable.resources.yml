@@ -1,20 +1,14 @@
 resources:
 
-  - name: aws-ecscluster
-    type: cluster
-    integration: awskeys
-    pointer:
-      sourceName : "testrc" #name of the cluster we are deploying
-      region: "us-east-1"
   
-  - name: aws-cliconfig
+  - name: cli-configaws
     type: cliConfig
     integration: "awskeys"
     pointer:
       sourceName : "testrc"
       region: "us-east-1"
    
-  - name: aws-image1
+  - name: cli-image1
     type: image
     integration: docker
     pointer:
@@ -22,7 +16,7 @@ resources:
     seed:
       versionName: "deploy.1"
 
-  - name: aws-image2
+  - name: cli-image2
     type: image
     integration: docker
     pointer:
@@ -30,7 +24,7 @@ resources:
     seed:
       versionName: "nodeenv"
 
-  - name: aws-dopts1
+  - name: cli-dopts1
     type: dockerOptions
     version:
       memory: 124
@@ -39,7 +33,7 @@ resources:
       portMappings:
         - "80:80"
  
-  - name: aws-params1
+  - name: cli-params1
     type: params
     version:
       params:
@@ -51,26 +45,26 @@ resources:
         DB_PASSWORD: "aye0aye"
         ENVIRONMENT: "test-aws"
   
-  - name: aws-params2
+  - name: cli-params2
     type: params
     version:
       params:
         TEST: rc
         secure: jSG65hVDJRaBuT/bRxTvpAC6rFcQswtSXpMYg46lnutNJ2sOsReYNTxXMvPoymro7MKlH9UiaKXndgMFrOkymzg9Tog3RqGXCKvaTLsa0gK7e/SFOs5TxeX27KcRut6e1TiL0Y3opTVJgWnTMkslWitFRcjXwGyrvzQrEQr78q+xhnLal72xvc4ojFaWUdTL72g3iNLklhoI4EsMoOj5KQnTZ2tgR+4/pYTKn6cCKzzK58T/rZXSqGb8QSSXTTGk3OH0rjKWd29Al082BRvPbcscPR2AfEdaAwtE7BJ06JPqBc+vDeFKD/bg00Euo02fed4uGh5T6W61FrdqZig/LA==
         
-  - name: aws-scale1
+  - name: cli-scale1
     type: replicas
     version:
       count: 1
   
-  - name: aws-version
+  - name: cli-version
     type: version
     seed:
       versionName: "0.0.0"
 
-  - name: aws-repo
+  - name: cli-repo
     type: gitRepo
     integration: github
     pointer:
       sourceName: Varsha-Arun/sample_pipelines
-      branch: awsclis
+      branch: integrationsCli
