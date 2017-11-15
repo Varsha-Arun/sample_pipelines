@@ -7,7 +7,27 @@ resources:
     pointer:
       sourceName : "testrc"
       region: "us-east-1"
-   
+  
+  - name: cli-configdocker
+    type: cliConfig
+    integration: "docker"
+  
+  - name: cli-configgcl
+    type: cliConfig
+    integration: "gcl"
+  
+  - name: cli-configjfrog
+    type: cliConfig
+    integration: "jfrog"
+  
+  - name: cli-configkube
+    type: cliConfig
+    integration: "kube"
+  
+  - name: cli-configquay
+    type: cliConfig
+    integration: "quay"
+    
   - name: cli-image1
     type: image
     integration: docker
