@@ -23,7 +23,31 @@ resources:
       sourceName: "scriptnull/busybox"
     seed:
       versionName: "nodeenv"
-
+      
+  - name: pull-file1
+    type: file
+    integration: jfrognew
+    pointer:
+      sourceName: http://test
+    seed:
+      versionName: none
+  
+  - name: pull-file2
+    type: file
+    integration: jfrognew
+    pointer:
+      sourceName: http://test
+    seed:
+      versionName: none
+  
+  - name: pull-file3
+    type: file
+    integration: jfrognew
+    pointer:
+      sourceName: http://test
+    seed:
+      versionName: none
+      
   - name: pull-dopts1
     type: dockerOptions
     version:
