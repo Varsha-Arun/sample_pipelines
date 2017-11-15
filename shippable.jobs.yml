@@ -1,30 +1,43 @@
 jobs:
-  - name: sp-manifest1
+  - name: pull-manifest1
     type: manifest
     steps:
-      - IN: sp-image1
+      - IN: pull-image1
         pull: false
-      - IN: sp-tpdopts
-      - IN: sp-params1
-      #  applyTo:
-       #   - sp-image1
+      - IN: pull-image2
+        pull: true
+      - IN: pull-dopts1
+      - IN: pull-params1
+        applyTo:
+          - pull-image1
       - TASK: managed
-      - IN: triggersp1
     #on_success:
      # - echo 'this is on_success step of dv-man of type manifest'
     #on_failure:
      # - echo 'this is on_failure step of dv-man of type manifest'
      
-  - name: sp-manifest2
+  - name: pull-manifest2
     type: manifest
     steps:
-      - IN: sp-image2
-        pull: false
-      - IN: sp-tpdopts1
-      - IN: triggersp2
-      - IN: sp-params2
+      - IN: pull-image2
+        pull: true
+      - IN: pull-tpdopts1
       - TASK: managed
-  
+      
+  - name: pull-manifest3
+    type: manifest
+    steps:
+      - IN: pull-image2
+        pull: false
+      - TASK: managed
+      
+  - name: pull-manifest4
+    type: manifest
+    steps:
+      - IN: pull-image2
+      - IN: pull-tpdopts1
+      - TASK: managed
+      
   #- name: sp-tpdeploy1
    # type: tripubDeploy
     #steps:
@@ -33,69 +46,70 @@ jobs:
       #- IN: tripub-cluster
       #- TASK: managed
        # deployMethod: upgrade
-        
-  - name: sp-tpdeploy2
-    type: tripubDeploy
+  
+  - name: pull-runsh1
+    type: runSh
     steps:
-      - IN: sp-manifest1
-      - IN: sp-manifest2
-      - IN: tripub-cluster
-      - TASK: managed
-        deployMethod: blueGreen
+      - IN: pull-samegitrepo
+      - IN: pull-image1
+        pull: true
+      - IN: pull-file1
+        pull: false
+      - TASK:
+        - script: ls
+  
+  - name: pull-runsh2image
+    type: runSh
+    steps:
+      - IN: pull-samegitrepo
+      - IN: pull-image1
+        pull: true
+      - IN: pull-image2
+        pull: false
+      - IN: pull-image3
+      - TASK:
+        - script: ls
+  
+  - name: pull-runs3file
+    type: runSh
+    steps:
+      - IN: pull-samegitrepo
+      - IN: pull-file1
+        pull: true
+      - IN: pull-file2
+        pull: false
+      - IN: pull-file3
+      - TASK:
+        - script: ls
         
- # - name: release-one
-  #  type: release
-   # steps:
-    #  - IN: version-resource
-     # - IN: sp-manifest1
-      #- TASK: managed
-       # bump: patch
-
- # - name: dv-test
-  #  type: ecsDeploy
-   # steps:
-    #  - IN: dv-man
-     # - IN: env-test
-      #- TASK: managed
-       # deployMethod: upgrade
-    #on_success:
-     # - echo 'this is on_success step of dv-test of type ecsDeploy'
-
-  #- name: box-test
-   # type: ecsDeploy
-    #steps:
-     # - IN: box-man
-      #- IN: env-test
-    #  - TASK: managed
-     #   deployMethod: upgrade
-
-  #- name: box-dcl
-   # type: dclDeploy
-    #steps:
-     # - IN: box-man
-      #- IN: env-dcl
-      #- TASK: managed
-
-  #- name: box-gke
-    #type: gkeDeploy
-   # steps:
-    #  - IN: box-man
-     # - IN: env-gke
-      #- TASK: managed
-
-  #- name: multi-manifest
-   # type:  ecsDeploy
-    #steps:
-     # - IN: box-man
-      #- IN: dv-man
-      #- IN: env-test
-      #- TASK: managed
-       # deployMethod: upgrade
-
-  #- name: infra-provision
-   # type: runSh
-    #steps:
-     # - IN: infra-repo
-      #- TASK:
-       # - script: ls
-        #- script: ./GET/infra-repo/infra-repo/provision.sh
+  - name: pulltrue-runsh
+    type: runSh
+    steps:
+      - IN: pull-samegitrepo
+      - IN: pull-image1
+        pull: true
+      - IN: pull-file1
+        pull: true
+      - TASK:
+        - script: ls
+  
+  - name: pullfalse-runsh
+    type: runSh
+    steps:
+      - IN: pull-samegitrepo
+      - IN: pull-image1
+        pull: false
+      - IN: pull-file1
+        pull: false
+      - TASK:
+        - script: ls
+   
+  - name: withoutpull-runsh
+    type: runSh
+    steps:
+      - IN: pull-samegitrepo
+      - IN: pull-image1
+      - IN: pull-file1
+      - TASK:
+        - script: ls
+        
