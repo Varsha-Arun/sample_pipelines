@@ -10,7 +10,7 @@ jobs:
     steps:
       - IN: cli-repo
       - IN: cli-configaws
-        scope: ecr
+       # scope: ecr
       - TASK:
         #- script: ls
         - script: echo CLICONFIGAWS_INTEGRATION_ACCESSKEY=$CLICONFIGAWS_INTEGRATION_ACCESSKEY
@@ -26,14 +26,13 @@ jobs:
         - script: echo AWSCLICONFIG_VERSIONNUMBER=$CLICONFIGAWS_VERSIONNUMBER
         - script: echo AWSCLICONFIG_VERSIONNAME=$CLICONFIGAWS_VERSIONNAME
         - script: echo AWSCLICONFIG_VERSIONID=$CLICONFIGAWS_VERSIONID
-        - script: docker pull 742038439709.dkr.ecr.us-east-1.amazonaws.com/sample_php
+        - script: docker pull 742038439709.dkr.ecr.us-west-2.amazonaws.com/sample_node
         
   - name: cli-runshaws
     type: runSh
     steps:
       - IN: cli-repo
       - IN: cli-configaws
-        scope: aws
       - TASK:
         - script: eb --version
         - script: echo CLICONFIGAWS_INTEGRATION_ACCESSKEY=$CLICONFIGAWS_INTEGRATION_ACCESSKEY
@@ -68,8 +67,8 @@ jobs:
       - IN: cli-repo
       - IN: cli-configgcl
       - TASK:
-        - script: echo CLICONFIGGCL_INTEGRATION_JSON_KEY=${#CLICONFIGDCL_INTEGRATION_JSON_KEY}
-        - script: docker push gcr.io/vidya-project/node1-img:master.33
+        - script: echo CLICONFIGGCL_INTEGRATION_JSON_KEY=${#CLICONFIGGCL_INTEGRATION_JSON_KEY}
+        - script: docker pull gcr.io/vidya-project/node1-img:master.33
   
   - name: cli-runshjfrog
     type: runSh
