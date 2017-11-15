@@ -4,95 +4,100 @@ jobs:
     steps:
       - IN: aws-image1
         pull: true
-      - IN: aws-ecscluster
-      - IN: aws-params1
-      #  applyTo:
-       #   - aws-image1
-      - TASK: managed
-      - IN: aws-trigger1
-    #on_success:
-     # - echo 'this is on_success step of dv-man of type manifest'
-    #on_failure:
-     # - echo 'this is on_failure step of dv-man of type manifest'
-     
-  - name: aws-manifest2
-    type: manifest
-    steps:
-      - IN: aws-image2
-        pull: false
-      - IN: aws-dopts1
-      - IN: aws-trigger2
-      - IN: aws-params2
-        
-  - name: aws-deploybluegreendownlevel
-    type: deploy
-    steps:
-      - IN: aws-manifest1
-      - IN: aws-ecscluster
-      - TASK: managed
-        deployMethod: blueGreen
-        
-  - name: aws-deployupgradedownlevel
-    type: deploy
-    steps:
-      - IN: aws-manifest1
-      - IN: aws-ecscluster
-      - TASK: managed
-        deployMethod: upgarde
-        
-  - name: aws-deployreplacedownlevel
-    type: deploy
-    steps:
-      - IN: aws-manifest1
-      - IN: aws-ecscluster
-      - TASK: managed
-        deployMethod: replace
-  
-  - name: aws-deploybluegreentoplevel
-    type: deploy
-    method: blueGreen
-    workflow: parallel
-    steps:
-      - IN: aws-manifest1
-      - IN: aws-manifest2
-      - IN: aws-ecscluster
-        
-  - name: aws-deployupgradetoplevel
-    type: deploy
-    method: upgrade
-    workflow: parallel
-    steps:
-      - IN: aws-manifest1
-      - IN: aws-manifest2
-      - IN: aws-ecscluster
-        
-  - name: aws-deployreplacetoplevel
-    type: deploy
-    method: replace
-    workflow: parallel
-    steps:
-      - IN: aws-manifest1
-      - IN: aws-manifest2
-      - IN: aws-ecscluster
-        
-  - name: aws-runshclis
+
+  - name: cli-runshecr
     type: runSh
     steps:
-      - IN: aws-repo
-      - IN: aws-cliconfig
+      - IN: cli-repo
+      - IN: cli-configaws
         scope: ecr
       - TASK:
-        - script: ls
-        - script: echo AWSCLICONFIG_INTEGRATION_ACCESSKEY=$AWSCLICONFIG_INTEGRATION_ACCESSKEY
-        - script: echo AWSCLICONFIG_INTEGRATION_SECRETKEY=${#AWSCLICONFIG_INTEGRATION_SECRETKEY}
-        - script: echo AWSCLICONFIG_NAME=$AWSCLICONFIG_NAME
-        - script: echo AWSCLICONFIG_ID=$AWSCLICONFIG_ID
-        - script: echo AWSCLICONFIG_TYPE=$AWSCLICONFIG_TYPE
-        - script: echo AWSCLICONFIG_INTEGRATION_TYPE=$AWSCLICONFIG_INTEGRATION_TYPE
-        - script: echo AWSCLICONFIG_OPEARATION=$AWSCLICONFIG_OPERATION
-        - script: echo AWSCLICONFIG_PATH=$AWSCLICONFIG_PATH
-        - script: echo AWSCLICONFIG_POINTER_REGION=$AWSCLICONFIG_POINTER_REGION
-        - script: echo AWSCLICONFIG_POINTER_CLUSTERNAME=$AWSCLICONFIG_POINTER_CLUSTERNAME
-        - script: echo AWSCLICONFIG_VERSIONNUMBER=$AWSCLICONFIG_VERSIONNUMBER
-        - script: echo AWSCLICONFIG_VERSIONNAME=$AWSCLICONFIG_VERSIONNAME
-        - script: echo AWSCLICONFIG_VERSIONID=$AWSCLICONFIG_VERSIONID
+        #- script: ls
+        - script: echo CLICONFIGAWS_INTEGRATION_ACCESSKEY=$CLICONFIGAWS_INTEGRATION_ACCESSKEY
+        - script: echo AWSCLICONFIG_INTEGRATION_SECRETKEY=${#CLICONFIGAWS_INTEGRATION_SECRETKEY}
+        - script: echo AWSCLICONFIG_NAME=$CLICONFIGAWS_NAME
+        - script: echo AWSCLICONFIG_ID=$CLICONFIGAWS_ID
+        - script: echo AWSCLICONFIG_TYPE=$CLICONFIGAWS_TYPE
+        - script: echo AWSCLICONFIG_INTEGRATION_TYPE=$CLICONFIGAWS_INTEGRATION_TYPE
+        - script: echo AWSCLICONFIG_OPEARATION=$CLICONFIGAWS_OPERATION
+        - script: echo AWSCLICONFIG_PATH=$CLICONFIGAWS_PATH
+        - script: echo AWSCLICONFIG_POINTER_REGION=$CLICONFIGAWS_POINTER_REGION
+        - script: echo AWSCLICONFIG_POINTER_CLUSTERNAME=$CLICONFIGAWS_POINTER_CLUSTERNAME
+        - script: echo AWSCLICONFIG_VERSIONNUMBER=$CLICONFIGAWS_VERSIONNUMBER
+        - script: echo AWSCLICONFIG_VERSIONNAME=$CLICONFIGAWS_VERSIONNAME
+        - script: echo AWSCLICONFIG_VERSIONID=$CLICONFIGAWS_VERSIONID
+        - script: docker pull 742038439709.dkr.ecr.us-east-1.amazonaws.com/sample_php
+        
+  - name: cli-runshaws
+    type: runSh
+    steps:
+      - IN: cli-repo
+      - IN: cli-configaws
+        scope: aws
+      - TASK:
+        - script: eb --version
+        - script: echo CLICONFIGAWS_INTEGRATION_ACCESSKEY=$CLICONFIGAWS_INTEGRATION_ACCESSKEY
+        - script: echo AWSCLICONFIG_INTEGRATION_SECRETKEY=${#CLICONFIGAWS_INTEGRATION_SECRETKEY}
+        - script: echo AWSCLICONFIG_NAME=$CLICONFIGAWS_NAME
+        - script: echo AWSCLICONFIG_ID=$CLICONFIGAWS_ID
+        - script: echo AWSCLICONFIG_TYPE=$CLICONFIGAWS_TYPE
+        - script: echo AWSCLICONFIG_INTEGRATION_TYPE=$CLICONFIGAWS_INTEGRATION_TYPE
+        - script: echo AWSCLICONFIG_OPEARATION=$CLICONFIGAWS_OPERATION
+        - script: echo AWSCLICONFIG_PATH=$CLICONFIGAWS_PATH
+        - script: echo AWSCLICONFIG_POINTER_REGION=$CLICONFIGAWS_POINTER_REGION
+        - script: echo AWSCLICONFIG_POINTER_CLUSTERNAME=$CLICONFIGAWS_POINTER_CLUSTERNAME
+        - script: echo AWSCLICONFIG_VERSIONNUMBER=$CLICONFIGAWS_VERSIONNUMBER
+        - script: echo AWSCLICONFIG_VERSIONNAME=$CLICONFIGAWS_VERSIONNAME
+        - script: echo AWSCLICONFIG_VERSIONID=$CLICONFIGAWS_VERSIONID      
+        
+  - name: cli-runshdocker
+    type: runSh
+    steps:
+      - IN: cli-repo
+      - IN: cli-configdocker
+      - TASK:
+        - script: echo CLICONFIGDOCKER_INTEGRATION_URL=$CLICONFIGDOCKER_INTEGRATION_URL
+        - script: echo CLICONFIGDOCKER_INTEGRATION_USERNAME=$CLICONFIGDOCKER_INTEGRATION_USERNAME
+        - script: echo CLICONFIGDOCKER_INTEGRATION_PASSWORD=${#CLICONFIGDOCKER_INTEGRATION_PASSWORD}
+        - script: echo CLICONFIGDOCKER_INTEGRATION_EMAIL=$CLICONFIGDOCKER_INTEGRATION_EMAIL
+ 
+  - name: cli-runshgcl
+    type: runSh
+    steps:
+      - IN: cli-repo
+      - IN: cli-configgcl
+      - TASK:
+        - script: echo CLICONFIGGCL_INTEGRATION_JSON_KEY=${#CLICONFIGDCL_INTEGRATION_JSON_KEY}
+        - script: docker push gcr.io/vidya-project/node1-img:master.33
+  
+  - name: cli-runshjfrog
+    type: runSh
+    steps:
+      - IN: cli-repo
+      - IN: cli-configjfrog
+      - TASK:
+        - script: echo CLICONFIGJFROG_INTEGRATION_URL=$CLICONFIGJFROG_INTEGRATION_URL
+        - script: echo CLICONFIGJFROG_INTEGRATION_USERNAME=$CLICONFIGJFROG_INTEGRATION_USERNAME
+        - script: echo CLICONFIGJFROG_INTEGRATION_PASSWORD=${#CLICONFIGJFROG_INTEGRATION_PASSWORD}
+        - script: jfrog rt dl test-jfrog-ship/testoct.sh
+        
+  - name: cli-runshkube
+    type: runSh
+    steps:
+      - IN: cli-repo
+      - IN: cli-configkube
+      - TASK:
+        - script: echo CLICONFIGKUBE_INTEGRATION_KUBECONFIGCONTENT=${#CLICONFIGKUBE_INTEGRATION_KUBECONFIGCONTENT}
+  
+  - name: cli-runshquay
+    type: runSh
+    steps:
+      - IN: cli-repo
+      - IN: cli-configquay
+      - TASK:
+        - script: echo CLICONFIGQUAY_INTEGRATION_ACCESSTOKEN=${#CLICONFIGQUAY_INTEGRATION_ACCESSTOKEN}
+        - script: echo CLICONFIGQUAY_INTEGRATION_USERNAME=$CLICONFIGQUAY_INTEGRATION_USERNAME
+        - script: echo CLICONFIGQUAY_INTEGRATION_PASSWORD=${#CLICONFIGQUAY_INTEGRATION_PASSWORD}
+        - script: echo CLICONFIGQUAY_INTEGRATION_EMAIL=$CLICONFIGQUAY_INTEGRATION_EMAIL
+        - script: docker pull quay.io/revathird/samplenode_test
+        
