@@ -1,8 +1,8 @@
 jobs:
-  - name: aws-manifest1
+  - name: cli-manifest1
     type: manifest
     steps:
-      - IN: aws-image1
+      - IN: cli-image1
         pull: true
 
   - name: cli-runshecr
