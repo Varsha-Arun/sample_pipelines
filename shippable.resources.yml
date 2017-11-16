@@ -2,7 +2,7 @@ resources:
 
   - name: cliecrcluster
     type: cluster
-    integration: 
+    integration: "awskeys"
     pointer:
       sourceName : "testCL"
       region: "us-west-2"
