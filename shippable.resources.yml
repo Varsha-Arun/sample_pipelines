@@ -1,6 +1,23 @@
 resources:
 
+  - name: cliecrcluster
+    type: cluster
+    integration: 
+    pointer:
+      sourceName : "testCL"
+      region: "us-west-2"
   
+  - name: clikubecluster
+    type: cluster
+    integration: "kube"
+    
+  - name: cligkecluster
+    type: cluster
+    integration: gcl
+    pointer:
+      sourceName: "small-cluster" #name of the cluster we are deploying.
+      region: "us-central1-a"
+
   - name: cli-configaws
     type: cliConfig
     integration: "awskeys"
