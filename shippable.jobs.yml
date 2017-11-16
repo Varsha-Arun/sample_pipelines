@@ -1,10 +1,31 @@
 jobs:
-  - name: cli-manifest1
+  - name: climanifest1
     type: manifest
     steps:
       - IN: cli-image1
         pull: true
-
+  
+  - name: cliawsdeploy
+    type: deploy
+    steps:
+      - IN: climanifest1
+      - IN: cliecrcluster
+      - TASK: managed
+  
+  - name: clikubedeploy
+    type: deploy
+    steps:
+      - IN: climanifest1
+      - IN: clikubecluster
+      - TASK: managed
+  
+  - name: cligkedeploy
+    type: deploy
+    steps:
+      - IN: climanifest1
+      - IN: cligkecluster
+      - TASK: managed
+      
   - name: cli-runshecr
     type: runSh
     steps:
