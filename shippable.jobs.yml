@@ -11,7 +11,7 @@ jobs:
       - IN: cli-repo
       - IN: cli-configaws
         scopes: 
-          ecr
+          - ecr
       - TASK:
         #- script: ls
         - script: echo CLICONFIGAWS_INTEGRATION_ACCESSKEY=$CLICONFIGAWS_INTEGRATION_ACCESSKEY
@@ -34,6 +34,8 @@ jobs:
     steps:
       - IN: cli-repo
       - IN: cli-configaws
+        scopes:
+          - aws
       - TASK:
         - script: eb --version
         - script: echo CLICONFIGAWS_INTEGRATION_ACCESSKEY=$CLICONFIGAWS_INTEGRATION_ACCESSKEY
@@ -68,7 +70,7 @@ jobs:
       - IN: cli-repo
       - IN: cli-configgcl
         scopes:
-          gcl
+          - gcl
       - TASK:
         - script: echo CLICONFIGGCL_INTEGRATION_JSON_KEY=${#CLICONFIGGCL_INTEGRATION_JSON_KEY}
         - script: docker pull gcr.io/vidya-project/node1-img:master.33
