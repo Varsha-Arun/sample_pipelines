@@ -70,7 +70,7 @@ jobs:
       - IN: cli-repo
       - IN: cli-configgcl
         scopes:
-          - gcl
+          - gcr
       - TASK:
         - script: echo CLICONFIGGCL_INTEGRATION_JSON_KEY=${#CLICONFIGGCL_INTEGRATION_JSON_KEY}
         - script: docker pull gcr.io/vidya-project/node1-img:master.33
