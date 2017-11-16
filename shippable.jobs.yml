@@ -64,7 +64,7 @@ jobs:
         - script: echo CLICONFIGDOCKER_INTEGRATION_EMAIL=$CLICONFIGDOCKER_INTEGRATION_EMAIL
         - script: docker pull shippabledocker/sample_node_pvt:latest.40
  
-  - name: cli-runshgcl
+  - name: cli-runshgcr
     type: runSh
     steps:
       - IN: cli-repo
