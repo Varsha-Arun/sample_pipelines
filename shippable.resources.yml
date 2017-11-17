@@ -2,23 +2,23 @@ resources:
 
   - name: pull-image1
     type: image
-    integration: cock1-hub
+    integration: docker
     pointer:
-      sourceName: "shiphitchcock1/betaci_nod_limitless_pl"
+      sourceName: "shippabledocker/pipelinev2"
     seed:
-      versionName: "deploy.4"
+      versionName: "deploy.1"
       
   - name: pull-image2
     type: image
-    integration: cock1-hub
+    integration: docker
     pointer:
-      sourceName: "shiphitchcock1/betaci_nod_limitless_pl"
+      sourceName: "shippabledocker/pipelinev2"
     seed:
-      versionName: "deploy.5"
+      versionName: "deploy.2"
       
   - name: pull-image3
     type: image
-    integration: cock1-hub
+    integration: docker
     pointer:
       sourceName: "scriptnull/busybox"
     seed:
