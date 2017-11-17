@@ -1,15 +1,15 @@
 triggers:
-   - name: triggersp1
+   - name: clitrigger1
      type: trigger
      version:
-       counter: 8
+       counter: 0
        
-   - name: triggersp2
+   - name: clitrigger2
      type: trigger
      version:
-       counter: 7
+       counter: 0
        
-   - name: triggersp3
+   - name: clitrigger3
      type: trigger
      version:
-       counter: 1
+       counter: 0
