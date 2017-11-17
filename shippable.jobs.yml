@@ -21,7 +21,7 @@ jobs:
     steps:
       - IN: pull-image2
         pull: true
-      - IN: pull-tpdopts1
+      - IN: pull-dopts1
       - TASK: managed
       
   - name: pull-manifest3
@@ -35,7 +35,7 @@ jobs:
     type: manifest
     steps:
       - IN: pull-image2
-      - IN: pull-tpdopts1
+      - IN: pull-dopts1
       - TASK: managed
       
   #- name: sp-tpdeploy1
