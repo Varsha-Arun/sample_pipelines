@@ -8,8 +8,3 @@ triggers:
      type: trigger
      version:
        counter: 0
-       
-   - name: clitrigger3
-     type: trigger
-     version:
-       counter: 0
