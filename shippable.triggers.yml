@@ -1,11 +1,11 @@
 triggers:
-   - name: aws-trigger1
+   - name: cli-trigger1
      type: trigger
      version:
        counter: 0
    
-   - name: aws-trigger2
+   - name: cli-trigger2
      type: trigger
      version:
        counter: 0
-       
+  
