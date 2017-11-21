@@ -33,7 +33,7 @@ jobs:
       - IN: cli-configaws
         scopes: 
           - ecr
-     # - OUT: sample_pipelines_ciRepo
+      - OUT: sample_pipelines_ciRepo
       - TASK:
         #- script: ls
         - script: echo CLICONFIGAWS_INTEGRATION_ACCESSKEY=$CLICONFIGAWS_INTEGRATION_ACCESSKEY
