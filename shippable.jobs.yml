@@ -30,6 +30,7 @@ jobs:
     type: runSh
     steps:
       - IN: cli-repo
+      - IN: sample_pipelines_ciRepo
       - IN: cli-configaws
         scopes: 
           - ecr
