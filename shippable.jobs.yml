@@ -25,14 +25,6 @@ jobs:
       - IN: climanifest1
       - IN: cligkecluster
       - TASK: managed
-  
-  - name: testrunsh
-    type: runSh
-    steps:
-      - TASK:
-        #- script: ls
-        - script: echo hello
-      - OUT: cli-repo
         
   - name: cli-runshecr
     type: runSh
