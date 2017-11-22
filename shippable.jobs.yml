@@ -29,10 +29,10 @@ jobs:
   - name: testrunsh
     type: runSh
     steps:
-      - IN: cli-repo
       - TASK:
         #- script: ls
         - script: echo hello
+      - OUT: cli-repo
         
   - name: cli-runshecr
     type: runSh
