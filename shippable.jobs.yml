@@ -25,6 +25,35 @@ jobs:
       - IN: climanifest1
       - IN: cligkecluster
       - TASK: managed
+  
+  - name: cli-sample1
+    type: runSh
+    steps:
+      - IN: cli-configaws
+      - TASK:
+        - script: ls
+  
+  - name: cli-sample2
+    type: runSh
+    steps:
+      - IN: cli-sample1
+      - TASK:
+        - script: ls
+  
+  - name: cli-sample3
+    type: runSh
+    steps:
+      - IN: cli-configdocker
+      - TASK:
+        - script: ls
+  
+  - name: cli-sample4
+    type: runSh
+    steps:
+      - IN: cli-sample3
+      - IN: cli-sample2
+      - TASK:
+        - script: ls
         
   - name: cli-runshecr
     type: runSh
