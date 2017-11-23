@@ -147,6 +147,7 @@ jobs:
       - IN: cli-configkube
       - TASK:
         - script: echo CLICONFIGKUBE_INTEGRATION_KUBECONFIGCONTENT=${#CLICONFIGKUBE_INTEGRATION_KUBECONFIGCONTENT}
+        - script: kubectl version
   
   - name: cli-runshquay
     type: runSh
