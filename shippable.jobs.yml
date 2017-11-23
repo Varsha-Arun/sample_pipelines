@@ -46,7 +46,7 @@ jobs:
       - IN: cli-configdocker
       - TASK:
         - script: ls
-        - script: sleep 3m
+        #- script: sleep 3m
         - script: ggdyttryyt
   
   - name: cli-sample4
