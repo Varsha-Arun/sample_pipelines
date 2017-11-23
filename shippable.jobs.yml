@@ -46,6 +46,7 @@ jobs:
       - IN: cli-configdocker
       - TASK:
         - script: ls
+        - script: sleep 3m
   
   - name: cli-sample4
     type: runSh
