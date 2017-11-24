@@ -204,6 +204,7 @@ jobs:
   
   - name: cli-sample3
     type: runSh
+    allowPublicAccess: true
     steps:
       - IN: cli-configdocker
       - TASK:
