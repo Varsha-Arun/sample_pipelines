@@ -50,3 +50,286 @@ integrations:
       region: "us-east-1"
       image_name: "shippabledocker/sample_node"
       image_tag: "$BRANCH.$BUILD_NUMBER"
+
+resources:
+
+  - name: cliecrcluster
+    type: cluster
+    integration: "awskeys"
+    pointer:
+      sourceName : "testrelease"
+      region: "us-west-2"
+  
+  - name: clikubecluster
+    type: cluster
+    integration: "kube"
+    
+  - name: cligkecluster
+    type: cluster
+    integration: gcl
+    pointer:
+      sourceName: "small-cluster" #name of the cluster we are deploying.
+      region: "us-central1-a"
+
+  - name: cli-configaws
+    type: cliConfig
+    integration: "awskeys"
+    pointer:
+      sourceName : "testrc"
+      region: "us-west-2"
+  
+  - name: cli-configdocker
+    type: cliConfig
+    integration: "docker"
+  
+  - name: cli-configgcl
+    type: cliConfig
+    integration: "gcl"
+  
+  - name: cli-configjfrog
+    type: cliConfig
+    integration: "jfrog"
+  
+  - name: cli-configkube
+    type: cliConfig
+    integration: "kube"
+  
+  - name: cli-configquay
+    type: cliConfig
+    integration: "quay"
+    
+  - name: cli-image1
+    type: image
+    integration: docker
+    pointer:
+      sourceName: "shippabledocker/pipelinev2"
+    seed:
+      versionName: "deploy.2"
+
+  - name: cli-image2
+    type: image
+    integration: docker
+    pointer:
+      sourceName: "scriptnull/busybox"
+    seed:
+      versionName: "nodeenv"
+
+  - name: cli-dopts1
+    type: dockerOptions
+    version:
+      memory: 124
+      cpuShares: 1
+      publishAllPorts : true
+      portMappings:
+        - "80:80"
+ 
+  - name: cli-params1
+    type: params
+    version:
+      params:
+        MONGO_API_URL: "localhost:28017"
+        DB_HOST: "ds015700.mlab.com"
+        DB_NAME: "ayeaye"
+        DB_PORT: "15700"
+        DB_USERNAME: "aye0aye"
+        DB_PASSWORD: "aye0aye"
+        ENVIRONMENT: "test-aws"
+  
+  - name: cli-params2
+    type: params
+    version:
+      params:
+        TEST: rc
+        secure: jSG65hVDJRaBuT/bRxTvpAC6rFcQswtSXpMYg46lnutNJ2sOsReYNTxXMvPoymro7MKlH9UiaKXndgMFrOkymzg9Tog3RqGXCKvaTLsa0gK7e/SFOs5TxeX27KcRut6e1TiL0Y3opTVJgWnTMkslWitFRcjXwGyrvzQrEQr78q+xhnLal72xvc4ojFaWUdTL72g3iNLklhoI4EsMoOj5KQnTZ2tgR+4/pYTKn6cCKzzK58T/rZXSqGb8QSSXTTGk3OH0rjKWd29Al082BRvPbcscPR2AfEdaAwtE7BJ06JPqBc+vDeFKD/bg00Euo02fed4uGh5T6W61FrdqZig/LA==
+        
+  - name: cli-scale1
+    type: replicas
+    version:
+      count: 1
+  
+  - name: cli-version
+    type: version
+    seed:
+      versionName: "0.0.0"
+
+  - name: cli-repo
+    type: gitRepo
+    integration: github
+    pointer:
+      sourceName: Varsha-Arun/sample_pipelines
+      branch: integrationsCli
+      
+jobs:
+  - name: climanifest1
+    type: manifest
+    steps:
+      - IN: cli-image1
+        pull: true
+  
+  - name: cliawsdeploy
+    type: deploy
+    steps:
+      - IN: climanifest1
+      - IN: cliecrcluster
+      - TASK: managed
+  
+  - name: clikubedeploy
+    type: deploy
+    steps:
+      - IN: climanifest1
+      - IN: clikubecluster
+      - TASK: managed
+  
+  - name: cligkedeploy
+    type: deploy
+    steps:
+      - IN: climanifest1
+      - IN: cligkecluster
+      - TASK: managed
+  
+  - name: cli-sample1
+    type: runSh
+    steps:
+      - IN: cli-configaws
+      - IN: sample_pipelines_ciRepo
+      - TASK:
+        - script: ls
+  
+  - name: cli-sample2
+    type: runSh
+    steps:
+      - IN: cli-sample1
+      - TASK:
+        - script: ls
+  
+  - name: cli-sample3
+    type: runSh
+    steps:
+      - IN: cli-configdocker
+      - TASK:
+        - script: ls
+        #- script: sleep 3m
+        - script: ggdyttryyt
+  
+  - name: cli-sample4
+    type: runSh
+    steps:
+      - IN: cli-sample3
+      - IN: cli-sample2
+      - TASK:
+        - script: ls
+        
+  - name: cli-runshecr
+    type: runSh
+    steps:
+      #- IN: cli-repo
+      - IN: cli-configaws
+        scopes: 
+          - ecr
+      - OUT: sample_php_ciRepo
+      - TASK:
+        #- script: ls
+        - script: echo CLICONFIGAWS_INTEGRATION_ACCESSKEY=$CLICONFIGAWS_INTEGRATION_ACCESSKEY
+        - script: echo AWSCLICONFIG_INTEGRATION_SECRETKEY=${#CLICONFIGAWS_INTEGRATION_SECRETKEY}
+        - script: echo AWSCLICONFIG_NAME=$CLICONFIGAWS_NAME
+        - script: echo AWSCLICONFIG_ID=$CLICONFIGAWS_ID
+        - script: echo AWSCLICONFIG_TYPE=$CLICONFIGAWS_TYPE
+        - script: echo AWSCLICONFIG_INTEGRATION_TYPE=$CLICONFIGAWS_INTEGRATION_TYPE
+        - script: echo AWSCLICONFIG_OPEARATION=$CLICONFIGAWS_OPERATION
+        - script: echo AWSCLICONFIG_PATH=$CLICONFIGAWS_PATH
+        - script: echo AWSCLICONFIG_POINTER_REGION=$CLICONFIGAWS_POINTER_REGION
+        - script: echo AWSCLICONFIG_POINTER_CLUSTERNAME=$CLICONFIGAWS_POINTER_CLUSTERNAME
+        - script: echo AWSCLICONFIG_VERSIONNUMBER=$CLICONFIGAWS_VERSIONNUMBER
+        - script: echo AWSCLICONFIG_VERSIONNAME=$CLICONFIGAWS_VERSIONNAME
+        - script: echo AWSCLICONFIG_VERSIONID=$CLICONFIGAWS_VERSIONID
+        - script: docker pull 742038439709.dkr.ecr.us-west-2.amazonaws.com/sample_node
+        
+  - name: cli-runshaws
+    type: runSh
+    steps:
+      - IN: cli-repo
+      - IN: cli-configaws
+        scopes:
+          - aws
+      - TASK:
+        - script: eb --version
+        - script: echo CLICONFIGAWS_INTEGRATION_ACCESSKEY=$CLICONFIGAWS_INTEGRATION_ACCESSKEY
+        - script: echo AWSCLICONFIG_INTEGRATION_SECRETKEY=${#CLICONFIGAWS_INTEGRATION_SECRETKEY}
+        - script: echo AWSCLICONFIG_NAME=$CLICONFIGAWS_NAME
+        - script: echo AWSCLICONFIG_ID=$CLICONFIGAWS_ID
+        - script: echo AWSCLICONFIG_TYPE=$CLICONFIGAWS_TYPE
+        - script: echo AWSCLICONFIG_INTEGRATION_TYPE=$CLICONFIGAWS_INTEGRATION_TYPE
+        - script: echo AWSCLICONFIG_OPEARATION=$CLICONFIGAWS_OPERATION
+        - script: echo AWSCLICONFIG_PATH=$CLICONFIGAWS_PATH
+        - script: echo AWSCLICONFIG_POINTER_REGION=$CLICONFIGAWS_POINTER_REGION
+        - script: echo AWSCLICONFIG_POINTER_CLUSTERNAME=$CLICONFIGAWS_POINTER_CLUSTERNAME
+        - script: echo AWSCLICONFIG_VERSIONNUMBER=$CLICONFIGAWS_VERSIONNUMBER
+        - script: echo AWSCLICONFIG_VERSIONNAME=$CLICONFIGAWS_VERSIONNAME
+        - script: echo AWSCLICONFIG_VERSIONID=$CLICONFIGAWS_VERSIONID      
+        
+  - name: cli-runshdocker
+    type: runSh
+    steps:
+      - IN: cli-repo
+      - IN: cli-configdocker
+      - TASK:
+        - script: echo CLICONFIGDOCKER_INTEGRATION_URL=$CLICONFIGDOCKER_INTEGRATION_URL
+        - script: echo CLICONFIGDOCKER_INTEGRATION_USERNAME=$CLICONFIGDOCKER_INTEGRATION_USERNAME
+        - script: echo CLICONFIGDOCKER_INTEGRATION_PASSWORD=${#CLICONFIGDOCKER_INTEGRATION_PASSWORD}
+        - script: echo CLICONFIGDOCKER_INTEGRATION_EMAIL=$CLICONFIGDOCKER_INTEGRATION_EMAIL
+        - script: docker pull shippabledocker/sample_node_pvt:latest.40
+ 
+  - name: cli-runshgcr
+    type: runSh
+    steps:
+      - IN: cli-repo
+      - IN: cli-configgcl
+        scopes:
+          - gcr
+      - TASK:
+        - script: echo CLICONFIGGCL_INTEGRATION_JSON_KEY=${#CLICONFIGGCL_INTEGRATION_JSON_KEY}
+        - script: docker pull gcr.io/vidya-project/node1-img:master.33
+  
+  - name: cli-runshjfrog
+    type: runSh
+    steps:
+      - IN: cli-repo
+      - IN: cli-configjfrog
+      - TASK:
+        - script: echo CLICONFIGJFROG_INTEGRATION_URL=$CLICONFIGJFROG_INTEGRATION_URL
+        - script: echo CLICONFIGJFROG_INTEGRATION_USERNAME=$CLICONFIGJFROG_INTEGRATION_USERNAME
+        - script: echo CLICONFIGJFROG_INTEGRATION_PASSWORD=${#CLICONFIGJFROG_INTEGRATION_PASSWORD}
+        - script: jfrog rt dl test-jfrog-ship/testoct.sh
+        
+  - name: cli-runshkube
+    type: runSh
+    steps:
+      - IN: cli-repo
+      - IN: cli-configkube
+      - TASK:
+        - script: echo CLICONFIGKUBE_INTEGRATION_KUBECONFIGCONTENT=${#CLICONFIGKUBE_INTEGRATION_KUBECONFIGCONTENT}
+        - script: kubectl version
+  
+  - name: cli-runshquay
+    type: runSh
+    steps:
+      - IN: cli-repo
+      - IN: cli-configquay
+      - TASK:
+        - script: echo CLICONFIGQUAY_INTEGRATION_ACCESSTOKEN=${#CLICONFIGQUAY_INTEGRATION_ACCESSTOKEN}
+        - script: echo CLICONFIGQUAY_INTEGRATION_USERNAME=$CLICONFIGQUAY_INTEGRATION_USERNAME
+        - script: echo CLICONFIGQUAY_INTEGRATION_PASSWORD=${#CLICONFIGQUAY_INTEGRATION_PASSWORD}
+        - script: echo CLICONFIGQUAY_INTEGRATION_EMAIL=$CLICONFIGQUAY_INTEGRATION_EMAIL
+        - script: docker pull quay.io/revathird/samplenode_test
+
+triggers:
+   - name: cli-trigger1
+     type: trigger
+     version:
+       counter: 0
+   
+   - name: cli-trigger2
+     type: trigger
+     version:
+       counter: 0
+       
