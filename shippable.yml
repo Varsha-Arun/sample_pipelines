@@ -227,7 +227,7 @@ jobs:
       - IN: cli-configaws
         scopes: 
           - ecr
-      - OUT: sample_php_ciRepo
+      #- OUT: sample_php_ciRepo
       - TASK:
         #- script: ls
         - script: echo CLICONFIGAWS_INTEGRATION_ACCESSKEY=$CLICONFIGAWS_INTEGRATION_ACCESSKEY
