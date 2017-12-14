@@ -191,7 +191,7 @@ jobs:
     type: runSh
     steps:
       - IN: cli-configaws
-      - IN: sample_pipelines_ciRepo
+      #- IN: sample_pipelines_ciRepo
       - TASK:
         - script: ls
   
