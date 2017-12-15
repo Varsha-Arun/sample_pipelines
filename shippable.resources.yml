@@ -17,6 +17,6 @@ resources:
     pointer:
       method: email
       recipients: 
-        - deepika@shippable.com
+       # - deepika@shippable.com
         - varsha@shippable.com
         
