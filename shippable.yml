@@ -74,7 +74,7 @@ integrations:
       type: amazonKeys
       target: eb_docker
       application_name: "sample-docker"
-      env_name: SampleDocker-env
+      env_name: DockerApp-env
       bucket_name: "push-to-s3"
       region: "us-east-1"
       image_name: "shippabledocker/sample_node"
