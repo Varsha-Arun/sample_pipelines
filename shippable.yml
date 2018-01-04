@@ -55,8 +55,6 @@ integrations:
     - integrationName: ship-quay
       type: quay.io
 
-integrations:
-  hub: 
   #ecr with new integration using "hub" tag in integrations
     - integrationName: awskeys
       type: amazonKeys
