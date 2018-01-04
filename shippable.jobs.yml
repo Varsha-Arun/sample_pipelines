@@ -5,6 +5,7 @@ jobs:
       - IN: repo
       - TASK:
         - script: ls
+        - script: sleep 3m
         #- script: ./GET/infra-repo/infra-repo/provision.sh
     always:
       - script: echo "This works on_always"
