@@ -342,6 +342,7 @@ jobs:
         
   - name: cli-runshjfrog
     type: runSh
+    allowPublicAccess: true
     steps:
       - IN: cli-repo
       - IN: cli-configjfrog
