@@ -42,7 +42,7 @@ resources:
     type: gitRepo
     integration: "github"
     pointer:
-      sourceName: "Varsha-Arun/sample_pipelines"
+      sourceName: "Varsha-Arun/sample-script"
       branch: master
       #tags:
        # only:
