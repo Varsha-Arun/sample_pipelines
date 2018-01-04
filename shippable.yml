@@ -291,6 +291,26 @@ jobs:
         - script: echo CLICONFIGGCL_INTEGRATION_JSON_KEY=${#CLICONFIGGCL_INTEGRATION_JSON_KEY}
         - script: docker pull gcr.io/vidya-project/node1-img:master.33
   
+  - name: cli-runshgcl
+    type: runSh
+    steps:
+      - IN: cli-repo
+      - IN: cli-configgcl
+      - TASK:
+        - script: echo CLICONFIGGCL_INTEGRATION_JSON_KEY=${#CLICONFIGGCL_INTEGRATION_JSON_KEY}
+        - script: docker pull gcr.io/vidya-project/node1-img:master.33
+  
+  - name: cli-runshgke
+    type: runSh
+    steps:
+      - IN: cli-repo
+      - IN: cli-configgcl
+        scopes:
+          - gke
+      - TASK:
+        - script: echo CLICONFIGGCL_INTEGRATION_JSON_KEY=${#CLICONFIGGCL_INTEGRATION_JSON_KEY}
+        - script: docker pull gcr.io/vidya-project/node1-img:master.33
+        
   - name: cli-runshjfrog
     type: runSh
     steps:
