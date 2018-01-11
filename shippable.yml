@@ -122,6 +122,14 @@ resources:
     type: cliConfig
     integration: "docker"
   
+  - name: cli-configdtr
+    type: cliConfig
+    integration: "ship-dtr"
+  
+  - name: cli-configpdr
+    type: cliConfig
+    integration: "ship-pdr"
+    
   - name: cli-configgcl
     type: cliConfig
     integration: "gcl"
@@ -320,6 +328,30 @@ jobs:
         - script: echo CLICONFIGDOCKER_INTEGRATION_EMAIL=$CLICONFIGDOCKER_INTEGRATION_EMAIL
         - script: docker pull shippabledocker/sample_node_pvt:latest.40
  
+  - name: cli-runshdtr
+    type: runSh
+    steps:
+      - IN: cli-repo
+      - IN: cli-configdtr
+      - TASK:
+        - script: echo CLICONFIGDTR_INTEGRATION_URL=$CLICONFIGDTR_INTEGRATION_URL
+        - script: echo CLICONFIGDTR_INTEGRATION_USERNAME=$CLICONFIGDTR_INTEGRATION_USERNAME
+        - script: echo CLICONFIGDTR_INTEGRATION_PASSWORD=${#CLICONFIGDTR_INTEGRATION_PASSWORD}
+        - script: echo CLICONFIGDTR_INTEGRATION_EMAIL=$CLICONFIGDTR_INTEGRATION_EMAIL
+        - script: docker pull shippabledocker/sample_node_pvt:latest.40
+  
+  - name: cli-runshpdr
+    type: runSh
+    steps:
+      - IN: cli-repo
+      - IN: cli-configpdr
+      - TASK:
+        - script: echo CLICONFIGPDR_INTEGRATION_URL=$CLICONFIGPDR_INTEGRATION_URL
+        - script: echo CLICONFIGPDR_INTEGRATION_USERNAME=$CLICONFIGPDR_INTEGRATION_USERNAME
+        - script: echo CLICONFIGPDR_INTEGRATION_PASSWORD=${#CLICONFIGPDR_INTEGRATION_PASSWORD}
+        - script: echo CLICONFIGPDR_INTEGRATION_EMAIL=$CLICONFIGPDR_INTEGRATION_EMAIL
+        - script: docker pull shippabledocker/sample_node_pvt:latest.40
+        
   - name: cli-runshgcr
     type: runSh
     steps:
