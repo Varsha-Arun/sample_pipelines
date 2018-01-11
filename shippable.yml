@@ -386,13 +386,11 @@ jobs:
   
   - name: se-auto
     type: runSh
-    triggerMode: parallel
-    dependencyMode: strict
+   # triggerMode: parallel
+  #  dependencyMode: strict
     steps:
       - IN: seauto_repo
-        switch: off
       - IN: seauto_keys
-        switch: off
       - TASK:
           script:
             - pushd $(shipctl get_resource_state "seauto_repo")
