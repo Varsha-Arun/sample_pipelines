@@ -338,7 +338,7 @@ jobs:
         - script: echo CLICONFIGDTR_INTEGRATION_USERNAME=$CLICONFIGDTR_INTEGRATION_USERNAME
         - script: echo CLICONFIGDTR_INTEGRATION_PASSWORD=${#CLICONFIGDTR_INTEGRATION_PASSWORD}
         - script: echo CLICONFIGDTR_INTEGRATION_EMAIL=$CLICONFIGDTR_INTEGRATION_EMAIL
-        - script: docker pull shippabledocker/sample_node_pvt:latest.40
+        - script: docker pull quay.io/revathird/samplenode_test
   
   - name: cli-runshpdr
     type: runSh
@@ -350,7 +350,7 @@ jobs:
         - script: echo CLICONFIGPDR_INTEGRATION_USERNAME=$CLICONFIGPDR_INTEGRATION_USERNAME
         - script: echo CLICONFIGPDR_INTEGRATION_PASSWORD=${#CLICONFIGPDR_INTEGRATION_PASSWORD}
         - script: echo CLICONFIGPDR_INTEGRATION_EMAIL=$CLICONFIGPDR_INTEGRATION_EMAIL
-        - script: docker pull shippabledocker/sample_node_pvt:latest.40
+        - script: docker pull quay.io/revathird/samplenode_test
         
   - name: cli-runshgcr
     type: runSh
