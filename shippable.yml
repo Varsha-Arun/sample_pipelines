@@ -81,7 +81,18 @@ integrations:
       image_tag: "$BRANCH.$BUILD_NUMBER"
 
 resources:
+  
+  - name: seauto_keys
+    type: integration
+    integration: se-keys
 
+  - name: seauto_repo
+    type: gitRepo
+    integration: github
+    pointer:
+      sourceName: Varsha-Arun/bvt
+      branch: master
+      
   - name: cliecrcluster
     type: cluster
     integration: "awskeys"
@@ -372,7 +383,22 @@ jobs:
         - script: echo CLICONFIGQUAY_INTEGRATION_PASSWORD=${#CLICONFIGQUAY_INTEGRATION_PASSWORD}
         - script: echo CLICONFIGQUAY_INTEGRATION_EMAIL=$CLICONFIGQUAY_INTEGRATION_EMAIL
         - script: docker pull quay.io/revathird/samplenode_test
-
+  
+  - name: se-auto
+    type: runSh
+    triggerMode: parallel
+    dependencyMode: strict
+    steps:
+      - IN: seauto_repo
+        switch: off
+      - IN: seauto_keys
+        switch: off
+      - TASK:
+          script:
+            - pushd $(shipctl get_resource_state "seauto_repo")
+            - ./test.sh
+            - popd
+            
 triggers:
    - name: cli-trigger1
      type: trigger
