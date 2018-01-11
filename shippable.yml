@@ -386,16 +386,15 @@ jobs:
   
   - name: se-auto
     type: runSh
-   # triggerMode: parallel
-  #  dependencyMode: strict
+    triggerMode: parallel
+    dependencyMode: strict
     steps:
       - IN: seauto_repo
       - IN: seauto_keys
       - TASK:
-          script:
-            - pushd $(shipctl get_resource_state "seauto_repo")
-            - ./test.sh
-            - popd
+        - script: pushd $(shipctl get_resource_state "seauto_repo")
+        - script: ./test.sh
+        - script: popd
             
 triggers:
    - name: cli-trigger1
