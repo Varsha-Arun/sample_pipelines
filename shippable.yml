@@ -416,7 +416,7 @@ jobs:
         - script: echo CLICONFIGQUAY_INTEGRATION_EMAIL=$CLICONFIGQUAY_INTEGRATION_EMAIL
         - script: docker pull quay.io/revathird/samplenode_test
   
-  - name: se-auto
+  - name: auto
     type: runSh
     triggerMode: parallel
     dependencyMode: strict
