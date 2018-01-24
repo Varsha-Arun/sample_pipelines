@@ -151,7 +151,7 @@ resources:
     integration: awskeys
     pointer:
       # replace with your docker registry URI
-      sourceName: 742038439709.dkr.ecr.us-west-2.amazonaws.com/sample_java
+      sourceName: 742038439709.dkr.ecr.us-west-2.amazonaws.com/sample_node
     seed:
       versionName: latest
 
