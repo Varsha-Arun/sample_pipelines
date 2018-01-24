@@ -151,9 +151,9 @@ resources:
     integration: awskeys
     pointer:
       # replace with your docker registry URI
-      sourceName: 742038439709.dkr.ecr.us-west-2.amazonaws.com/sample_node
+      sourceName: 742038439709.dkr.ecr.us-west-2.amazonaws.com/sample_java
     seed:
-      versionName: master
+      versionName: latest
 
   - name: cli-image1
     type: image
@@ -211,7 +211,7 @@ resources:
     version:
       params:
         ENVIRONMENT: "test"
-        AWS_EB_ENVIRONMENT: "demoJavaEcr-test"
+        AWS_EB_ENVIRONMENT: "SampleApp-env"
 
   - name: cli-scale1
     type: replicas
