@@ -145,7 +145,16 @@ resources:
   - name: cli-configquay
     type: cliConfig
     integration: "quay"
-    
+  
+  - name: cliecr_img
+    type: image
+    integration: awskeys
+    pointer:
+      # replace with your docker registry URI
+      sourceName: 742038439709.dkr.ecr.us-west-2.amazonaws.com/sample_node
+    seed:
+      versionName: master
+
   - name: cli-image1
     type: image
     integration: docker
@@ -189,7 +198,21 @@ resources:
       params:
         TEST: rc
         secure: jSG65hVDJRaBuT/bRxTvpAC6rFcQswtSXpMYg46lnutNJ2sOsReYNTxXMvPoymro7MKlH9UiaKXndgMFrOkymzg9Tog3RqGXCKvaTLsa0gK7e/SFOs5TxeX27KcRut6e1TiL0Y3opTVJgWnTMkslWitFRcjXwGyrvzQrEQr78q+xhnLal72xvc4ojFaWUdTL72g3iNLklhoI4EsMoOj5KQnTZ2tgR+4/pYTKn6cCKzzK58T/rZXSqGb8QSSXTTGk3OH0rjKWd29Al082BRvPbcscPR2AfEdaAwtE7BJ06JPqBc+vDeFKD/bg00Euo02fed4uGh5T6W61FrdqZig/LA==
-        
+  
+  - name: ebcli_params
+    type: params
+    version:
+      params:
+        AWS_EB_APPLICATION: "sample-app"
+        PORT: 8080
+  
+  - name: ecrebcli_params
+    type: params
+    version:
+      params:
+        ENVIRONMENT: "test"
+        AWS_EB_ENVIRONMENT: "demoJavaEcr-test"
+
   - name: cli-scale1
     type: replicas
     version:
@@ -206,6 +229,7 @@ resources:
     pointer:
       sourceName: Varsha-Arun/sample_pipelines
       branch: integrationsCli
+      
       
 jobs:
   - name: climanifest1
@@ -267,7 +291,33 @@ jobs:
       - IN: cli-sample2
       - TASK:
         - script: ls
-        
+  
+  - name: cli-runsheb
+    type: runCLI
+    steps:
+      - IN: cliecr_img #demo_java_ecr_img
+      - IN: cli-configaws #demo_java_ecr_awscli
+      - IN: cli-repo # demo_java_ecr_gitrepo
+        switch: off
+      - IN: ecrebcli_params #demo_java_ecr_params_test
+      - IN: ebcli_params #demo_java_ecr_params
+      - TASK:
+        # assign Shippable-injected variables to variables used in templates
+        - script: export ENVIRONMENT=$ECREBCLI_PARAMS_PARAMS_ENVIRONMENT PORT=EBCLI_PARAMS_PARAMS_PORT IMAGE_REPO=$CLIECR_IMG_SOURCENAME IMAGE_TAG=$CLIECR_IMG_VERSIONNAME
+        # update template files with values in env variables
+        - script: cd $CLIREPO_STATE/deploy
+        - script: pwd
+        - script: echo "updating templates with environment variables"
+        - script: shippable_replace Dockerrun.aws.json .ebextensions/environmentvariables.config
+        # initialize eb cli for app demo_java_ecr
+        - script: echo "initializing EB"
+        - script: eb init demo_java_ecr --platform docker-1.12.6 --region us-east-1 --keyname kp-us-west-2
+        # deploy latest image to elastic beanstalk
+        - script: echo "Deploying new version to Elastic Beanstalk"
+        - script: eb deploy $ECREBCLI_PARAMS_PARAMS_AWS_EB_ENVIRONMENT
+        # save latest deployment to state
+        - script: echo -e "IMAGE_REPO=$IMAGE_REPO\nIMAGE_TAG=$IMAGE_TAG" >> $CLIRUNSHEB_STATE/latest_test_deploy.env
+
   - name: cli-runshecr
     type: runSh
     steps:
