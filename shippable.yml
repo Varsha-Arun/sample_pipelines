@@ -108,7 +108,7 @@ resources:
     type: cluster
     integration: gcl
     pointer:
-      sourceName: "small-cluster" #name of the cluster we are deploying.
+      sourceName: "cluster-1" #name of the cluster we are deploying.
       region: "us-central1-a"
 
   - name: cli-configaws
