@@ -63,7 +63,7 @@ integrations:
   deploy: 
   #elastic beanstalk with new awskeys integrations using "deploy" tag in integrations
     - integrationName: awskeys
-      type: amazonKeys
+      type: ecr
       target: eb_paas
       platform: Node.js
       application_name: sample-app
@@ -71,7 +71,7 @@ integrations:
       region: us-east-1
     
     - integrationName: awskeys
-      type: amazonKeys
+      type: ecr
       target: eb_docker
       application_name: "sample-docker"
       env_name: DockerApp-env
@@ -230,6 +230,12 @@ resources:
       sourceName: Varsha-Arun/sample_pipelines
       branch: integrationsCli
       
+  - name: script3-repo
+    type: gitRepo
+    integration: github
+    pointer:
+      sourceName: Varsha-Arun/sample-script-3
+      branch: master   
       
 jobs:
   - name: climanifest1
@@ -261,11 +267,15 @@ jobs:
   
   - name: cli-sample1
     type: runSh
+    allowPublicAccess: true
     steps:
+      - IN: script3-repo
+        showBuildStatus: true
       - IN: cli-configaws
       #- IN: sample_pipelines_ciRepo
       - TASK:
         - script: ls
+        - script: ./IN/script3-repo/gitRepo/echo.sh
   
   - name: cli-sample2
     type: runSh
