@@ -63,7 +63,7 @@ integrations:
   deploy: 
   #elastic beanstalk with new awskeys integrations using "deploy" tag in integrations
     - integrationName: awskeys
-      type: ecr
+      type: amazonkeys
       target: eb_paas
       platform: Node.js
       application_name: sample-app
@@ -71,7 +71,7 @@ integrations:
       region: us-east-1
     
     - integrationName: awskeys
-      type: ecr
+      type: amazonkeys
       target: eb_docker
       application_name: "sample-docker"
       env_name: DockerApp-env
