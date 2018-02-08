@@ -182,16 +182,16 @@ jobs:
       - NOTIFY: ar-slack
 
 #RUNCI
-  - name: sample_pipelines_runCI
-    type: runCI
+ # - name: sample_pipelines_runCI
+ #   type: runCI
     #allowPublicAccess: true
-    on_start:
-      - NOTIFY: ar-slack
-    steps:
-      - IN: ar-dockercli
+ #   on_start:
+  #    - NOTIFY: ar-slack
+  #  steps:
+  #    - IN: ar-dockercli
          #versionName: testrelease
-    flags:
-      - ar-release   
+  #  flags:
+   #   - ar-release   
       
 #RUNSH      
   - name: ar-inrunSh
