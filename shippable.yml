@@ -521,7 +521,7 @@ jobs:
         - script: echo CLICONFIGQUAY_INTEGRATION_EMAIL=$CLICONFIGQUAY_INTEGRATION_EMAIL
         - script: docker pull quay.io/revathird/samplenode_test
   
-  - name: deploy-beanstalk-basic_runCI
+  - name: sample_pipelines_runCI
     type: runCI
     flags:
       - deploy-eb-basic
