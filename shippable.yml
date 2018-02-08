@@ -524,7 +524,7 @@ jobs:
   - name: sample_pipelines_runCI
     type: runCI
     flags:
-      - deploy-eb-basic
+      - sample_pipelines_runCI
     steps:
       - OUT: deploy-eb-basic-image
 
