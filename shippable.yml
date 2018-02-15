@@ -40,8 +40,8 @@ build:
 
   # http://docs.shippable.com/ci/shippableyml/#post_ci
   post_ci:
-    - docker push 742038439709.dkr.ecr.us-west-2.amazonaws.com/sample_node
-    - aws s3 sync $SHIPPABLE_BUILD_DIR "$AWS_S3_BUCKET" --region "$AWS_S3_REGION"
+  #  - docker push 742038439709.dkr.ecr.us-west-2.amazonaws.com/sample_node
+  #  - aws s3 sync $SHIPPABLE_BUILD_DIR "$AWS_S3_BUCKET" --region "$AWS_S3_REGION"
   # Testing docker build and push
     - docker build -t=shippabledocker/sample_node_pvt:latest.40 .
     - docker push shippabledocker/sample_node_pvt:latest.40
