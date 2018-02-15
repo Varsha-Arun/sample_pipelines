@@ -26,6 +26,8 @@ build:
     # npm mirrors can sometimes be flacky, better to use shippable_retry
     # http://docs.shippable.com/ci/advancedOptions/retry/
     - python --version
+    - echo $key1
+    - echo $key2
     - docker pull 742038439709.dkr.ecr.us-east-1.amazonaws.com/sample_php
     - shippable_retry npm install
     - mkdir -p $TEST_RESULTS_DIR && mkdir -p $CODE_COVERAGE_DIR
@@ -56,6 +58,9 @@ build:
     - 'if [ $IS_PULL_REQUEST == "false" ] ; then echo "versionName=$BRANCH.$BUILD_NUMBER" > $JOB_STATE/deploy-eb-basic-image.env ; fi'
     
 integrations:
+  generic:     
+    - integrationName: keyValueInt
+    
   hub:
  #Docker integration
     - integrationName: docker
@@ -303,6 +308,10 @@ resources:
     pointer:
       sourceName: Varsha-Arun/sample_pipelines
       branch: integrationsCli
+  
+  - name: keyValueInt
+    type: integration
+    integration: keyValueInt
     
 jobs:
   - name: climanifest1
@@ -348,8 +357,11 @@ jobs:
     type: runSh
     steps:
       - IN: cli-sample1
+      - IN: keyValueInt
       - TASK:
         - script: ls
+        - script: echo $key1
+        - script: echo $key2
   
   - name: cli-sample3
     type: runSh
