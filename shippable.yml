@@ -368,6 +368,13 @@ jobs:
       - IN: cli-sample2
       - TASK:
         - script: ls
+  
+  - name: cli-sample5
+    type: runSh
+    steps:
+      - IN: cli-sample3
+      - IN: cli-sample2
+      - TASK:
         
   - name: cli-runsheb
     type: runCLI
