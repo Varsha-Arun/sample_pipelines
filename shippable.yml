@@ -26,6 +26,7 @@ build:
     # npm mirrors can sometimes be flacky, better to use shippable_retry
     # http://docs.shippable.com/ci/advancedOptions/retry/
     - python --version
+    - echo "Below are the 2 env from key value pair integration"
     - echo $key1
     - echo $key2
     - docker pull 742038439709.dkr.ecr.us-east-1.amazonaws.com/sample_php
