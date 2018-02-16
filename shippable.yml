@@ -383,6 +383,10 @@ jobs:
       - IN: cli-sample2
       - TASK:
         - script: ls
+        - script: lsb_release -a
+        - script: docker --version
+        - script: docker info
+        - script: docker ps 
         
   - name: cli-runsheb
     type: runCLI
