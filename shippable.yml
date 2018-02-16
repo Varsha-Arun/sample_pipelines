@@ -345,6 +345,8 @@ jobs:
   - name: cli-sample1
     type: runSh
     allowPublicAccess: true
+    runtime:
+      nodePool: custom__x86_64__Ubuntu_14_04
     steps:
       - IN: script3-repo
         showBuildStatus: true
