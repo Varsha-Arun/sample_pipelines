@@ -610,10 +610,10 @@ jobs:
     type: runSh
     triggerMode: parallel
     dependencyMode: strict
-    allowPublicAccess: <true/false> # optional
-    runtime:                        # optional
-      - nodePool: <node pool name>
-      - container: <true/false>     # optional
+   # allowPublicAccess: <true/false> # optional
+   # runtime:                        # optional
+    #  - nodePool: <node pool name>
+     # - container: <true/false>     # optional
     timeoutMinutes: 120        
     steps:
       - IN: seauto_repo
