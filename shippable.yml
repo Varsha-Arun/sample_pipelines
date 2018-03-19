@@ -612,9 +612,7 @@ jobs:
     dependencyMode: strict
    # allowPublicAccess: <true/false> # optional
     runtime:                        # optional
-      - nodePool: dynamic__x86_64__Ubuntu_14_04__c4_large
-      - timeoutMinutes: 180
-     # - container: <true/false>     # optional            
+      timeoutMinutes: 180           
     steps:
       - IN: seauto_repo
       - IN: seauto_keys
