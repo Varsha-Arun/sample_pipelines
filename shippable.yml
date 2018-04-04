@@ -608,11 +608,11 @@ jobs:
         
   - name: auto
     type: runSh
-    triggerMode: parallel
-    dependencyMode: strict
+   # triggerMode: parallel
+   # dependencyMode: strict
    # allowPublicAccess: <true/false> # optional
-    runtime:                        # optional
-      timeoutMinutes: 180           
+   # runtime:                        # optional
+   #   timeoutMinutes: 180           
     steps:
       - IN: seauto_repo
       - IN: seauto_keys
