@@ -606,7 +606,7 @@ jobs:
   #      - script: shippable_replace Dockerrun.aws.json .elasticbeanstalk/config.yml
    #     - script: eb deploy -v
         
-  - name: auto1
+  - name: auto
     type: runSh
    # triggerMode: parallel
    # dependencyMode: strict
