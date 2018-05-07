@@ -72,13 +72,13 @@ integrations:
  # #ECR integration
     - integrationName: ship-ecr
       type: ecr
-      region: us-west-2
+      region: us-east-1
     #  branches: #Testing the wildcards for branches exclude
       #  except:
        #   - n*
-    - integrationName: ship-ecreast1
-      type: ecr
-      region: us-east-1
+   # - integrationName: ship-ecreast1
+   #   type: ecr
+   #   region: us-east-1
   #Quay.io integration    
     - integrationName: ship-quay
       type: quay.io
@@ -86,7 +86,7 @@ integrations:
   #ecr with new integration using "hub" tag in integrations
     - integrationName: awskeys
       type: amazonKeys
-      region: us-west-2  
+      region: us-east-1 
       
  # deploy: 
   #elastic beanstalk with new awskeys integrations using "deploy" tag in integrations
@@ -126,7 +126,7 @@ resources:
     integration: "awskeys"
     pointer:
       sourceName : "testrelease"
-      region: "us-west-2"
+      region: "us-east-1"
   
   - name: clikubecluster
     type: cluster
@@ -144,7 +144,7 @@ resources:
     integration: "awskeys"
     pointer:
       sourceName : "testrc"
-      region: "us-west-2"
+      region: "us-east-1"
   
   - name: cli-configdocker
     type: cliConfig
