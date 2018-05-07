@@ -62,10 +62,10 @@ integrations:
   generic:     
     - integrationName: keyValueInt
     
-  #hub:
+  hub:
  #Docker integration
     - integrationName: docker
-      type: docker 
+      type: dockerRegistryLogin
   #GCR integration
     - integrationName: ship-gcr
       type: gcr
