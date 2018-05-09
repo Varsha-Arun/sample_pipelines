@@ -44,4 +44,4 @@ integrations:
   generic:
     - integrationName: awskeys
       type: ecr
-      region: us-east-1
+      region: us-east-1 
