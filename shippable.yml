@@ -20,6 +20,7 @@ build:
   ci:
     - echo "$SHIPPABLE_REPO_DIR"
     - echo "$SHIPPABLE_REPO_DIR/tests"
+    - echo "$MOD_LOC"
     # npm mirrors can sometimes be flacky, better to use shippable_retry
     # http://docs.shippable.com/ci/advancedOptions/retry/
     - shippable_retry npm install
