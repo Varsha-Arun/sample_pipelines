@@ -4,107 +4,28 @@ language: node_js
 # Version number
 node_js:
   - 6.11
-  
-#env:
-#  global:
-#    - TEST_RESULTS_DIR=$SHIPPABLE_REPO_DIR/shippable/testresults
-#    - CODE_COVERAGE_DIR=$SHIPPABLE_REPO_DIR/shippable/codecoverage
-#    - TESTS_LOC_DIR=$SHIPPABLE_REPO_DIR/tests
-#    - MOD_LOC=$SHIPPABLE_REPO_DIR/node_modules/.bin/
-#   # - ECR_REPO=679404489841.dkr.ecr.us-east-1.amazonaws.com/nodeapp
-#    - AWS_S3_BUCKET='s3://push-to-s3'
-#    - AWS_S3_REGION='us-east-1'
-##    - secure: 7PMKeEjdH/5Wb+uGyL5jjiFZGrZdegNICH5AqpGMBAijZQAQnFMrWgQzZFP9aUc7GxxOK05Gmfoi2/IiL9+VTwckyAKN4KnpHVoAnz8VfEleXD4spv2Znb4/BaMxlPs4P+lhJ1BSZfyq0tEw0J1+pqzCR9tg3muUHa0SF0i13TzhsHrmTmQcYIvE0B96rYh0pmrfablLbcKvnQC2jg37crNBZVZ5BygQo7I4qzmnvfX39nK/4DaTpa04cmPPyFyPIajy9QXwLmQGPlGeCIk2RPaNJRzL2GweYReXYUE+tIOT6Uhqga2svbSnMjX4CeR8unrh+JfTa+J6D/MMzsG16w==
 
 build:
   pre_ci:
-  #Testing for pre_ci carrying over to pre_ci_boot
-    - docker build -t=523491569906.dkr.ecr.us-east-1.amazonaws.com/sampleecr .
+    - docker build -t=523491569906.dkr.ecr.us-east-1.amazonaws.com/sampleecr:latest .
 
-  # http://docs.shippable.com/ci/shippableyml/#ci
   ci:
-    # npm mirrors can sometimes be flacky, better to use shippable_retry
-    # http://docs.shippable.com/ci/advancedOptions/retry/
     - python --version
-   # - echo "Below are the 2 env from key value pair integration"
-    #- echo $key1
-    #- echo $key2
-   # - docker pull 742038439709.dkr.ecr.us-east-1.amazonaws.com/sample_php
-    #- shippable_retry npm install
-    #- mkdir -p $TEST_RESULTS_DIR && mkdir -p $CODE_COVERAGE_DIR
-  #  - pushd $TESTS_LOC_DIR
-  #  - $MOD_LOC/mocha --recursive "$TESTS_LOC_DIR/**/*.spec.js" -R mocha-junit-reporter --reporter-options mochaFile=$TEST_RESULTS_DIR/testresults.xml
-  #  - $MOD_LOC/istanbul --include-all-sources cover -root "$SHIPPABLE_REPO_DIR/routes" $SHIPPABLE_REPO_DIR/node_modules/mocha/bin/_mocha -- -R spec-xunit-file --recursive "$TESTS_LOC_DIR/**/*.spec.js"
-  #  - $MOD_LOC/istanbul report cobertura --dir $CODE_COVERAGE_DIR
-  #  - popd
 
-  # http://docs.shippable.com/ci/shippableyml/#post_ci
   post_ci:
-   # - docker push 523491569906.dkr.ecr.us-east-1.amazonaws.com/sampleecr
-  #  - aws s3 sync $SHIPPABLE_BUILD_DIR "$AWS_S3_BUCKET" --region "$AWS_S3_REGION"
-  # Testing docker build and push
-   # - docker build -t=shippabledocker/sample_node_pvt:latest.40 .
-   # - docker push shippabledocker/sample_node_pvt:latest.40
-  # Testing gcr build and push
-   # - docker build -t=gcr.io/vidya-project/node1-img:master.33  .
-   # - docker push gcr.io/vidya-project/node1-img:master.33
-  # Testing quay build and push
-   # - docker build -t=quay.io/revathird/samplenode_test .
-   # - docker push quay.io/revathird/samplenode_test
-   # Testing ecr build and push
-    - docker build -t=523491569906.dkr.ecr.us-east-1.amazonaws.com/sampleecr .
-    - docker push 523491569906.dkr.ecr.us-east-1.amazonaws.com/sampleecr
-  #  - 'if [ $IS_PULL_REQUEST == "false" ] ; then docker build -t $ECR_REPO:$BRANCH.$BUILD_NUMBER .; fi'
-  #  - 'if [ $IS_PULL_REQUEST == "false" ] ; then docker push $ECR_REPO:$BRANCH.$BUILD_NUMBER ; fi'
-  #  - 'if [ $IS_PULL_REQUEST == "false" ] ; then echo "versionName=$BRANCH.$BUILD_NUMBER" > $JOB_STATE/deploy-eb-basic-image.env ; fi'
+    - docker push 523491569906.dkr.ecr.us-east-1.amazonaws.com/sampleecr:latest
     
 integrations:
   generic:     
     - integrationName: keyValueInt
-
-  #ecr with new integration using "hub" tag in integrations
-  #  - integrationName: awskeys
-   #   type: amazonKeys
-   #   region: us-east-1 
       
   hub:
- #Docker integration
-   # - integrationName: docker
-   #   type: dockerRegistryLogin
-  #GCR integration
-    #- integrationName: ship-gcr
-    #  type: gcr
   #ECR integration
+   # - integrationName: awskeys
+    #  type: ecr
+     # region: us-east-1
+      
+  #ecr with new integration using "hub" tag in integrations
     - integrationName: awskeys
-      type: ecr
-      region: us-east-1
-    ##  branches: #Testing the wildcards for branches exclude
-      #  except:
-       #   - n*
-   # - integrationName: ship-ecreast1
-   #   type: ecr
-   #   region: us-east-1
-  #Quay.io integration    
-   # - integrationName: ship-quay
-   #   type: quay.io
- 
- # deploy: 
-  #elastic beanstalk with new awskeys integrations using "deploy" tag in integrations
- #   - integrationName: awskeys
-  #    type: amazonkeys
-  #    target: eb_paas
-  #    platform: Node.js
-  #    application_name: sample-app
-   #   env_name: SampleApp-env
-   #   region: us-east-1
-    
-    #- integrationName: awskeys
-    #  type: amazonkeys
-   #   target: eb_docker
-    #  application_name: "sample-docker"
-    #  env_name: DockerApp-env
-    #  bucket_name: "push-to-s3"
-    #  region: "us-east-1"
-    #  image_name: "shippabledocker/sample_node"
-    #  image_tag: "$BRANCH.$BUILD_NUMBER"
-
+      type: amazonKeys
+      region: us-east-1 
