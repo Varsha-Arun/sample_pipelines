@@ -7,12 +7,13 @@ node_js:
 
 build:
   pre_ci:
-    - docker build -t=523491569906.dkr.ecr.us-east-1.amazonaws.com/sampleecr:latest .
+    - docker build -t=523491569906.dkr.ecr.us-east-1.amazonaws.com/sampleecr .
 
   ci:
     - python --version
 
   post_ci:
+    - docker tag 523491569906.dkr.ecr.us-east-1.amazonaws.com/sampleecr:latest
     - docker push 523491569906.dkr.ecr.us-east-1.amazonaws.com/sampleecr:latest
     
 integrations:
