@@ -21,11 +21,11 @@ integrations:
       
   hub:
   #ECR integration
-   # - integrationName: awskeys
-    #  type: ecr
-     # region: us-east-1
+    - integrationName: awskeys
+      type: ecr
+      region: us-east-1
       
   #ecr with new integration using "hub" tag in integrations
-    - integrationName: awskeys
-      type: amazonKeys
-      region: us-east-1 
+   # - integrationName: awskeys
+  #    type: amazonKeys
+   #   region: us-east-1 
