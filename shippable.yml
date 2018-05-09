@@ -62,7 +62,7 @@ integrations:
   generic:     
     - integrationName: keyValueInt
     
-  hub:
+  #hub:
  #Docker integration
     - integrationName: docker
       type: dockerRegistryLogin
