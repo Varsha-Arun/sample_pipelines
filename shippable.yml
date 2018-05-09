@@ -67,17 +67,17 @@ integrations:
       type: amazonKeys
       region: us-east-1 
       
-  hub:
+ # hub:
  #Docker integration
-    - integrationName: docker
-      type: dockerRegistryLogin
+   # - integrationName: docker
+   #   type: dockerRegistryLogin
   #GCR integration
     #- integrationName: ship-gcr
     #  type: gcr
  # #ECR integration
-    - integrationName: awskeys
-      type: ecr
-      region: us-east-1
+   # - integrationName: awskeys
+    #  type: ecr
+    #  region: us-east-1
     #  branches: #Testing the wildcards for branches exclude
       #  except:
        #   - n*
