@@ -13,7 +13,7 @@ build:
     - python --version
 
   post_ci:
-    - docker tag 523491569906.dkr.ecr.us-east-1.amazonaws.com/sampleecr:latest
+    - docker tag drydock/u16nodall:v6.3.4 523491569906.dkr.ecr.us-east-1.amazonaws.com/sampleecr:latest
     - docker push 523491569906.dkr.ecr.us-east-1.amazonaws.com/sampleecr:latest
     
 integrations:
