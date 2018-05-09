@@ -75,7 +75,7 @@ integrations:
     #- integrationName: ship-gcr
     #  type: gcr
  # #ECR integration
-    - integrationName: ship-ecr
+    - integrationName: awskeys
       type: ecr
       region: us-east-1
     #  branches: #Testing the wildcards for branches exclude
