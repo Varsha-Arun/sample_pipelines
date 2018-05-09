@@ -20,7 +20,7 @@ integrations:
   generic:     
     - integrationName: keyValueInt
       
-  hub:
+  #hub:
   #ECR integration
    # - integrationName: awskeys
     #  type: ecr
