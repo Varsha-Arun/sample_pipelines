@@ -44,5 +44,5 @@ build:
 integrations:
   hub:
     - integrationName: awskeys
-      type: amazonKeys
+      type: ecr
       region: us-east-1  
