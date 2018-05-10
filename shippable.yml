@@ -40,20 +40,20 @@ build:
 
   # http://docs.shippable.com/ci/shippableyml/#post_ci
   post_ci:
-   # - docker push 742038439709.dkr.ecr.us-west-2.amazonaws.com/sample_node
+   # - docker push 523491569906.dkr.ecr.us-east-1.amazonaws.com/sampleecr:latest
   #  - aws s3 sync $SHIPPABLE_BUILD_DIR "$AWS_S3_BUCKET" --region "$AWS_S3_REGION"
   # Testing docker build and push
     - docker build -t=shippabledocker/sample_node_pvt:latest.40 .
     - docker push shippabledocker/sample_node_pvt:latest.40
   # Testing gcr build and push
-    - docker build -t=gcr.io/vidya-project/node1-img:master.33  .
-    - docker push gcr.io/vidya-project/node1-img:master.33
+    #- docker build -t=gcr.io/vidya-project/node1-img:master.33  .
+    #- docker push gcr.io/vidya-project/node1-img:master.33
   # Testing quay build and push
     - docker build -t=quay.io/revathird/samplenode_test .
     - docker push quay.io/revathird/samplenode_test
    # Testing ecr build and push
-    - docker build -t=742038439709.dkr.ecr.us-east-1.amazonaws.com/sample_node .
-    - docker push 742038439709.dkr.ecr.us-east-1.amazonaws.com/sample_node
+    - docker build -t=523491569906.dkr.ecr.us-east-1.amazonaws.com/sampleecr:latest .
+    - docker push 523491569906.dkr.ecr.us-east-1.amazonaws.com/sampleecr:latest
   #  - 'if [ $IS_PULL_REQUEST == "false" ] ; then docker build -t $ECR_REPO:$BRANCH.$BUILD_NUMBER .; fi'
   #  - 'if [ $IS_PULL_REQUEST == "false" ] ; then docker push $ECR_REPO:$BRANCH.$BUILD_NUMBER ; fi'
   #  - 'if [ $IS_PULL_REQUEST == "false" ] ; then echo "versionName=$BRANCH.$BUILD_NUMBER" > $JOB_STATE/deploy-eb-basic-image.env ; fi'
@@ -437,10 +437,7 @@ jobs:
         - script: echo AWSCLICONFIG_VERSIONNUMBER=$CLICONFIGAWS_VERSIONNUMBER
         - script: echo AWSCLICONFIG_VERSIONNAME=$CLICONFIGAWS_VERSIONNAME
         - script: echo AWSCLICONFIG_VERSIONID=$CLICONFIGAWS_VERSIONID
-        - script: docker build -t=523491569906.dkr.ecr.us-east-1.amazonaws.com/sampleecr .
-        - script: docker tag sampleecr:latest 523491569906.dkr.ecr.us-east-1.amazonaws.com/sampleecr:latest
-        - script: docker push 523491569906.dkr.ecr.us-east-1.amazonaws.com/sampleecr:latest
-        #- script: docker pull 742038439709.dkr.ecr.us-west-2.amazonaws.com/sample_node
+        - script: docker pull 523491569906.dkr.ecr.us-east-1.amazonaws.com/sampleecr:latest
         
   - name: cli-runshaws
     type: runSh
