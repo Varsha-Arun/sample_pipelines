@@ -67,8 +67,10 @@ integrations:
     - integrationName: docker
       type: dockerRegistryLogin
   #GCR integration
-    - integrationName: ship-gcr
-      type: gcr
+    #- integrationName: ship-gcr
+    #  type: gcr
+    - integrationName: gcl
+      type: gcloudKey
  # #ECR integration
     - integrationName: ship-ecr
       type: ecr
