@@ -72,9 +72,9 @@ integrations:
     - integrationName: gcl
       type: gcloudKey
  # #ECR integration
-    - integrationName: ship-ecr
-      type: ecr
-      region: us-east-1
+   # - integrationName: ship-ecr
+    #  type: ecr
+    #  region: us-east-1
     #  branches: #Testing the wildcards for branches exclude
       #  except:
        #   - n*
