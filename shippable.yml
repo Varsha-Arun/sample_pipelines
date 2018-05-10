@@ -82,8 +82,10 @@ integrations:
    #   type: ecr
    #   region: us-east-1
   #Quay.io integration    
+    #- integrationName: ship-quay
+     # type: quay.io
     - integrationName: ship-quay
-      type: quay.io
+      type: quayLogin
 
   #ecr with new integration using "hub" tag in integrations
     - integrationName: awskeys
