@@ -77,7 +77,7 @@ integrations:
     #  region: us-east-1
     #  branches: #Testing the wildcards for branches exclude
       #  except:
-       #   - n*
+       ##   - n*
    # - integrationName: ship-ecreast1
    #   type: ecr
    #   region: us-east-1
