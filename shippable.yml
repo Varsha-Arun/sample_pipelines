@@ -178,7 +178,7 @@ resources:
     type: cliConfig
     integration: "quay"
   
-  - name: cliecr_img
+  - name: cliecr_img1
     type: image
     integration: awskeys
     pointer:
@@ -395,7 +395,7 @@ jobs:
   - name: cli-runsheb
     type: runCLI
     steps:
-      - IN: cliecr_img #demo_java_ecr_img
+      - IN: cliecr_img1 #demo_java_ecr_img
       - IN: cli-configaws #demo_java_ecr_awscli
       - IN: cli-repo # demo_java_ecr_gitrepo
         switch: off
@@ -403,7 +403,7 @@ jobs:
       - IN: ebcli_params #demo_java_ecr_params
       - TASK:
         # assign Shippable-injected variables to variables used in templates
-        - script: export ENVIRONMENT=$ECREBCLI_PARAMS_PARAMS_ENVIRONMENT PORT=EBCLI_PARAMS_PARAMS_PORT IMAGE_REPO=$CLIECR_IMG_SOURCENAME IMAGE_TAG=$CLIECR_IMG_VERSIONNAME
+        - script: export ENVIRONMENT=$ECREBCLI_PARAMS_PARAMS_ENVIRONMENT PORT=EBCLI_PARAMS_PARAMS_PORT IMAGE_REPO=$CLIECR_IMG1_SOURCENAME IMAGE_TAG=$CLIECR_IMG1_VERSIONNAME
         # update template files with values in env variables
         - script: cd $CLIREPO_STATE/deploy
         - script: pwd
