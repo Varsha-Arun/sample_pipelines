@@ -183,7 +183,7 @@ resources:
     integration: awskeys
     pointer:
       # replace with your docker registry URI
-      sourceName: 742038439709.dkr.ecr.us-west-2.amazonaws.com/sample_node
+      sourceName: 523491569906.dkr.ecr.us-east-1.amazonaws.com/sampleecr
     seed:
       versionName: latest
 
@@ -274,7 +274,7 @@ resources:
     flags:
       - deploy-eb-basic
     pointer:
-      sourceName: "742038439709.dkr.ecr.us-east-1.amazonaws.com/sample_php" #"679404489841.dkr.ecr.us-east-1.amazonaws.com/nodeapp"
+      sourceName: "523491569906.dkr.ecr.us-east-1.amazonaws.com/sampleecr" #"679404489841.dkr.ecr.us-east-1.amazonaws.com/nodeapp"
     seed:
       versionName: "latest"
 
@@ -293,9 +293,9 @@ resources:
       params:
         ENVIRONMENT: "dev"
         PORT: 80
-        AWS_EB_ENVIRONMENT_SINGLE: "Sample-env"
+        AWS_EB_ENVIRONMENT_SINGLE: "SampleApp-env" #"Sample-env"
         #AWS_EB_ENVIRONMENT_MULTI: "Sample-env-1"
-        AWS_EB_APPLICATION: "deploy-eb-basic"
+        AWS_EB_APPLICATION: "sample-app" #"deploy-eb-basic"
 
   - name: deploy-eb-basic-config
     type: cliConfig
@@ -409,9 +409,9 @@ jobs:
         - script: pwd
         - script: echo "updating templates with environment variables"
         - script: shippable_replace Dockerrun.aws.json .ebextensions/environmentvariables.config
-        # initialize eb cli for app demo_java_ecr
+        # initialize eb cli for app sample-app
         - script: echo "initializing EB"
-        - script: eb init demo_java_ecr --platform docker-1.12.6 --region us-east-1 --keyname kp-us-west-2
+        - script: eb init sample-app --platform docker-1.12.6 --region us-east-1 --keyname kp-us-west-2
         # deploy latest image to elastic beanstalk
         - script: echo "Deploying new version to Elastic Beanstalk"
         - script: eb deploy $ECREBCLI_PARAMS_PARAMS_AWS_EB_ENVIRONMENT
