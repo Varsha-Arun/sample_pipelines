@@ -392,7 +392,7 @@ jobs:
         - script: docker info
         - script: docker ps 
         
-  - name: cli-runsheb
+  - name: cli-runsheb1
     type: runSh
     steps:
       - IN: cliecr_img1 #demo_java_ecr_img
@@ -416,7 +416,7 @@ jobs:
         - script: echo "Deploying new version to Elastic Beanstalk"
         - script: eb deploy $ECREBCLI_PARAMS_PARAMS_AWS_EB_ENVIRONMENT
         # save latest deployment to state
-        - script: echo -e "IMAGE_REPO=$IMAGE_REPO\nIMAGE_TAG=$IMAGE_TAG" >> $CLIRUNSHEB_STATE/latest_test_deploy.env
+        - script: echo -e "IMAGE_REPO=$IMAGE_REPO\nIMAGE_TAG=$IMAGE_TAG" >> $CLIRUNSHEB1_STATE/latest_test_deploy.env
 
   - name: cli-runshecr
     type: runSh
