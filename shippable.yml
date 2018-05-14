@@ -185,7 +185,7 @@ resources:
       # replace with your docker registry URI
       sourceName: "523491569906.dkr.ecr.us-east-1.amazonaws.com/sampleecr"
     seed:
-      versionName: latest
+      versionName: "latest"
 
   - name: cli-image1
     type: image
