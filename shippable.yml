@@ -393,7 +393,7 @@ jobs:
         - script: docker ps 
         
   - name: cli-runsheb
-    type: runCLI
+    type: runSh
     steps:
       - IN: cliecr_img1 #demo_java_ecr_img
       - IN: cli-configaws #demo_java_ecr_awscli
