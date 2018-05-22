@@ -40,6 +40,8 @@ build:
     - docker push 523491569906.dkr.ecr.us-east-1.amazonaws.com/sampleecr:latest
     #- docker build -t $AWS_ACCOUNT_URL/$IMAGE_REPO:$BRANCH.$BUILD_NUMBER .
     #- docker push $AWS_ACCOUNT_URL/$IMAGE_REPO:$BRANCH.$BUILD_NUMBER
+    - docker build -t=shippabledocker/sample_node_pvt:latest.40 .
+    - docker push shippabledocker/sample_node_pvt:latest.40
 
 integrations:
   hub:
