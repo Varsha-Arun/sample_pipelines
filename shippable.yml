@@ -13,6 +13,9 @@ env:
     - MOD_LOC=$SHIPPABLE_REPO_DIR/node_modules/.bin/
     - IMAGE_REPO=sampleecr
     - AWS_ACCOUNT_URL=523491569906.dkr.ecr.us-east-1.amazonaws.com
+    - FOO=BOO
+    - A=1
+    - B=2
     
 build:
 
@@ -25,7 +28,6 @@ build:
     # http://docs.shippable.com/ci/advancedOptions/retry/
     - shippable_retry npm install
     - mkdir -p $TEST_RESULTS_DIR && mkdir -p $CODE_COVERAGE_DIR
-    - echo "hello"
     #- aws ecr get-login --no-include-email --region us-east-1
     
     #- pushd $TESTS_LOC_DIR
