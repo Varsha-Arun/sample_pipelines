@@ -442,6 +442,7 @@ jobs:
         - script: echo AWSCLICONFIG_VERSIONNAME=$CLICONFIGAWS_VERSIONNAME
         - script: echo AWSCLICONFIG_VERSIONID=$CLICONFIGAWS_VERSIONID
         - script: docker pull 523491569906.dkr.ecr.us-east-1.amazonaws.com/sampleecr:latest
+        - script: docker push 523491569906.dkr.ecr.us-east-1.amazonaws.com/sampleecr:latest
         
   - name: cli-runshaws
     type: runSh
