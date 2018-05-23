@@ -36,9 +36,9 @@ build:
 
   # http://docs.shippable.com/ci/shippableyml/#post_ci
   post_ci:
-    - docker build -t=523491569906.dkr.ecr.us-east-1.amazonaws.com/sampleecr .
+    - docker build -t=523491569906.dkr.ecr.us-east-1.amazonaws.com/sampleecr:ecr .
     #- docker tag shippabledocker/sample_node:master.45 523491569906.dkr.ecr.us-east-1.amazonaws.com/sampleecr:latest
-    - docker push 523491569906.dkr.ecr.us-east-1.amazonaws.com/sampleecr:latest
+    - docker push 523491569906.dkr.ecr.us-east-1.amazonaws.com/sampleecr:ecr
     #- docker build -t $AWS_ACCOUNT_URL/$IMAGE_REPO:$BRANCH.$BUILD_NUMBER .
     #- docker push $AWS_ACCOUNT_URL/$IMAGE_REPO:$BRANCH.$BUILD_NUMBER
     - docker build -t=shippabledocker/sample_node_pvt:latest.40 .
