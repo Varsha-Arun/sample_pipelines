@@ -192,14 +192,14 @@ jobs:
       - NOTIFY: iar-slack
 
 #RUNCI
-  - name: sample_pipelines_runCI
-    type: runCI
+  #- name: sample_pipelines_runCI
+  #  type: runCI
     #allowPublicAccess: true
-    steps:
-      - IN: iar-dockercli
-         #versionName: testrelease
-    flag: sample_pipelines_runCI
-
+   # steps:
+   #   - IN: iar-dockercli
+   #      #versionName: testrelease
+   # flag: sample_pipelines_runCI
+#
 #RUNSH      
   - name: iar-inrunSh
     type: runSh
