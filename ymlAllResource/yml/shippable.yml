@@ -99,7 +99,7 @@ resources:
     version:
       params:
         foo: bar
-        secure: comVL6RyegdOSSkxmMXUYGKDUKCvQxauG0+5PqVai4Ms47KlshpetO/8iD25fNIXa7TeDkzt7qt9/b4xBw0B2SRnDw3xhokjuDJpFz2Kh92rGlnGPgCVo5tHc6PzOqXkH3FiB6QRjOhh/dpewnBUPACqqELCWro93Px9/diIGkPY5N1SLvsxPnOPzQ6U1xMabuaVVabvY6iff7mGd9oDr+KFNA7Rqs/hB7Ngs0TIq/V0vtH05vg2/vCjsOX1gS72piAXQm+d4PJebHCR0d5OKVQRkZIFvjZvh3X7AxZXPIbtCq09Rg2jfzE6itIiel2npAgfodOTN5+3kwyT2iwtHA== #secure=params
+        #secure: comVL6RyegdOSSkxmMXUYGKDUKCvQxauG0+5PqVai4Ms47KlshpetO/8iD25fNIXa7TeDkzt7qt9/b4xBw0B2SRnDw3xhokjuDJpFz2Kh92rGlnGPgCVo5tHc6PzOqXkH3FiB6QRjOhh/dpewnBUPACqqELCWro93Px9/diIGkPY5N1SLvsxPnOPzQ6U1xMabuaVVabvY6iff7mGd9oDr+KFNA7Rqs/hB7Ngs0TIq/V0vtH05vg2/vCjsOX1gS72piAXQm+d4PJebHCR0d5OKVQRkZIFvjZvh3X7AxZXPIbtCq09Rg2jfzE6itIiel2npAgfodOTN5+3kwyT2iwtHA== #secure=params
         DB_HOST: "ds015700.mlab.com"
         DB_NAME: "ayeaye"
         DB_PORT: "15700"
