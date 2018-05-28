@@ -139,7 +139,7 @@ jobs:
     steps:
       - IN: iar-ddccluster
       - IN: iar-manifest
-        switch: off
+        #switch: off
       - IN: iar-params
       - IN: iar-dockeroptions
       - IN: iar-replica
