@@ -23,7 +23,7 @@ resources:
     integration: ddc
     pointer:
       sourceName : "nothing" #we can anything because it is mandatory but ddc doesnot have clusters
-    flags: iar-ddccluster
+    flags: ddccluster
     
 #DOCKER OPTIONS
   - name: iar-dockeroptions
