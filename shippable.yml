@@ -78,9 +78,9 @@ resources:
     integration: "slack"
     pointer:
       recipients:
-        - "#pipeline-pvt"
-        - "#pipeline-public"
-        - "@shiphitchcock1"
+        - "#rc-private"
+        - "#rc-public"
+        - "@shiptest-rc-ow"
         - "#random"
    
   - name: ar-hipchat
@@ -88,9 +88,9 @@ resources:
     integration: "notify-hipchat"
     pointer:
       recipients:
-        - "#pipeline-pvt"
-        - "#pipeline-public"
-        - "@shiphitchcock1"
+        - "#rc-private"
+        - "#rc-public"
+        - "@shiptest.rc.ow"        
         - "#random"
    
   - name: ar-irc
@@ -206,12 +206,12 @@ jobs:
       - NOTIFY: ar-slack
       - NOTIFY: ar-hipchat
       - NOTIFY: ar-irc
-      - NOtify: ar-email
+      - NOTIFY: ar-email
     on_failure:
       - NOTIFY: ar-slack
       - NOTIFY: ar-hipchat
       - NOTIFY: ar-irc
-      - NOtify: ar-email
+      - NOTIFY: ar-email
 
 #RUNCI
  # - name: sample_pipelines_runCI
