@@ -82,6 +82,32 @@ resources:
         - "#pipeline-public"
         - "@shiphitchcock1"
         - "#random"
+   
+  - name: ar-hipchat
+    type: notification
+    integration: "notify-hipchat"
+    pointer:
+      recipients:
+        - "#pipeline-pvt"
+        - "#pipeline-public"
+        - "@shiphitchcock1"
+        - "#random"
+   
+  - name: ar-irc
+    type: notification
+    integration: "irc"
+    versionTemplate:
+      method: irc
+      recipients:
+        - "#rc-test"
+   
+  - name: ar-email
+    type: notification
+    integration: "email"
+    versionTemplate:
+      method: email
+      recipients:
+        - "varsha@shippable.com"
 
 #PARAMS
   - name: ar-params
