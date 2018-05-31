@@ -95,7 +95,7 @@ resources:
    
   - name: ar-irc
     type: notification
-    integration: "irc"
+    #integration: "irc"
     versionTemplate:
       method: irc
       recipients:
@@ -103,7 +103,7 @@ resources:
    
   - name: ar-email
     type: notification
-    integration: "email"
+    #integration: "email"
     versionTemplate:
       method: email
       recipients:
@@ -204,8 +204,14 @@ jobs:
       - ar-release    
     on_success:
       - NOTIFY: ar-slack
+      - NOTIFY: ar-hipchat
+      - NOTIFY: ar-irc
+      - NOtify: ar-email
     on_failure:
       - NOTIFY: ar-slack
+      - NOTIFY: ar-hipchat
+      - NOTIFY: ar-irc
+      - NOtify: ar-email
 
 #RUNCI
  # - name: sample_pipelines_runCI
