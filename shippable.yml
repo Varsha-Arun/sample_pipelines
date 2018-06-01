@@ -85,7 +85,7 @@ resources:
 #LOAD BALANCER      
   - name: ar-gke-service-lb
     type: loadBalancer 
-    integration: ship-gke
+    integration: gcl
     pointer:
       sourceName: "servicetestlb"  # the service name (metadata.name)
       method: ClusterIP # the service type Kubernetes default: ClusterIP
