@@ -217,20 +217,20 @@ jobs:
     allowPublicAccess: true
 
 #PROVISION
-  - name: ar-provision                                               #required
-    type: provision                                                  #required
-    steps:
-      - IN: ar-files 
+ # - name: ar-provision                                               #required
+ #   type: provision                                                  #required
+  #  steps:
+  #    - IN: ar-files 
       
-  - name: sn-provision
-     type: provision
-     steps:
-       - IN: ar-loadBalancerImage
+  - name: ar-provisionlb
+    type: provision
+    steps:
+      - IN: ar-loadBalancerImage
   
-   - name: deployService-2
-     type: provision
-     steps:
-       - IN: ar-gke-service-lb
+  - name: ar-deployServicelb
+    type: provision
+    steps:
+      - IN: ar-gke-service-lb
       
 #RELEASE
   - name: ar-release
