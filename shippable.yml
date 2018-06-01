@@ -72,7 +72,7 @@ resources:
     type: image
     integration: gcl
     pointer:
-      sourceName: asia.gcr.io/lithe-camp-182705/nginx
+      sourceName: asia.gcr.io/lithe-camp-182705/nginx #public image which is running 
       isPull: true
     seed:
       versionName: "latest"
@@ -89,7 +89,7 @@ resources:
     pointer:
       sourceName: "servicetestlb"  # the service name (metadata.name)
       method: ClusterIP # the service type Kubernetes default: ClusterIP
-      clusterName: "testnode2" # The namespace for the service
+      clusterName: "testnode2" # The namespace for the service - cluster name
       region: "asia-east1-a"
       namespace: "default"    # optional
     version:
@@ -217,15 +217,11 @@ jobs:
     allowPublicAccess: true
 
 #PROVISION
- # - name: ar-provision                                               #required
- #   type: provision                                                  #required
-  #  steps:
-  #    - IN: ar-files 
       
-  - name: ar-provisionlb
-    type: provision
-    steps:
-      - IN: ar-loadBalancerImage
+#  - name: ar-provisionlb
+ #   type: provision
+ #   steps:
+  #    - IN: ar-loadBalancerImage
   
   - name: ar-deployServicelb
     type: provision
