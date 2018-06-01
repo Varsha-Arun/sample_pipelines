@@ -298,7 +298,7 @@ jobs:
       - NOTIFY: ar-slack
 
 #RUNCLI      
-  - name: ar-inrunCLI
+  - name: ar-inrunshPublic
     type: runCLI
     allowPublicAccess: true
     steps:
@@ -306,7 +306,7 @@ jobs:
       # versionName: testsha
       - IN: ar-dockercli
       - IN: ar-testtime
-      - IN: ar-loadbalancer
+      #- IN: ar-loadbalancer
       - IN: ar-files
       - TASK:
         - script: ls
@@ -319,9 +319,4 @@ triggers:
     type: trigger
     version:
       counter: 1
-      
-  - name: ar-tg2
-    type: trigger
-    version:
-      counter: 0
-       
+     
