@@ -70,7 +70,7 @@ resources:
   
   - name: ar-loadBalancerImage
     type: image
-    integration: gke
+    integration: gcl
     pointer:
       sourceName: asia.gcr.io/lithe-camp-182705/nginx
       isPull: true
@@ -85,7 +85,7 @@ resources:
 #LOAD BALANCER      
   - name: ar-gke-service-lb
     type: loadBalancer 
-    integration: gke
+    integration: ship-gke
     pointer:
       sourceName: "servicetestlb"  # the service name (metadata.name)
       method: ClusterIP # the service type Kubernetes default: ClusterIP
