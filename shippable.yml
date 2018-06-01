@@ -87,10 +87,10 @@ resources:
     type: loadBalancer 
     integration: gcl
     pointer:
-      sourceName: "servicetestlb"  # the service name (metadata.name)
+      sourceName: "servicetestlb"  # the service name (metadata.name) this source name 
       method: ClusterIP # the service type Kubernetes default: ClusterIP
       clusterName: "testnode2" # The namespace for the service - cluster name
-      region: "asia-east1-a"
+      region: "asia-east1-a" #region of cluster n stuffs
       namespace: "default"    # optional
     version:
       ports:
@@ -308,6 +308,11 @@ triggers:
 
 #TRIGGER
   - name: ar-tg1
+    type: trigger
+    version:
+      counter: 0
+      
+  - name: ar-tg2
     type: trigger
     version:
       counter: 0
