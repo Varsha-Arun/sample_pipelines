@@ -67,17 +67,45 @@ resources:
       sourceName: "shippabledocker/pipelinev2"
     seed:
       versionName: "deploy.1"
+  
+  - name: ar-loadBalancerImage
+    type: image
+    integration: gke
+    pointer:
+      sourceName: asia.gcr.io/lithe-camp-182705/nginx
+      isPull: true
+    seed:
+      versionName: "latest"
 
 #INTEGRATION
   - name: ar-dockerintegration
     type: integration
     integration: "docker"
 
-#LOAD BALANCER
-  - name: ar-loadbalancer
-    type: loadBalancer
+#LOAD BALANCER      
+  - name: ar-gke-service-lb
+    type: loadBalancer 
+    integration: gke
     pointer:
-      sourceName: EC2Contai-EcsElast-GPCOXIIKWPUJSREYA
+      sourceName: "servicetestlb"  # the service name (metadata.name)
+      method: ClusterIP # the service type Kubernetes default: ClusterIP
+      clusterName: "testnode2" # The namespace for the service
+      region: "asia-east1-a"
+      namespace: "default"    # optional
+    version:
+      ports:
+        - name: lbports # Required for multiple ports, must be a DNS_LABEL
+          protocol: TCP  # Kubernetes default: TCP
+          port: 8001     # Required.
+          targetPort: 8002 # A number in 1-65535 or an "IANA_SVC_NAME"  This is the port to access the pod.
+         # nodePort: <integer> # Port exposed on the node.  Kubernetes will auto-allocate by default.
+      selector:
+        new: lb
+        
+#  - name: ar-loadbalancer
+ #   type: loadBalancer
+ #   pointer:
+ #     sourceName: EC2Contai-EcsElast-GPCOXIIKWPUJSREYA
 
 #NOTIFICATIONS
   - name: ar-slack
@@ -193,6 +221,16 @@ jobs:
     type: provision                                                  #required
     steps:
       - IN: ar-files 
+      
+  - name: sn-provision
+     type: provision
+     steps:
+       - IN: ar-loadBalancerImage
+  
+   - name: deployService-2
+     type: provision
+     steps:
+       - IN: ar-gke-service-lb
       
 #RELEASE
   - name: ar-release
