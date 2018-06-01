@@ -1,5 +1,9 @@
 resources:
 
+  - name: dockercliconfig
+    type: cliConfig
+    integration: "docker"
+    
   - name: version-resource
     type: version
     seed:
