@@ -668,12 +668,12 @@ jobs:
         - script: echo CLICONFIGQUAY_INTEGRATION_EMAIL=$CLICONFIGQUAY_INTEGRATION_EMAIL
         - script: docker pull quay.io/revathird/samplenode_test
   
-  - name: sample_pipelines_runCI
-    type: runCI
-    flags:
-      - sample_pipelines_runCI
-    steps:
-      - OUT: deploy-eb-basic-image
+ # - name: sample_pipelines_runCI
+ #   type: runCI
+ #   flags:
+  #    - sample_pipelines_runCI
+  #  steps:
+  #    - OUT: deploy-eb-basic-image
 
   - name: deploy-eb-basic-deploy
     type: runSh
