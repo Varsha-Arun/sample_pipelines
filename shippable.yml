@@ -283,15 +283,15 @@ jobs:
         showBuildStatus: true
       # versionName: testsha
       - TASK:
-        runtime:
+          runtime:
             options:
               imageName: "drydock/aarch64_u16all"
               imageTag: master
-        script: 
-          - ls
-          - ./IN/ar-gitrepo/gitRepo/echo.sh
-          - export FOO=foo1
-          - echo $FOO
+          script: 
+            - ls
+            - ./IN/ar-gitrepo/gitRepo/echo.sh
+            - export FOO=foo1
+            - echo $FOO
      # - OUT: ar-image2invalidimg    
     on_success:
       - script: echo 'Success'
@@ -299,6 +299,34 @@ jobs:
       - script: echo 'Failure runSh'
       - NOTIFY: ar-slack
 
+  - name: u14all-testing
+    type: runSh
+    allowPublicAccess: true
+    steps:
+      - IN: ar-gitrepo
+        showBuildStatus: true
+      - TASK:
+          runtime:
+            options:
+              imageName: "drydock/u14all"
+              imageTag: master
+          script:
+         
+            - elasticsearch --version
+            - memcached --version
+            - cassandra -v
+            - riak version
+            - service couchdb start
+            - sleep 5
+            - curl http://127.0.0.1:5984  
+            - psql --version
+            - java -jar /usr/local/selenium/selenium-server-standalone-3.11.0.jar --version
+            - sqlite3 --version
+            - mysql --version
+            - mongod --version
+            - /var/lib/neo4j/bin/neo4j version
+            - dpkg -s rabbitmq-server | grep Version
+            - redis-server --version
 #RUNCLI      
   - name: ar-inrunshPublic
     type: runCLI
