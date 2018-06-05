@@ -286,6 +286,10 @@ jobs:
         showBuildStatus: true
       # versionName: testsha
       - TASK:
+        runtime:
+            options:
+              imageName: "drydock/aarch64_u16all"
+              imageTag: master
         - script: ls
         - script: ./IN/ar-gitrepo/gitRepo/echo.sh
         - script: export FOO=foo1
