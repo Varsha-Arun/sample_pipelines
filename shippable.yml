@@ -3,7 +3,8 @@ language: python
 
 # Version number
 python:
-  - "3.6"
+  - "pypy3"
+  
 build:
   ci:
     - python --version
