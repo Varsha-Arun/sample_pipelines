@@ -278,9 +278,6 @@ jobs:
   - name: ar-inrunSh
     type: runSh
     allowPublicAccess: true
-    on_start:
-      - NOTIFY: ar-slack
-      - script: echo 'on start'
     steps:
       - IN: ar-gitrepo
         showBuildStatus: true
