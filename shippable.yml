@@ -11,6 +11,15 @@ resources:
         only:
           - shipctl
         #  - pr  
+  
+  - name: same_syncRepos
+    type: gitRepo
+    integration: github
+    pointer:
+      sourceName: "Varsha-Arun/sample_pipelines"
+    #  buildOnPullRequestClose: true
+    #  buildOnPullRequest: true
+      branch: shipctl
           
   - name: ship_aws_cli
     type: cliConfig
@@ -46,8 +55,8 @@ jobs:
     allowPublicAccess: false #never make this job allowPublicAccess: true since we have sensitive data
     steps:
       - IN: ship_aws_cli
-      #- IN: same_syncRepos
-       # switch: off
+      - IN: same_syncRepos
+        switch: off
       - IN: ship_dh_cli
       #- IN: t3runcli
       - IN: test_paramsCLI
