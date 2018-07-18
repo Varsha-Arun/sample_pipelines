@@ -14,7 +14,7 @@ resources:
           
   - name: ship_aws_cli
     type: cliConfig
-    integration: "aws"
+    integration: "aws-new"
     pointer:
       sourceName : "clusternew"
       region: "us-east-1"
