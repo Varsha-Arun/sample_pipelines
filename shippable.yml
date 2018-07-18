@@ -52,7 +52,7 @@ jobs:
       #- IN: t3runcli
       - IN: test_paramsCLI
       - IN: test_params
-      - IN: runshscript
+      #- IN: runshscript
       - IN: pipeline_scriptRepobb
       #- OUT: test_out_img2
       - TASK:
