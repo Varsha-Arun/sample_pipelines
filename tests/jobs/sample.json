@@ -5,8 +5,8 @@
   "description": "Verify shipctl commands in pipeline repo",
     "authors": [
         {
-            "name": "shiptest-rc-ow",
-            "sourceController": "bitbucket",
+            "name": "Varsha-Arun",
+            "sourceController": "github",
             "branch": "master",
             "test": "rctest"
         }
