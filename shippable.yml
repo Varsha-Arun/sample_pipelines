@@ -45,7 +45,7 @@ resources:
     type: params
     versionTemplate:
       params:
-        TESTcli1: rc1
+        TESTcli1: rc2
     flags:
       - test_paramsCLI
       
@@ -77,7 +77,7 @@ jobs:
         - script: cat "$TEST"
         - script: MY_GET_RESOURCE_VERSION_KEY="$(shipctl get_resource_version_key "test_paramsCLI" "TESTcli1")"
         - script: echo MY_GET_RESOURCE_VERSION_KEY=$MY_GET_RESOURCE_VERSION_KEY
-        - script: if [ "$MY_GET_RESOURCE_VERSION_KEY" == "rc1" ]; then echo 'success'; else test; fi
+        - script: if [ "$MY_GET_RESOURCE_VERSION_KEY" == "rc2" ]; then echo 'success'; else test; fi
         
         - script: echo "--->shipctl copy_file_from_prev_state <filename> <topath>. Copies the file to the path supplied from the state folder of the previos run of the Job that is currently running."
         - script: shipctl copy_file_from_prev_state "test/jobs/config.json" "IN/same_syncRepos/gitRepo/test/jobs/config1.json"
