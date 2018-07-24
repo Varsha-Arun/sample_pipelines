@@ -72,7 +72,7 @@ jobs:
         - echo "====================================================repeating this below====================================="
         - script: echo "--->get_resource_state"
         - script: MY_SHIPCTL_GET_RESOURCE_STATE="$(shipctl get_resource_state "test_paramsCLI")"
-        - script: TEST="$"$MY_SHIPCTL_GET_RESOURCE_STATE""
+        - script: TEST="$MY_SHIPCTL_GET_RESOURCE_STATE"
         - script: echo "$TEST"
         - script: cat "$TEST"
         
