@@ -43,7 +43,7 @@ resources:
     
   - name: test_paramsCLI
     type: params
-    version:
+    versionTemplate:
       params:
         TESTcli1: rc1
     flags:
