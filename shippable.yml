@@ -223,8 +223,8 @@ jobs:
         - script: export testEnv=EnvFromJob
         - script: echo "testEnv=$testEnv"
         
-        - script: shipctl copy_file_from_prev_state "test/jobs/config.json" "IN/same_syncRepos/gitRepo/test/jobs/config1.json"
-        - script: cat "IN/same_syncRepos/gitRepo/test/jobs/config1.json"
+        - script: shipctl copy_file_from_prev_state "test/jobs/config.json" "test/jobs/config1.json"
+        - script: cat "test/jobs/config1.json"
         
        # - script: echo "---shipctl copy_file_from_resource_state <resource name> <filename> <topath>. Copies a file from the state of an IN resource to the specified path."
        # - script: shipctl copy_file_from_resource_state "test_params" "test/jobs/config.json"
