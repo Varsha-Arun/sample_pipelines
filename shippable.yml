@@ -55,7 +55,7 @@ jobs:
         - script: TEST="$MY_SHIPCTL_GET_RESOURCE_STATE"
         - script: echo "$TEST"
         - script: cat "$TEST"
-        - script: MY_GET_RESOURCE_VERSION_KEY="$(shipctl get_resource_version_key "test_paramsCLI" "ENV")"
+        - script: MY_GET_RESOURCE_VERSION_KEY=$(shipctl get_resource_version_key "test_paramsCLI" "ENV")
         - script: echo MY_GET_RESOURCE_VERSION_KEY=$MY_GET_RESOURCE_VERSION_KEY
         - script: if [ "$MY_GET_RESOURCE_VERSION_KEY" == "value" ]; then echo 'success'; else test; fi
         
