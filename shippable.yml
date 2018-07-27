@@ -10,32 +10,13 @@ resources:
       branches:
         only:
           - shipctl
-        #  - pr  
-  
-  - name: same_syncRepos
-    type: gitRepo
-    integration: github
-    pointer:
-      sourceName: "Varsha-Arun/sample_pipelines"
-    #  buildOnPullRequestClose: true
-    #  buildOnPullRequest: true
-      branch: shipctl
-          
-  - name: ship_aws_cli
-    type: cliConfig
-    integration: "aws-new"
-    pointer:
-      sourceName : "clusternew"
-      region: "us-east-1"
   
   - name: test_params
     type: params
     version:
       params:
         TEST: rc
-        env: e1
-    flags:
-      - test_params
+        KEY: env
       
   - name: ship_dh_cli
     type: cliConfig
@@ -45,9 +26,7 @@ resources:
     type: params
     versionTemplate:
       params:
-        TESTcli1: rc2
-    flags:
-      - test_paramsCLI
+        ENV: value
       
 jobs:  
   - name: params_runsh
@@ -61,16 +40,10 @@ jobs:
     type: runSh
     allowPublicAccess: false #never make this job allowPublicAccess: true since we have sensitive data
     steps:
-      - IN: ship_aws_cli
-      - IN: same_syncRepos
-        switch: off
       - IN: params_runsh
       - IN: ship_dh_cli
-      #- IN: t3runcli
       - IN: test_paramsCLI
-      #- IN: runshscript
       - IN: pipeline_scriptRepobb
-      #- OUT: test_out_img2
       - TASK:
         - script: echo "PIPELINE_SCRIPTREPOBB_STATE=$PIPELINE_SCRIPTREPOBB_STATE"
         - script: export testEnv=EnvFromJob
@@ -82,11 +55,11 @@ jobs:
         - script: TEST="$MY_SHIPCTL_GET_RESOURCE_STATE"
         - script: echo "$TEST"
         - script: cat "$TEST"
-        - script: MY_GET_RESOURCE_VERSION_KEY="$(shipctl get_resource_version_key "test_paramsCLI" "TESTcli1")"
+        - script: MY_GET_RESOURCE_VERSION_KEY="$(shipctl get_resource_version_key "test_paramsCLI" "ENV")"
         - script: echo MY_GET_RESOURCE_VERSION_KEY=$MY_GET_RESOURCE_VERSION_KEY
-        - script: if [ "$MY_GET_RESOURCE_VERSION_KEY" == "rc2" ]; then echo 'success'; else test; fi
+        - script: if [ "$MY_GET_RESOURCE_VERSION_KEY" == "value" ]; then echo 'success'; else test; fi
         
         - script: echo "--->shipctl copy_file_from_prev_state <filename> <topath>. Copies the file to the path supplied from the state folder of the previos run of the Job that is currently running."
-        - script: shipctl copy_file_from_prev_state "test/jobs/config.json" "IN/same_syncRepos/gitRepo/test/jobs/config1.json"
+        - script: shipctl copy_file_from_prev_state "test/jobs/config.json" "IN/same_syncRepos/gitRepo/test/jobs/config1.json"lue1
         - script: cat "IN/same_syncRepos/gitRepo/test/jobs/config1.json"
 
