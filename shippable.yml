@@ -35,7 +35,15 @@ jobs:
       - IN: test_params
       - TASK:
         - script: echo "Hello"
-      
+  
+  - name: testparams
+    type: runSh
+    steps:
+      - IN: test_params
+      - TASK:
+        - script: export ATNT=env
+        - script: echo "ATNT=$ATNT"
+        
   - name: shipctl_runsh
     type: runSh
     allowPublicAccess: false #never make this job allowPublicAccess: true since we have sensitive data
@@ -62,4 +70,3 @@ jobs:
         - script: echo "--->shipctl copy_file_from_prev_state <filename> <topath>. Copies the file to the path supplied from the state folder of the previos run of the Job that is currently running."
         - script: shipctl copy_file_from_prev_state "test/jobs/config.json" "IN/same_syncRepos/gitRepo/test/jobs/config1.json"lue1
         - script: cat "IN/same_syncRepos/gitRepo/test/jobs/config1.json"
-
