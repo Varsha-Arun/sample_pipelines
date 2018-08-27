@@ -8,9 +8,9 @@ python:
 build:
   ci:
     - wget https://norvig.com/big.txt
-    - cat big.txt >> bigger_file.txt
-    - cat big.txt >> bigger_file.txt
-    - cat bigger_file.txt
+    - cat big.txt # >> bigger_file.txt
+    #- cat big.txt >> bigger_file.txt
+   # - cat bigger_file.txt
 
 jobs:
   - name: largeconsolerunsh
@@ -20,9 +20,9 @@ jobs:
       - TASK:
         - script: ls
         - script: wget https://norvig.com/big.txt
-        - script: cat big.txt >> bigger_file.txt
-        - script: cat big.txt >> bigger_file.txt
-        - script: cat bigger_file.txt
+        - script: cat big.txt #>> bigger_file.txt
+        #- script: cat big.txt >> bigger_file.txt
+        #- script: cat bigger_file.txt
         #- script: ./GET/infra-repo/infra-repo/provision.sh
     always:
       - script: echo "This works on_always"
