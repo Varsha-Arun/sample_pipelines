@@ -345,6 +345,7 @@ jobs:
     type: deploy
     steps:
       - IN: climanifest1
+      - IN: cli-dopts1testdelete
       - IN: clikubecluster
       - TASK: managed
   
