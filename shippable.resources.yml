@@ -9,6 +9,15 @@ resources:
     seed:
       versionName: "0.0.1-beta"
 
+  - name: version-test
+    type: version
+    seed:
+      versionName: "0.0.1-app"
+  
+  - name: dockercliconfig-testapp
+    type: cliConfig
+    integration: "docker"
+    
   - name: repo
     type: gitRepo
     integration: github
