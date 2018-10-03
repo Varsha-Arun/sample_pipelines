@@ -9,12 +9,12 @@ resources:
     seed:
       versionName: "0.0.1-beta"
 
-  - name: version-test
+  - name: version-test1
     type: version
     seed:
       versionName: "0.0.1-app"
   
-  - name: dockercliconfig-testapp
+  - name: dockercliconfig-testapp1
     type: cliConfig
     integration: "docker"
     
