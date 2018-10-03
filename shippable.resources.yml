@@ -13,10 +13,6 @@ resources:
     type: version
     seed:
       versionName: "0.0.1-app"
-  
-  - name: dockercliconfig-testapp1
-    type: cliConfig
-    integration: "docker"
     
   - name: repo
     type: gitRepo
