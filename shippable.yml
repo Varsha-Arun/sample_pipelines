@@ -212,6 +212,15 @@ resources:
       portMappings:
         - "80:80"
  
+  - name: cli-dopts1testdelete
+    type: dockerOptions
+    version:
+      memory: 124
+      cpuShares: 1
+      publishAllPorts : true
+      portMappings:
+        - "80:80"
+        
   - name: cli-params1
     type: params
     version:
