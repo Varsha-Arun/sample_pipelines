@@ -8,11 +8,6 @@ resources:
     type: version
     seed:
       versionName: "0.0.1-beta"
-
-  - name: version-test1
-    type: version
-    seed:
-      versionName: "0.0.1-app"
     
   - name: repo
     type: gitRepo
