@@ -211,15 +211,7 @@ resources:
       publishAllPorts : true
       portMappings:
         - "80:80"
- 
-  - name: cli-dopts1testdelete
-    type: dockerOptions
-    version:
-      memory: 124
-      cpuShares: 1
-      publishAllPorts : true
-      portMappings:
-        - "80:80"
+
         
   - name: cli-params1
     type: params
@@ -345,7 +337,6 @@ jobs:
     type: deploy
     steps:
       - IN: climanifest1
-      - IN: cli-dopts1testdelete
       - IN: clikubecluster
       - TASK: managed
   
