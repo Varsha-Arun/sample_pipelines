@@ -561,7 +561,7 @@ jobs:
         - script: echo GCLCLICONFIG_VERSIONNAME=$CLICONFIGGCL_VERSIONNAME
         - script: echo GCLCLICONFIG_VERSIONID=$CLICONFIGGCL_VERSIONID
         - script: echo CLICONFIGGCL_INTEGRATION_JSON_KEY=${#CLICONFIGGCL_INTEGRATION_JSON_KEY}
-        - script: docker pull gcr.io/vidya-project/node1-img:master.33
+        - script: docker pull gcr.io/nodeprojectname/nodeimg:latest
   
   - name: cli-runshgcl
     type: runSh
@@ -581,7 +581,7 @@ jobs:
         - script: echo GCLCLICONFIG_VERSIONNAME=$CLICONFIGGCL_VERSIONNAME
         - script: echo GCLCLICONFIG_VERSIONID=$CLICONFIGGCL_VERSIONID
         - script: echo CLICONFIGGCL_INTEGRATION_JSON_KEY=${#CLICONFIGGCL_INTEGRATION_JSON_KEY}
-        - script: docker pull gcr.io/vidya-project/node1-img:master.33
+        - script: docker pull gcr.io/nodeprojectname/nodeimg:latest
   
   - name: cli-runshgke
     type: runSh
@@ -603,7 +603,7 @@ jobs:
         - script: echo GCLCLICONFIG_VERSIONNAME=$CLICONFIGGCL_VERSIONNAME
         - script: echo GCLCLICONFIG_VERSIONID=$CLICONFIGGCL_VERSIONID
         - script: echo CLICONFIGGCL_INTEGRATION_JSON_KEY=${#CLICONFIGGCL_INTEGRATION_JSON_KEY}
-        - script: docker pull gcr.io/vidya-project/node1-img:master.33
+        - script: docker pull gcr.io/nodeprojectname/nodeimg:latest
         
   - name: cli-runshjfrog
     type: runSh
