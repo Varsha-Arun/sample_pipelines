@@ -48,8 +48,8 @@ build:
   # Testing gcr build and push
     #- docker build -t=gcr.io/endless-ripple-224509/nodeimg:latest . 
     #- docker push gcr.io/endless-ripple-224509/nodeimg:latest
-    - docker build -t=gcr.io/node/nodeimg:latest .
-    - docker push gcr.io/node/nodeimg:latest
+    - docker build -t=gcr.io/nodeprojectname/nodeimg:latest .
+    - docker push gcr.io/nodeprojectname/nodeimg:latest
   # Testing quay build and push
     - docker build -t=quay.io/revathird/samplenode_test .
     - docker push quay.io/revathird/samplenode_test
