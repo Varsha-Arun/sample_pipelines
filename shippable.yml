@@ -14,7 +14,7 @@ env:
    # - ECR_REPO=679404489841.dkr.ecr.us-east-1.amazonaws.com/nodeapp
     - AWS_S3_BUCKET='s3://push-to-s3'
     - AWS_S3_REGION='us-east-1'
-    - secure: 7PMKeEjdH/5Wb+uGyL5jjiFZGrZdegNICH5AqpGMBAijZQAQnFMrWgQzZFP9aUc7GxxOK05Gmfoi2/IiL9+VTwckyAKN4KnpHVoAnz8VfEleXD4spv2Znb4/BaMxlPs4P+lhJ1BSZfyq0tEw0J1+pqzCR9tg3muUHa0SF0i13TzhsHrmTmQcYIvE0B96rYh0pmrfablLbcKvnQC2jg37crNBZVZ5BygQo7I4qzmnvfX39nK/4DaTpa04cmPPyFyPIajy9QXwLmQGPlGeCIk2RPaNJRzL2GweYReXYUE+tIOT6Uhqga2svbSnMjX4CeR8unrh+JfTa+J6D/MMzsG16w==
+    #- secure: 7PMKeEjdH/5Wb+uGyL5jjiFZGrZdegNICH5AqpGMBAijZQAQnFMrWgQzZFP9aUc7GxxOK05Gmfoi2/IiL9+VTwckyAKN4KnpHVoAnz8VfEleXD4spv2Znb4/BaMxlPs4P+lhJ1BSZfyq0tEw0J1+pqzCR9tg3muUHa0SF0i13TzhsHrmTmQcYIvE0B96rYh0pmrfablLbcKvnQC2jg37crNBZVZ5BygQo7I4qzmnvfX39nK/4DaTpa04cmPPyFyPIajy9QXwLmQGPlGeCIk2RPaNJRzL2GweYReXYUE+tIOT6Uhqga2svbSnMjX4CeR8unrh+JfTa+J6D/MMzsG16w==
 
 build:
 #  pre_ci:
