@@ -43,6 +43,7 @@ resources:
       params:
         ENVPR1: valuePR1
         ENVPR2: valuePR2
+        ENVPR3: valuePR3
       
 jobs:  
   - name: params_runsh
@@ -61,7 +62,7 @@ jobs:
         - script: echo "Hello"
         - script: ./IN/sample_pipelinesRepo/gitRepo/script.sh
         - script: echo "ENVPR1=$ENVPR1"
-        - script: echo "ENVPR2=$ENVPR2"
+        - script: echo "ENVPR3=$ENVPR3"
         
   - name: testparams
     type: runSh
