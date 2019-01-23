@@ -11,6 +11,17 @@ resources:
         only:
           - shipctl
   
+  - name: sample_pipelinesRepo
+    type: gitRepo
+    integration: github
+    pointer:
+      sourceName: "Varsha-Arun/sample_pipelines"
+      buildOnPullRequestClose: true
+      buildOnPullRequest: true
+      branches:
+        only:
+          - shipctl
+          
   - name: test_params
     type: params
     version:
@@ -27,7 +38,14 @@ resources:
     versionTemplate:
       params:
         ENV: value
-      
+   
+  - name: paramsRunshPullRequest
+    type: params
+    versionTemplate:
+      params:
+        - ENVPR1: valuePR1
+        - ENVPR2: valuePR2
+        
 jobs:  
   - name: params_runsh
     type: runSh
@@ -36,6 +54,16 @@ jobs:
       - TASK:
         - script: echo "Hello"
   
+  - name: samplerunshpullrequest
+    type: runSh
+    steps:
+      - IN: sample_pipelinesRepo
+      - IN: paramsRunshPullRequest
+      - TASK:
+        - script: echo "Hello"
+        - script: echo "ENVPR1=$ENVPR1"
+        - script: echo "ENVPR2=$ENVPR2"
+        
   - name: testparams
     type: runSh
     steps:
