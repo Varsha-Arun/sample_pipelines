@@ -18,9 +18,7 @@ resources:
       sourceName: "Varsha-Arun/sample_pipelines"
       buildOnPullRequestClose: true
       buildOnPullRequest: true
-      branches:
-        only:
-          - shipctl
+      branch: shipctl
           
   - name: test_params
     type: params
