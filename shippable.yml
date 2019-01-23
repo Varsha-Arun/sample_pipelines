@@ -61,6 +61,7 @@ jobs:
       - IN: paramsRunshPullRequest
       - TASK:
         - script: echo "Hello"
+        - script: ./IN/sample_pipelinesRepo/gitRepo/script.sh
         - script: echo "ENVPR1=$ENVPR1"
         - script: echo "ENVPR2=$ENVPR2"
         
