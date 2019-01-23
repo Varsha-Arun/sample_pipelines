@@ -41,9 +41,9 @@ resources:
     type: params
     versionTemplate:
       params:
-        - ENVPR1: valuePR1
-        - ENVPR2: valuePR2
-        
+        ENVPR1: valuePR1
+        ENVPR2: valuePR2
+      
 jobs:  
   - name: params_runsh
     type: runSh
