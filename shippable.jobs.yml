@@ -5,9 +5,9 @@ jobs:
       - IN: repo
       - TASK:
         - script: ls
-        - script: cat big.txt >> bigger_file.txt
+       # - script: cat big.txt >> bigger_file.txt
         #- script: cat big.txt >> bigger_file.txt
-        - script: cat bigger_file.txt
+       # - script: cat bigger_file.txt
         #- script: sleep 3m
         #- script: ./GET/infra-repo/infra-repo/provision.sh
     always:
