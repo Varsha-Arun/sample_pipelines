@@ -57,7 +57,7 @@ resources:
         - "#rc-private"
         - "#rc-public"
         
-  - name: params_shipctl1111111111111111111111111111111111111111
+  - name: params_shipctl
     type: params
     version:
       params:
