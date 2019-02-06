@@ -116,8 +116,8 @@ jobs:
   - name: test_shipctl_job1
     type: runSh
     integrations:
-      - intDockerRegistry
-      - ghOrgAccIntKeyValuePairs
+      - docker
+      - keyValueInt
     steps:
       - IN: repo_orgPrivate
       - IN: int_docker
