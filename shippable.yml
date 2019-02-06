@@ -225,6 +225,7 @@ jobs:
            # - if [ "$MY_GET_GIT_CHANGES" == "shippable.yml" ]; then echo 'success'; else test; fi
             
             - MY_GET_JSON_VALUE=$(shipctl get_json_value "IN/repo_orgPrivate/gitRepo/shipctl/properties.json" "properties[0].property1")
+            - echo MY_GET_JSON_VALUE=$MY_GET_JSON_VALUE
             - if [ "$MY_GET_JSON_VALUE" == "value1" ]; then echo 'success'; else test; fi
             
             - MY_REPLACE=$(shipctl replace "IN/repo_orgPrivate/gitRepo/shipctl/properties.json" "IN/repo_orgPrivate/gitRepo/shipctl/properties_duplicate1.json")
