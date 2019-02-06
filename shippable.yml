@@ -218,7 +218,7 @@ jobs:
             - MY_GET_INTEGRATION_RESOURCE_FIELD="$(shipctl get_integration_resource_field "docker" "username")"
             - if [ "$MY_GET_INTEGRATION_RESOURCE_FIELD" == "shippabledocker" ]; then echo 'success'; else test; fi 
             
-            - MY_GET_INTEGRATION_FIELD=$(shipctl get_integration_field intDockerRegistry username)
+            - MY_GET_INTEGRATION_FIELD=$(shipctl get_integration_field docker username)
             - if [ "$MY_GET_INTEGRATION_FIELD" == "shippabledocker" ]; then echo 'success'; else test; fi 
             
            # - MY_GET_GIT_CHANGES=$(shipctl get_git_changes --resource="repo_orgPrivate") #--directories-only) #--depth=1)
