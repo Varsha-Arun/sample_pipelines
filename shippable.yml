@@ -212,7 +212,7 @@ jobs:
             - MY_GET_INTEGRATION_RESOURCE_KEYS=$(shipctl get_integration_resource_keys image_shipctl) 
             - echo MY_GET_INTEGRATION_RESOURCE_KEYS= $MY_GET_INTEGRATION_RESOURCE_KEYS
             
-            - MY_GET_INTEGRATION_KEYS=$(shipctl get_integration_keys intDockerRegistry)
+            - MY_GET_INTEGRATION_KEYS=$(shipctl get_integration_keys docker)
             - echo MY_GET_INTEGRATION_KEYS=$MY_GET_INTEGRATION_KEYS
             
             - MY_GET_INTEGRATION_RESOURCE_FIELD="$(shipctl get_integration_resource_field "intDockerRegistry" "username")"
