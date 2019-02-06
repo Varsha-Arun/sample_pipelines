@@ -266,6 +266,7 @@ jobs:
             - if [ "$MY_GET_RESOURCE_VERSION_NAME" == "latest1" ]; then echo 'success'; else testfail; fi
             
             - MY_GET_RESOURCE_VERSION_NUMBER="$(shipctl get_resource_version_number params_shipctl)"
+            - echo MY_GET_RESOURCE_VERSION_NUMBER=$MY_GET_RESOURCE_VERSION_NUMBER
             - if [ "$MY_GET_RESOURCE_VERSION_NUMBER" == "1" ]; then echo 'success'; else testfail; fi
             
             - MY_GET_RESOURCE_OPERATION=$(shipctl get_resource_operation params_shipctl)
