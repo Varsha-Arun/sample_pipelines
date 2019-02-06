@@ -20,14 +20,14 @@ resources:
 # resources required to check all the shipctl commands  
   - name: repo_orgPrivate
     type: gitRepo
-    integration: gh
+    integration: github
     pointer:
-      sourceName: "auto-ow/org_private"
-      branch: master
+      sourceName: "Varsha-Arun/sample_pipelines"
+      branch: shipctl
       
   - name: image_shipctl
     type: image
-    integration: intDockerRegistry
+    integration: docker
     pointer:
       sourceName: "nginx"
     seed:
@@ -35,7 +35,7 @@ resources:
   
   - name: image_shipctlOutResource
     type: image
-    integration: intDockerRegistry
+    integration: docker
     pointer:
       sourceName: "shippabledocker/pipelineV2"
     seed:
@@ -43,15 +43,15 @@ resources:
       
   - name: int_docker
     type: integration
-    integration: intDockerRegistry
+    integration: docker
   
   - name: int_keyValuePairs
     type: integration
-    integration: ghOrgAccIntKeyValuePairs
+    integration: keyValueInt
     
   - name: notification_slack
     type: notification
-    integration: intSlack
+    integration: notify-slack
     versionTemplate:
       recipients:
         - "#rc-private"
@@ -63,7 +63,7 @@ resources:
       params:
         TEST: rc
         KEY1: e1
-        secure: jnCswgzp+in5OTbAMxnFQzcJnfX+58P04xsBMYV52zzzsxuSPHCDRjxgrSpGxrbY102G2EwgSwisPtrn8DxfmZQrRHzOEPp3UD6kIF7/EV1tX0I3Rfw7KLjkWK1vNJSxrZq3NK1LUX1zJWLTH59kcqyrhMw6swAFaju3u8clGKQIhr3TWeflspsJNcc9HBck5ENp78MgnBa2aVd4+SK+/iZOjNRXXEGSppH1cHUskrnxbNiCWXm6jTdARb4x0Acursn+ZROta4/kXZfrXCHSWuu5mYSkcmW/TnpvULmvbgPOnqLi1u01qoHEy0Tvz+BSpf0pS6L4jpsQH98k6obS6A== 
+        secure: bTK+DYwnV+gII3GxJ4VxMJOjK7ptphlHESQ2GjKOGmq1AzVHgVchpuCXJAesw3Jo+idMCePb20yK71pxedpyOMe31eGg6wGppwOu1h/7qyUOgNi8EuuTrsubRudRAZ45qlmyCd87O2BldgcGWFD3aL3AhzHVpWT8bsLkzd5kuuQX5f6YTmrmAe+Sj/euCrfkUGAMywVumvBkPzExNrWun+xeJ4m8K+ARXyo/HNiSeJFmoXIvsVtXD0PyVb3QiCBlbUKiMl/mVVLlfXU2dhbGts3+KPdcgJfHor3RBDaNWMSV0bT2NMkb+tLhac9tgkhyCrDwD1YWdqMrB/CT34GXFA==
         # above secured values are secureKey=encrypted
 
   #- name: pipeline_scriptRepobb
