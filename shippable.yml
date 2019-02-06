@@ -215,7 +215,7 @@ jobs:
             - MY_GET_INTEGRATION_KEYS=$(shipctl get_integration_keys docker)
             - echo MY_GET_INTEGRATION_KEYS=$MY_GET_INTEGRATION_KEYS
             
-            - MY_GET_INTEGRATION_RESOURCE_FIELD="$(shipctl get_integration_resource_field "intDockerRegistry" "username")"
+            - MY_GET_INTEGRATION_RESOURCE_FIELD="$(shipctl get_integration_resource_field "docker" "username")"
             - if [ "$MY_GET_INTEGRATION_RESOURCE_FIELD" == "shippabledocker" ]; then echo 'success'; else test; fi 
             
             - MY_GET_INTEGRATION_FIELD=$(shipctl get_integration_field intDockerRegistry username)
