@@ -336,7 +336,7 @@ jobs:
       - IN: params_runsh
       - IN: ship_dh_cli
       - IN: test_paramsCLI
-      - IN: pipeline_scriptRepo
+      - IN: sample_pipelinesRepo
       - TASK:
         - script: echo "PIPELINE_SCRIPTREPOBB_STATE=$PIPELINE_SCRIPTREPOBB_STATE"
         - script: export testEnv=EnvFromJob
