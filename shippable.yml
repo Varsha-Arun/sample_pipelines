@@ -1,15 +1,15 @@
 resources:
 
-  - name: pipeline_scriptRepobb
-    type: gitRepo
-    integration: github
-    pointer:
-      sourceName: "Varsha-Arun/sample_pipelines"
+  #- name: pipeline_scriptRepobb
+  #  type: gitRepo
+  #  integration: github
+  #  pointer:
+  #    sourceName: "Varsha-Arun/sample_pipelines"
     #  buildOnPullRequestClose: true
     #  buildOnPullRequest: true
-      branches:
-        only:
-          - shipctl
+    #  branches:
+    #    only:
+    #      - shipctl
   
   - name: sample_pipelinesRepo
     type: gitRepo
