@@ -4,10 +4,18 @@ language: python
 # Version number
 python:
   - "pypy3"
-  
+
+global:
+  env:
+    - TEST1=pvtenv
+    - secure: BPadRRYqA9yyfugIB6wRE9QMJn+aojYMDemPAgA4qhdo1jKduEiI/P58NhDquZ36HnjCuRnZdZ8z0PsGyeO0MT2UCqjtOxVRm1fnt2tfHEPSBvpQVRymXlXC3lbJcdDuknahx+r3vTuV21Gha2XWbQaM6cOHDuW4C++6IYh87YCwtbG66n6Hhs/QBQRyn1zGGK8HST5mVEiqq/Jn1v4OUTmMMqnk8FE2OAQYnf7gDS1TWFyhuij/CC6sL8rZw0HKvYBzpeEZo+QL9aI3YoxfO09jpFsF2vkQzkgO3inCjI1NU6M/+NN3Vwcs1NLqw5eM7fdKXBav/ORME7k543tSDA==
+    ########### TEST2=pvtenvSecure
+    
 build:
   ci:
     - python --version
+    - echo "TEST1=$TEST1"
+    - echo "TEST2=$TEST2"
 
 resources:
 
@@ -295,7 +303,8 @@ jobs:
             - ./IN/ar-gitrepo/gitRepo/echo.sh
             - export FOO=foo1
             - echo $FOO
-            - echo TEST2=$TEST2
+            - echo "TEST1=$TEST1"
+            - echo "TEST2=$TEST2"
             - lsb_release -a
             - docker --version
             - docker info
