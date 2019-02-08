@@ -159,7 +159,8 @@ resources:
     version:
       params:
         foo: bar
-        #secure: Xuq1cwGOn1lR1UTMfcwhdPUhJJXr0FeeG/M0/l4v7HFcjIRdrML13//R4RbMWxIeUtmdRWT1y3HRgQSqsRbYRIYF/6rTYH3/eazkowA2hHPZpT8vNfr3tFZJwQeSTf0qGtZOMO1iOacgaFOBgAdBCheJA8tN3ARHapUWk5bxuj7CpIq/LNWEbR/TcNNWaZJkyoWeK6/4U61xNPbVgyL1e73m3WmHPcGwpgTyxW+T1jqgh5m99D3p87UrfTeS6ss5YNA8lkZmFpdYZrq2LIKBMSJuq46Vj1VwRrtRGXYN2eYzmyDvpevciShm6Ai8w8o18eY6dwKrch8PSNloCVDHDA== 
+        secure: BPadRRYqA9yyfugIB6wRE9QMJn+aojYMDemPAgA4qhdo1jKduEiI/P58NhDquZ36HnjCuRnZdZ8z0PsGyeO0MT2UCqjtOxVRm1fnt2tfHEPSBvpQVRymXlXC3lbJcdDuknahx+r3vTuV21Gha2XWbQaM6cOHDuW4C++6IYh87YCwtbG66n6Hhs/QBQRyn1zGGK8HST5mVEiqq/Jn1v4OUTmMMqnk8FE2OAQYnf7gDS1TWFyhuij/CC6sL8rZw0HKvYBzpeEZo+QL9aI3YoxfO09jpFsF2vkQzkgO3inCjI1NU6M/+NN3Vwcs1NLqw5eM7fdKXBav/ORME7k543tSDA==
+        ######### TEST2=pvtenvSecure
         DB_HOST: "ds015700.mlab.com"
         DB_NAME: "ayeaye"
         DB_PORT: "15700"
@@ -280,6 +281,7 @@ jobs:
     type: runSh
     allowPublicAccess: false
     steps:
+      - IN: ar-params
       - IN: ar-gitrepo
         showBuildStatus: true
       # versionName: testsha
@@ -293,6 +295,7 @@ jobs:
             - ./IN/ar-gitrepo/gitRepo/echo.sh
             - export FOO=foo1
             - echo $FOO
+            - echo TEST2=$TEST2
             - lsb_release -a
             - docker --version
             - docker info
