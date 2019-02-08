@@ -12,11 +12,18 @@ env:
     - secure: BPadRRYqA9yyfugIB6wRE9QMJn+aojYMDemPAgA4qhdo1jKduEiI/P58NhDquZ36HnjCuRnZdZ8z0PsGyeO0MT2UCqjtOxVRm1fnt2tfHEPSBvpQVRymXlXC3lbJcdDuknahx+r3vTuV21Gha2XWbQaM6cOHDuW4C++6IYh87YCwtbG66n6Hhs/QBQRyn1zGGK8HST5mVEiqq/Jn1v4OUTmMMqnk8FE2OAQYnf7gDS1TWFyhuij/CC6sL8rZw0HKvYBzpeEZo+QL9aI3YoxfO09jpFsF2vkQzkgO3inCjI1NU6M/+NN3Vwcs1NLqw5eM7fdKXBav/ORME7k543tSDA==
     ########### TEST2=pvtenvSecure
     
+  matrix:
+    - TEST3=pvtenv3
+    - secure: udOvjFIFXqTQB8RSsZdS6p1Gl+EHGI8uyIs9FO5a9HZrc/4uxNNgxQUJH3t+3xUwlK9N2QNxwKDM/ZmGdqowtUqcFQgtl8omplFmdHDZOcuYp9k6pxN+Wtix+bMyNPR/ZzWpgZVJdOsRldERScgG1HvfWhHW0k4QyLjCil9v8A24bhoVIYFsfiUlpg4jMNLtqm0GLaiz09X9fzM/Cvt3aL/cySItddKGGybLPz8UfnUU3OWUhAnriyVoTXC3tRwfuzRaLTDguJ4NR+i92DQHZdiiNIwis9w4qWVK4Q0MsJ2GVQ0EcGjXG0aCWAfWtINWSvb794MOdXLa/cNsR4TD0Q==
+    ########### TEST4=pvtenvSecureMatrix
+    
 build:
   ci:
     - python --version
     - echo "TEST1=$TEST1"
     - echo "TEST2=$TEST2"
+    - echo "TEST3=$TEST3"
+    - echo "TEST4=$TEST4"
 
 resources:
 
@@ -168,8 +175,11 @@ resources:
     version:
       params:
         foo: bar
+        TEST1: env1        
         secure: BPadRRYqA9yyfugIB6wRE9QMJn+aojYMDemPAgA4qhdo1jKduEiI/P58NhDquZ36HnjCuRnZdZ8z0PsGyeO0MT2UCqjtOxVRm1fnt2tfHEPSBvpQVRymXlXC3lbJcdDuknahx+r3vTuV21Gha2XWbQaM6cOHDuW4C++6IYh87YCwtbG66n6Hhs/QBQRyn1zGGK8HST5mVEiqq/Jn1v4OUTmMMqnk8FE2OAQYnf7gDS1TWFyhuij/CC6sL8rZw0HKvYBzpeEZo+QL9aI3YoxfO09jpFsF2vkQzkgO3inCjI1NU6M/+NN3Vwcs1NLqw5eM7fdKXBav/ORME7k543tSDA==
         ######### TEST2=pvtenvSecure
+        TEST3: env3
+        - secure: C59VcEIAAamTYVAn41VRszWQiX8MwSycAjuYxXZ1yEsUEbC6GoveelPQVQJfdHyGepsFD8YL3DuG0+6KEyRzNdTO/xmyX+u5lB/RPBPxYnSAe3DJZjKXx049TAC2gs0cdLqbvajlTVYh7ht2irBMpyEplx1BoSjCLjg+wcpHQ+s5fkQg1laEgncYFX4m3+JsjGd+s6oL7Zt8Z/vkAcRaGKDoI6F0pUyigdoEDqdA1hGb/w81/JSeg7Pe1tyotRY1a8RFb/LSSEEel2mgoVDpk413+EKymExDdtPRfqvakTFH5eZErAZpcJPBS7IhZK2Z02ao88aTbHyD9ZjU6FxKDg==
         DB_HOST: "ds015700.mlab.com"
         DB_NAME: "ayeaye"
         DB_PORT: "15700"
@@ -306,6 +316,8 @@ jobs:
             - echo $FOO
             - echo "TEST1=$TEST1"
             - echo "TEST2=$TEST2"
+            - echo "TEST3=$TEST3"
+            - echo "TEST4=$TEST4"
             - lsb_release -a
             - docker --version
             - docker info
