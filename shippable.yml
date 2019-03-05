@@ -159,7 +159,8 @@ resources:
     versionTemplate:
       method: irc
       recipients:
-        - "#rc-test"
+        - "#testrc"
+        - "#rcapp"
    
   - name: ar-email
     type: notification
