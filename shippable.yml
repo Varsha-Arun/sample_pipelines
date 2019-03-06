@@ -1,356 +1,119 @@
-# Language setting
-language: python
+language: 
+  - node_js
 
 # Version number
-python:
-  - 2.7
+node_js: 
+  - 4.2.1
 
 build:
-  pre_ci_boot:
-    image_name: drydock/u16pytall
-    image_tag: master
-    pull: true
-    options: '--privileged=true --net=bridge'
+  ci: 
+    - node --version
+    - jfrog rt dl test-jfrog-ship/testoct.sh
     
-  ci:
-    - python --version
-    - source shipctl jdk set openjdk11
-    
-resources:
-# resources required to check all the shipctl commands  
-  - name: repo_orgPrivate
-    type: gitRepo
-    integration: github
-    pointer:
-      sourceName: "Varsha-Arun/sample_pipelines"
-      branch: shipctl
-      
-  - name: image_shipctl
-    type: image
-    integration: docker
-    pointer:
-      sourceName: "nginx"
-    seed:
-      versionName: "latest1"
-  
-  - name: image_shipctlOutResource
-    type: image
-    integration: docker
-    pointer:
-      sourceName: "shippabledocker/pipelineV2"
-    seed:
-      versionName: "deploy.1"
-      
-  - name: int_docker
-    type: integration
-    integration: docker
-  
-  - name: int_keyValuePairs
-    type: integration
-    integration: keyValueInt
-    
-  - name: notification_slack
-    type: notification
-    integration: notify-slack
-    versionTemplate:
-      recipients:
-        - "#rc-private"
-        - "#rc-public"
-        
-  - name: params_shipctl
-    type: params
-    version:
-      params:
-        TEST: rc
-        KEY1: e1
-        secure: bTK+DYwnV+gII3GxJ4VxMJOjK7ptphlHESQ2GjKOGmq1AzVHgVchpuCXJAesw3Jo+idMCePb20yK71pxedpyOMe31eGg6wGppwOu1h/7qyUOgNi8EuuTrsubRudRAZ45qlmyCd87O2BldgcGWFD3aL3AhzHVpWT8bsLkzd5kuuQX5f6YTmrmAe+Sj/euCrfkUGAMywVumvBkPzExNrWun+xeJ4m8K+ARXyo/HNiSeJFmoXIvsVtXD0PyVb3QiCBlbUKiMl/mVVLlfXU2dhbGts3+KPdcgJfHor3RBDaNWMSV0bT2NMkb+tLhac9tgkhyCrDwD1YWdqMrB/CT34GXFA==
-        # above secured values are secureKey=encrypted
+integrations:                               
+  hub:
+    - integrationName: jatin-jfrog
+      type: artifactoryKey    
 
-  #- name: pipeline_scriptRepobb
-  #  type: gitRepo
-  #  integration: github
-  #  pointer:
-  #    sourceName: "Varsha-Arun/sample_pipelines"
-    #  buildOnPullRequestClose: true
-    #  buildOnPullRequest: true
-    #  branches:
-    #    only:
-    #      - shipctl
-  
-  - name: sample_pipelinesRepo
+resources:
+  - name: jatin-newrelic
+    type: notification
+    integration: jatin-newrelic
+
+  - name: jatin-slack
+    type: notification
+    integration: jatin-slack
+    
+  - name: jatin-samplerepo
     type: gitRepo
     integration: github
-    pointer:
-      sourceName: "Varsha-Arun/sample_pipelines"
-      buildOnPullRequestClose: true
-      buildOnPullRequest: true
-      branch: shipctl
-          
-  - name: test_params
-    type: params
-    version:
-      params:
-        TEST: rc
-        KEY: env
+    versionTemplate:
+      sourceName: jatindogra/sample-repo
+      branch: master
       
-  - name: ship_dh_cli
-    type: cliConfig
-    integration: "docker"
-    
-  - name: test_paramsCLI
-    type: params
-    versionTemplate:
-      params:
-        ENV: value
-   
-  - name: paramsRunshPullRequest
-    type: params
-    versionTemplate:
-      params:
-        ENVPR1: valuePR1
-        ENVPR2: valuePR2
-        ENVPR3: valuePR3
-        
 jobs:
-# jobs that checks all the shipctl commands
-  - name: test_shipctl_job1
+  - name: use_custom_image-u16
     type: runSh
-    integrations:
-      - docker
-      - keyValueInt
+    runtime:                 
+      nodePool: u16
     steps:
-      - IN: repo_orgPrivate
-      - IN: int_docker
-      - IN: notification_slack
-      - IN: image_shipctl
-      - IN: params_shipctl
-      - IN: int_keyValuePairs
-      - OUT: image_shipctlOutResource
-      - TASK:        
+      - IN: jatin-newrelic    # Configuring this as IN automatically logs you into your Docker registry
+      - IN: jatin-samplerepo
+      - TASK:
+          name: newrelic
           script:
-            - wd=10
-            - len=20
-            - echo "job1's .txt file using in shipctl a=1 b=2" > myfile.txt
-            
-            - echo testacc1=$testacc1
-            - echo testacc2=$testacc2
-            
-            - echo int_keyValuePairs_INTEGRATION_testacc1=$int_keyValuePairs_INTEGRATION_testacc1
-            - echo INT_KEYVALUEPAIRS_INTEGRATION_TESTACC2=$INT_KEYVALUEPAIRS_INTEGRATION_TESTACC2
-            
-            - MY_RESOURCE_STATE_PATH=$(shipctl get_resource_state test_shipctl_job1)
-            - echo $MY_RESOURCE_STATE_PATH
-            - if [ $MY_RESOURCE_STATE_PATH == "/var/lib/shippable/build/state" ]; then echo 'success'; else testfail; fi
-            - ls -lah $MY_RESOURCE_STATE_PATH
-            - ls -lah /var/lib/shippable/build
-            - ls -lah /var/lib/shippable/build/previousState
-            - MY_TEST_SHIPCTL_JOB1_RESOURCE_STATE_PATH=$MY_RESOURCE_STATE_PATH/test_shipctl_job1.env
-            - PARAM_RESOURCE_ENV_FILE=/var/lib/shippable/build/state/params_shipctl.env
-            
-            - shipctl post_resource_state_multi test_shipctl_job1 "width=$wd length=$len"
-            - echo wd=$wd
-            - echo len=$len
-            - KEY1=$(cat $MY_TEST_SHIPCTL_JOB1_RESOURCE_STATE_PATH | grep width= | gawk -F= '{ print $1 }')
-            - VALUE1=$(cat $MY_TEST_SHIPCTL_JOB1_RESOURCE_STATE_PATH | grep width= | gawk -F= '{ print $2 }')
-            - KEY2=$(cat $MY_TEST_SHIPCTL_JOB1_RESOURCE_STATE_PATH | grep length= | gawk -F= '{ print $1 }')
-            - VALUE2=$(cat $MY_TEST_SHIPCTL_JOB1_RESOURCE_STATE_PATH | grep length= | gawk -F= '{ print $2 }')
-            - if [ $KEY1 == "width" ]; then echo 'success'; else testfail; fi
-            - if [ $VALUE1 == "$wd" ]; then echo 'success'; else testfail; fi
-            - if [ $KEY2 == "length" ]; then echo 'success'; else testfail; fi
-            - if [ $VALUE2 == "$len" ]; then echo 'success'; else testfail; fi
-           
-            - GET_POST_RESOURCE_STATE=$(shipctl post_resource_state params_shipctl KEY2 env2)
-            - KEY=$(cat $PARAM_RESOURCE_ENV_FILE | grep KEY2= | gawk -F= '{ print $1 }')
-            - VALUE=$(cat $PARAM_RESOURCE_ENV_FILE | grep KEY2= | gawk -F= '{ print $2 }')
-            - echo KEY=$KEY
-            - echo VALUE=$VALUE
-            - if [ $KEY == "KEY2" ]; then echo 'success'; else testfail; fi
-            - if [ $VALUE == "env2" ]; then echo 'success'; else testfail; fi
-            
-            - shipctl put_resource_state params_shipctl KEY3 e3 #this appends to existing data
-            - KEY=$(cat $PARAM_RESOURCE_ENV_FILE | grep KEY3= | gawk -F= '{ print $1 }')
-            - VALUE=$(cat $PARAM_RESOURCE_ENV_FILE | grep KEY3= | gawk -F= '{ print $2 }')
-            - if [ $KEY == "KEY3" ]; then echo 'success'; else testfail; fi
-            - if [ $VALUE == "e3" ]; then echo 'success'; else testfail; fi
-            
-            - shipctl put_resource_state_multi params_shipctl KEY4=e4 KEY5=e5 KEY6=e6 KEY7=e7 KEYn=en
-            - KEY1=$(cat $PARAM_RESOURCE_ENV_FILE | grep KEY4= | gawk -F= '{ print $1 }')
-            - VALUE1=$(cat $PARAM_RESOURCE_ENV_FILE | grep KEY4= | gawk -F= '{ print $2 }')
-            - KEY2=$(cat $PARAM_RESOURCE_ENV_FILE | grep KEY5= | gawk -F= '{ print $1 }')
-            - VALUE2=$(cat $PARAM_RESOURCE_ENV_FILE | grep KEY5= | gawk -F= '{ print $2 }')
-            - KEY3=$(cat $PARAM_RESOURCE_ENV_FILE | grep KEY6= | gawk -F= '{ print $1 }')
-            - VALUE3=$(cat $PARAM_RESOURCE_ENV_FILE | grep KEY6= | gawk -F= '{ print $2 }')
-            - KEY4=$(cat $PARAM_RESOURCE_ENV_FILE | grep KEYn= | gawk -F= '{ print $1 }')
-            - VALUE4=$(cat $PARAM_RESOURCE_ENV_FILE | grep KEYn= | gawk -F= '{ print $2 }')
-            - if [ $KEY1 == "KEY4" ]; then echo 'success'; else testfail; fi
-            - if [ $VALUE1 == "e4" ]; then echo 'success'; else testfail; fi
-            - if [ $KEY2 == "KEY5" ]; then echo 'success'; else testfail; fi
-            - if [ $VALUE2 == "e5" ]; then echo 'success'; else testfail; fi
-            - if [ $KEY3 == "KEY6" ]; then echo 'success'; else testfail; fi
-            - if [ $VALUE3 == "e6" ]; then echo 'success'; else testfail; fi
-            - if [ $KEY4 == "KEYn" ]; then echo 'success'; else testfail; fi
-            - if [ $VALUE4 == "en" ]; then echo 'success'; else testfail; fi
-            
-            - shipctl copy_file_from_prev_state myfile.txt myfilestate.txt
-            #- cmp --silent previousState/myfile.txt myfilestate.txt || making Job Fail Since copy_file_from_prev_state shipctl commmand not working
-            
-            - shipctl copy_file_to_state /var/lib/shippable/build/myfile.txt
-            - cmp --silent /var/lib/shippable/build/myfile.txt /var/lib/shippable/build/state/myfile.txt || making Job Fail Since copy_file_to_state commmand not working
-            
-            - shipctl refresh_file_to_state /var/lib/shippable/build/message.json
-            - cmp --silent /var/lib/shippable/build/message.json /var/lib/shippable/build/state/message.json || making Job Fail Since refresh_file_to_state commmand not working
-            
-            - MY_GET_RESOURCE_TYPE=$(shipctl get_resource_type test_shipctl_job1)
-            - if [ "$MY_GET_RESOURCE_TYPE" == "runSh" ]; then echo 'success'; else testfail; fi
-            
-            - MY_GET_RESOURCE_ENV_TYPE=$(shipctl get_resource_env test_shipctl_job1 type) 
-            - if [ "$MY_GET_RESOURCE_ENV_TYPE" == "runSh" ]; then echo 'success'; else testfail; fi
-            
-            - MY_GET_RESOURCE_POINTER_KEY=$(shipctl get_resource_pointer_key image_shipctl sourceName)
-            - if [ "$MY_GET_RESOURCE_POINTER_KEY" == "nginx" ]; then echo 'success'; else test; fi
-            
-            - MY_GET_INTEGRATION_RESOURCE_KEYS=$(shipctl get_integration_resource_keys image_shipctl) 
-            - echo MY_GET_INTEGRATION_RESOURCE_KEYS= $MY_GET_INTEGRATION_RESOURCE_KEYS
-            
-            - MY_GET_INTEGRATION_KEYS=$(shipctl get_integration_keys docker)
-            - echo MY_GET_INTEGRATION_KEYS=$MY_GET_INTEGRATION_KEYS
-            
-            - MY_GET_INTEGRATION_RESOURCE_FIELD="$(shipctl get_integration_resource_field "docker" "username")"
-            - if [ "$MY_GET_INTEGRATION_RESOURCE_FIELD" == "shippabledocker" ]; then echo 'success'; else test; fi 
-            
-            - MY_GET_INTEGRATION_FIELD=$(shipctl get_integration_field docker username)
-            - if [ "$MY_GET_INTEGRATION_FIELD" == "shippabledocker" ]; then echo 'success'; else test; fi 
-            
-           # - MY_GET_GIT_CHANGES=$(shipctl get_git_changes --resource="repo_orgPrivate") #--directories-only) #--depth=1)
-           # - if [ "$MY_GET_GIT_CHANGES" == "shippable.yml" ]; then echo 'success'; else test; fi
-            
-            - MY_GET_JSON_VALUE=$(shipctl get_json_value "IN/repo_orgPrivate/gitRepo/shipctl/properties.json" "properties[0].property1")
-            - if [ "$MY_GET_JSON_VALUE" == "value1" ]; then echo 'success'; else test; fi
-            
-            - MY_REPLACE=$(shipctl replace "IN/repo_orgPrivate/gitRepo/shipctl/properties.json" "IN/repo_orgPrivate/gitRepo/shipctl/properties_duplicate1.json")
-           
-            - MY_NOTIFY=$(shipctl notify notification_slack --recipient="@shiptest-rc-ow") #couldn't verify
-            - echo MY_NOTIFY=$MY_NOTIFY
-            
-            - MY_SANITIZED_STRING="$(shipctl sanitize_shippable_string "&^%_test12rc_34{':>?|release!@56)(*&")"
-            - if [ "$MY_SANITIZED_STRING" == "_test12rc_34release56" ]; then echo 'success'; else test; fi
-            
-            - MY_UPPERCASE="$(shipctl to_uppercase "&^test12rc_34{:>?|release!@56)(*&")"
-            - if [ "$MY_UPPERCASE" == "&^TEST12RC_34{:>?|RELEASE!@56)(*&" ]; then echo 'success'; else test; fi
-            
-            - MY_GET_RESOURCE_VERSION_KEY_TEST=$(shipctl get_resource_version_key "params_shipctl" "TEST") 
-            - echo MY_GET_RESOURCE_VERSION_KEY_TEST=$MY_GET_RESOURCE_VERSION_KEY_TEST
-            
-            - MY_GET_RESOURCE_VERSION_KEY_TEST=$(shipctl get_resource_version_key "params_shipctl" "secureKey") 
-            - echo MY_GET_RESOURCE_VERSION_KEY_TEST=$MY_GET_RESOURCE_VERSION_KEY_TEST
-            
-            - MY_GET_PARAMS_RESOURCE=$(shipctl get_params_resource params_shipctl TEST)
-            - if [ "$MY_GET_PARAMS_RESOURCE" == "rc" ]; then echo 'success'; else testfail; fi
-            
-            - MY_GET_RESOURCE_ID=$(shipctl get_resource_id params_shipctl)
-            - echo MY_GET_RESOURCE_ID=$MY_GET_RESOURCE_ID
-            #- if [ "$MY_GET_RESOURCE_ID" == "24068" ]; then echo 'success'; else testfail; fi
-           
-            - MY_GET_RESOURCE_META=$(shipctl get_resource_meta "params_shipctl")
-            - echo MY_GET_RESOURCE_META=$MY_GET_RESOURCE_META
-            
-            - MY_GET_RESOURCE_NAME=$(shipctl get_resource_name params_shipctl)
-            - if [ "$MY_GET_RESOURCE_NAME" == "PARAMS_SHIPCTL" ]; then echo 'success'; else testfail; fi
-            
-            - MY_GET_RESOURCE_VERSION_ID=$(shipctl get_resource_version_id params_shipctl)
-            - echo MY_GET_RESOURCE_VERSION_ID=$MY_GET_RESOURCE_VERSION_ID
-           # - if [ "$MY_GET_RESOURCE_VERSION_ID" == "129793" ]; then echo 'success'; else testfail; fi
-            
-            - MY_GET_RESOURCE_VERSION_NAME=$(shipctl get_resource_version_name image_shipctl)
-            - if [ "$MY_GET_RESOURCE_VERSION_NAME" == "latest1" ]; then echo 'success'; else testfail; fi
-            
-            - MY_GET_RESOURCE_VERSION_NUMBER="$(shipctl get_resource_version_number params_shipctl)"
-            - if [ "$MY_GET_RESOURCE_VERSION_NUMBER" == "2" ]; then echo 'success'; else testfail; fi
-            
-            - MY_GET_RESOURCE_OPERATION=$(shipctl get_resource_operation params_shipctl)
-            - if [ "$MY_GET_RESOURCE_OPERATION" == "IN" ]; then echo 'success'; else test; fi
-            
-            - shipctl copy_file_to_resource_state myfile.txt image_shipctlOutResource 
-            - ls -lah
-            - ls -lah /var/lib/shippable/build/state
-    
-            - MY_GET_INTEGRATION_RESOURCE=$(shipctl get_integration_resource notification_slack)
-            - echo MY_GET_INTEGRATION_RESOURCE=$MY_GET_INTEGRATION_RESOURCE
-          
-            - MY_GET_RESOURCE_STATE=$(shipctl get_resource_state "params_shipctl")
-            - if [ "$MY_GET_RESOURCE_STATE" == "/var/lib/shippable/build/IN/params_shipctl/params" ]; then echo 'success'; else test; fi
-          
-            - MY_GET_INTEGRATION_RESOURCE_KEYS=$(shipctl get_integration_resource_keys notification_slack)
-            - echo MY_GET_INTEGRATION_RESOURCE_KEYS=$MY_GET_INTEGRATION_RESOURCE_KEYS
-            
-            - MY_NEW_BUMP_VERSION="$(shipctl bump_version v1.0.0 major)"
-            - if [ "$MY_NEW_BUMP_VERSION" == "v2.0.0" ]; then echo 'success'; else testfail; fi           
-            
-            - ls -lah $MY_RESOURCE_STATE_PATH
-            - ls -lah  
-    
-  - name: test_shipctl_job2
+            - shipctl get_integration_resource jatin-newrelic
+            - shipctl notify jatin-newrelic --type='deployment' --appId=248443265 --revision='ReViSiOn' --user='jatinsrelic'
+
+  - name: use_custom_image-u14
     type: runSh
+    runtime:                 
+      nodePool: u14
     steps:
-      - IN: test_shipctl_job1
+      - IN: jatin-newrelic    # Configuring this as IN automatically logs you into your Docker registry
+      - IN: jatin-samplerepo
       - TASK:
-          script: 
-            - ls -lah /var/lib/shippable/build 
-            - ls -lah /var/lib/shippable/build/state
-            - ls -lah /var/lib/shippable/build/previousState
-              
-            - shipctl copy_file_from_resource_state test_shipctl_job1 myfile.txt test.txt
-            - cmp --silent /build/IN/test_shipctl_job1/runSh/myfile.txt test.txt || making Job Fail Since copy_file_from_resource_state shipctl commmand not working
-            
-  - name: params_runsh
+          name: newrelic
+          script:
+            - shipctl notify jatin-newrelic --type='deployment' --appId=248443265 --revision='ReViSiOn' --user='jatinsrelic'
+
+  - name: use_custom_image-centos
     type: runSh
+    runtime:                 
+      nodePool: centos
     steps:
-      - IN: test_params
+      - IN: jatin-newrelic    # Configuring this as IN automatically logs you into your Docker registry
+      - IN: jatin-samplerepo
       - TASK:
-        - script: echo "Hello"
-  
-  - name: samplerunshpullrequest
+          name: newrelic
+          script:
+            - shipctl notify jatin-newrelic --type='deployment' --appId=248443265 --revision='ReViSiOn' --user='jatinsrelic'
+
+  - name: use_custom_image-aarch64
     type: runSh
+    runtime:                 
+      nodePool: default-restricted
     steps:
-      - IN: sample_pipelinesRepo
-      - IN: paramsRunshPullRequest
+      - IN: jatin-newrelic    # Configuring this as IN automatically logs you into your Docker registry
+      - IN: jatin-samplerepo
       - TASK:
-        - script: echo "Hello"
-        - script: ./IN/sample_pipelinesRepo/gitRepo/script.sh
-        - script: echo "ENVPR1=$ENVPR1"
-        - script: echo "ENVPR3=$ENVPR3"
-        
-  - name: testparams
+          name: newrelic
+          script:
+            - shipctl get_integration_resource jatin-newrelic
+            - shipctl notify jatin-newrelic --type='deployment' --appName=jatin-newrelic --revision='ReViSiOn' --user='jatinsrelic'
+
+  - name: use_custom_image-aarch32
     type: runSh
+    runtime:                 
+      nodePool: shippable-shared-aarch32
     steps:
-      - IN: test_params
+      - IN: jatin-newrelic    # Configuring this as IN automatically logs you into your Docker registry
+      - IN: jatin-samplerepo
       - TASK:
-        - script: export ATNT=env
-        - script: echo "ATNT=$ATNT"
-        
-  - name: shipctl_runsh
+          name: newrelic
+          script:
+            - shipctl notify jatin-newrelic --type='deployment' --appName=jatin-newrelic --revision='ReViSiOn' --user='jatinsrelic'
+
+  - name: use_custom_image-windows
     type: runSh
-    allowPublicAccess: false #never make this job allowPublicAccess: true since we have sensitive data
+    runtime:                 
+      nodePool: windows
     steps:
-      - IN: params_runsh
-      - IN: ship_dh_cli
-      - IN: test_paramsCLI
-      - IN: sample_pipelinesRepo
+      - IN: jatin-slack    # Configuring this as IN automatically logs you into your Docker registry
+      - IN: jatin-samplerepo
       - TASK:
-        - script: echo "PIPELINE_SCRIPTREPOBB_STATE=$PIPELINE_SCRIPTREPOBB_STATE"
-        - script: export testEnv=EnvFromJob
-        - script: echo "testEnv=$testEnv"
-        
-        - echo "====================================================repeating this below====================================="
-        - script: echo "--->get_resource_state"
-        - script: MY_SHIPCTL_GET_RESOURCE_STATE="$(shipctl get_resource_state "test_paramsCLI")"
-        - script: TEST="$MY_SHIPCTL_GET_RESOURCE_STATE"
-        - script: echo "$TEST"
-        - script: cat "$TEST"
-        - script: MY_GET_RESOURCE_VERSION_KEY=$(shipctl get_resource_version_key "test_paramsCLI" "ENV")
-        - script: echo MY_GET_RESOURCE_VERSION_KEY=$MY_GET_RESOURCE_VERSION_KEY
-        - script: if [ "$MY_GET_RESOURCE_VERSION_KEY" == "value" ]; then echo 'success'; else test; fi
-        
-        - script: echo "---->shipctl copy_file_from_prev_state <filename> <topath>. Copies the file to the path supplied from the state folder of the previos run of the Job that is currently running."
-        - script: shipctl copy_file_from_prev_state "test/jobs/config.json" "IN/same_syncRepos/gitRepo/test/jobs/config1.json"lue1
-        - script: cat "IN/same_syncRepos/gitRepo/test/jobs/config1.json"
+          name: slack
+          script:
+            - shipctl notify jatin-slack -recipient "@shiptest-rc-ow"
+ 
+  - name: use_custom_image-win714
+    type: runSh
+    runtime:                 
+      nodePool: win
+    steps:
+      - IN: jatin-slack    # Configuring this as IN automatically logs you into your Docker registry
+      - IN: jatin-samplerepo
+      - TASK:
+          name: slack
+          script:
+            - shipctl notify jatin-slack -recipient "@shiptest-rc-ow"
