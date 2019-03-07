@@ -328,90 +328,90 @@ jobs:
       - script: echo 'Failure runSh'
       - NOTIFY: new-slack
 
-#RUNCLI      
-  - name: myJob
-    type: runSh
-    triggerMode: <parallel/serial>
-    dependencyMode: <chrono/strict/immediate>
-    priority: <[0-10000]>
-    allowPublicAccess: <true/false>
-    runtime:
-      nodePool: <node pool name>
-      container: <true/false>
-      timeoutMinutes: 10
-    integrations:
-      - <subint name>
-      - <subint name>
-    inputs:
-      - resource: <resource>
-        switch: off
-      - resource: <resource>
-        switch: off
-        versionName: <versionName>
-      - job: <job name>
-      - resource: <gerrit repo resource>
-        showBuildStatus: true
-        vote:
-          onSuccess:
-            Verified: 1
-            Code-Review: 2
-          onFailure:
-            Verified: -1
-            Code-Review: -2
-      - resource: <cliConfig resource>
-        scopes:
-          - scope
-    tasks:
-      - name: task1 <optional>
-        runtime:
-          container: <true/false>
-          imageName: <name of image to boot>
-          imageTag: <tag of image to boot>
-          pull: <true/false>
-          options: <docker options>
-          env:
-            - key: value
-            - key2: value2
-        script:
-          - echo "do stuff"
-      - name: task2
-        script:
-          - echo "do more stuff"
-      - script:
-          - echo "this is a third script, run in its own container"
-    outputs:
-      - resource: myImage
-      - resource: <resource>
-        replicate: true
-        replicateOnPullRequest: true
-        overwrite: true
-    triggers:
-      - <inputResourceName>
-      - <inputResourceName>
-    events:
-      - onStart:
-          notify:
-            - mySlack
-            - myIRC
-      - onSuccess:
-          notify:
-            - mySlack
-            - myIRC
-          script:
-            - echo "we did it!"
-      - onFailure:
-          notify:
-            - mySlack
-            - myIRC
-          script:
-            - echo "uh oh, something went wrong"
-      - always:
-          script:
-            - bash command
-      - onCancel:
-          notify:
-            - mySlack
-            - myIRC
+#RUNSH      
+ # - name: myJob
+  #  type: runSh
+   # triggerMode: <parallel/serial>
+   # dependencyMode: <chrono/strict/immediate>
+    #priority: <[0-10000]>
+    #allowPublicAccess: <true/false>
+    #runtime:
+     # nodePool: <node pool name>
+     ## container: <true/false>
+     # timeoutMinutes: 10
+   # integrations:
+    #  - <subint name>
+    #  - <subint name>
+   # inputs:
+   #   - resource: <resource>
+   #     switch: off
+   #   - resource: <resource>
+   #     switch: off
+   #     versionName: <versionName>
+   #   - job: <job name>
+    #  - resource: <gerrit repo resource>
+    #    showBuildStatus: true
+    #    vote:
+    #      onSuccess:
+    #        Verified: 1
+     #       Code-Review: 2
+    #      onFailure:
+     #       Verified: -1
+     #       Code-Review: -2
+     # - resource: <cliConfig resource>
+      #  scopes:
+      #    - scope
+   # tasks:
+  #    - name: task1 <optional>
+   #     runtime:
+   #       container: <true/false>
+   #       imageName: <name of image to boot>
+    #      imageTag: <tag of image to boot>
+     #     pull: <true/false>
+   #       options: <docker options>
+   #       env:
+   #         - key: value
+    #        - key2: value2
+    #    script:
+    #      - echo "do stuff"
+    #  - name: task2
+    #    script:
+   #       - echo "do more stuff"
+   #   - script:
+   #       - echo "this is a third script, run in its own container"
+   # outputs:
+   #   - resource: myImage
+   ##   - resource: <resource>
+   #     replicate: true
+   #     replicateOnPullRequest: true
+    #    overwrite: true
+  #  triggers:
+  #    - <inputResourceName>
+  #    - <inputResourceName>
+  #  events:
+  #    - onStart:
+   #       notify:
+   #         - mySlack
+     #       - myIRC
+    #  - onSuccess:
+    #      notify:
+   #         - mySlack
+    #        - myIRC
+    #      script:
+    #        - echo "we did it!"
+    #  - onFailure:
+    #      notify:
+     #       - mySlack
+      #      - myIRC
+      #    script:
+    #        - echo "uh oh, something went wrong"
+    #  - always:
+    #      script:
+    #        - bash command
+    #  - onCancel:
+    #      notify:
+    #        - mySlack
+    #        - myIRC
            
           
           
