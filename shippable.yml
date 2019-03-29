@@ -23,22 +23,22 @@ resources:
     initialVersion:
       sha: master
        
-   - name: sample_pipelines_file
-     type: file
-     fileUrl: echo.sh
-     configuration:
-        integrationName: docker
-     initialVersion:
-       fileName: echo
-       fileDtTm: echo
+  - name: sample_pipelines_file
+    type: file
+    fileUrl: echo.sh
+    configuration:
+      integrationName: docker
+    initialVersion:
+      fileName: echo
+      fileDtTm: echo
        
-   - name: sample_pipelines_image
-     type: image
-     imageName: "library/nginx"
-     configuration:
-       integrationName: docker
-     initialVersion:
-       imageTag: latest
+  - name: sample_pipelines_image
+    type: image
+    imageName: "library/nginx"
+    configuration:
+      integrationName: docker
+    initialVersion:
+      imageTag: latest
        
    - name: sample_pipelines_webhook
      type: webhook
