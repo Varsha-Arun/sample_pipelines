@@ -40,21 +40,21 @@ resources:
     initialVersion:
       imageTag: latest
        
-   - name: sample_pipelines_webhook
-     type: webhook
-     configuration:
-       integrationName: github
-     initialVersion:
-       payload: text-sample
+  - name: sample_pipelines_webhook
+    type: webhook
+    configuration:
+      integrationName: github
+    initialVersion:
+      payload: text-sample
        
-   - name: sample_pipelines_cluster
-     type: cluster
-     configuration:
-       integrationName: kube-clusters
-       bastionHostIP: 1.2.3.4
-       bastionUser: sshUser
-       bastionIntegrationName: sshKey-int
-       
+  - name: sample_pipelines_cluster
+    type: cluster
+    configuration:
+      integrationName: kube-clusters
+      bastionHostIP: 1.2.3.4
+      bastionUser: sshUser
+      bastionIntegrationName: sshKey-int
+      
 pipelines:
   - name: pipeline1
     setup:
