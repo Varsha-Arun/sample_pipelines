@@ -178,6 +178,6 @@ pipelines:
             - echo "Cleaning up some stuff"
           onCancel:
             - echo "Someone cancelled the job"
-       # outputResources:
-        #  - sample_pipelines_file
-        #  - sample_pipelines_webhook
+        outputResources:
+          - sample_pipelines_file
+          - sample_pipelines_webhook
