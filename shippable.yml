@@ -1,19 +1,183 @@
-# Language setting
-language: python
+resources:
+  - name: sample_pipelines_gitrepo
+    type: gitRepo
+    repoPath: Varsha-Arun/sample_pipelines
+    configuration:
+      integrationName: github
+      branches:
+      except: "*test"
+        only: "master"
+      tags:
+        except: none
+        only: none   
+      buildOnCommit: true
+      buildOnPullRequest: true
+      buildOnPullRequestClose: true
+      buildOnRelease: true
+      buildOnTagPush: true
+      buildOnFileCommit: "*test"
+      shallowDepth: 2
+      gitConfig: 
+        - dont_know
+        - dont_know_2
+    initialVersion:
+      sha: master
+       
+   - name: sample_pipelines_file
+     type: file
+     fileUrl: echo.sh
+     configuration:
+        integrationName: docker
+     initialVersion:
+       fileName: echo
+       fileDtTm: echo
+       
+   - name: sample_pipelines_image
+     type: image
+     imageName: "library/nginx"
+     configuration:
+       integrationName: docker
+     initialVersion:
+       imageTag: latest
+       
+   - name: sample_pipelines_webhook
+     type: webhook
+     configuration:
+       integrationName: github
+     initialVersion:
+       payload: text-sample
+       
+   - name: sample_pipelines_cluster
+     type: cluster
+     configuration:
+       integrationName: kube-clusters
+       bastionHostIP: 1.2.3.4
+       bastionUser: sshUser
+       bastionIntegrationName: sshKey-int
+       
+pipelines:
+  - name: pipeline1
+    setup:
+      environmentVariables:
+        normal:
+          - ENV1: value-pipe-1
+          - ENV2: value-pipe-2
+        encrypted:
+          - SECURE_ENV1: test_value-pipe-1
+          - SECURE_ENV2: test_value-pipe-2
+      runtime: onHost-pipe
+      
+    steps:
+      - name: step1-runsh
+        type: runSh
+        configuration:
+          affinityGroup: test_group 
+        setup:
+          environmentVariables:
+            normal:
+              - ENV1: value1
+              - ENV2: value2
+            encrypted:
+              - SECURE_ENV1: test_value
+              - SECURE_ENV2: test_value
+          runtime: onHost
+        execution:
+          onExecute:
+            - echo "executing task command 1"
+            - echo "executing task command 2"
 
-# Version number
-python:
-  - 2.7
-
-build:
-  pre_ci_boot:
-    image_name: "drydock/u16all" #drydockaarch64/u16
-    image_tag: master
-    pull: true
-    
-  ci:
-    - python --version
-    - lsb_release -a
-    - docker --version
-    - docker info
-    - docker ps 
+      - name: main_step-runsh
+        type: runSh
+        configuration:
+          affinityGroup: test_group 
+          priority: 9999
+          timeoutSeconds: 40
+          cache: true
+        setup:
+          environmentVariables:
+            normal:
+              - ENV1: value1
+              - ENV2: value2
+            encrypted:
+              - SECURE_ENV1: test_value
+              - SECURE_ENV2: test_value
+          runtime: onHost
+        requires:
+          #resources:
+           # - someStateResource
+            #- someVersionResource
+          #steps:
+           # - nightlyJob
+            #- cronJob
+          integrations:
+            - github
+        triggeredBy:
+          resources:
+            - sample_pipelines_gitrepo
+          steps:
+            - in_trigger_step
+        execution:
+          onStart:
+            - echo "Prepping build environment"
+          onExecute:
+            - echo "executing task command 1"
+            - echo "executing task command 2"
+          onSuccess:
+            - echo "Job well done!"
+          onFailure:
+            - echo "uh oh, something went wrong"
+          onComplete: #always
+            - echo "Cleaning up some stuff"
+          onCancel:
+            - echo "Someone cancelled the job"
+        outputResources:
+          - sample_pipelines_file
+          - sample_pipelines_webhook
+          
+      - name: step2-runsh
+        type: runSh
+        configuration:
+          affinityGroup: test_group 
+          priority: 9999
+          timeoutSeconds: 40
+          cache: true
+        setup:
+          environmentVariables:
+            normal:
+              - ENV1: value11
+              - ENV2: value21
+            encrypted:
+              - SECURE_ENV1: test_value1
+              - SECURE_ENV2: test_value1
+          runtime: onHost
+        requires:
+          #resources:
+           # - someStateResource
+            #- someVersionResource
+          #steps:
+           # - nightlyJob
+            #- cronJob
+          integrations:
+            - github
+        triggeredBy:
+          resources:
+            - sample_pipelines_image
+          steps:
+            - main_step-runsh
+        execution:
+          onStart:
+            - echo "Prepping build environment"
+          onExecute:
+            - echo "executing task command 1"
+            - echo "executing task command 2"
+          onSuccess:
+            - echo "Job well done!"
+          onFailure:
+            - echo "uh oh, something went wrong"
+          onComplete: #always
+            - echo "Cleaning up some stuff"
+          onCancel:
+            - echo "Someone cancelled the job"
+       # outputResources:
+        #  - sample_pipelines_file
+        #  - sample_pipelines_webhook
