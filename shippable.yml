@@ -69,7 +69,7 @@ pipelines:
       
     steps:
       - name: step1-runsh
-        type: runSh
+        type: bash
         configuration:
           affinityGroup: test_group 
         setup:
@@ -87,7 +87,7 @@ pipelines:
             - echo "executing task command 2"
 
       - name: main_step-runsh
-        type: runSh
+        type: bash
         configuration:
           affinityGroup: test_group 
           priority: 9999
@@ -135,7 +135,7 @@ pipelines:
           - sample_pipelines_webhook
           
       - name: step2-runsh
-        type: runSh
+        type: bash
         configuration:
           affinityGroup: test_group 
           priority: 9999
