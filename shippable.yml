@@ -111,9 +111,9 @@ pipelines:
             #- cronJob
           integrations:
             - github
-        triggeredBy:
-          resources:
-            - sample_pipelines_gitrepo
+       # triggeredBy:
+         # resources:
+         #   - sample_pipelines_gitrepo
           steps:
             - in_trigger_step
         execution:
