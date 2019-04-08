@@ -114,8 +114,8 @@ pipelines:
        # triggeredBy:
          # resources:
          #   - sample_pipelines_gitrepo
-          steps:
-            - in_trigger_step
+         # steps:
+          #  - in_trigger_step
         execution:
           onStart:
             - echo "Prepping build environment"
