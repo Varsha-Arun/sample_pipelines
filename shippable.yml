@@ -25,13 +25,15 @@ resources:
        
   - name: sample_pipelines_file
      type: file
-     fileUrl: echo.sh
+     fileLocation: echo.sh
      configuration:
-        integrationName: docker-int
+       files:
+         only: echo.sh
+       integrationName: docker-int
      initialVersion:
        fileName: test
        fileDtTm: test
-       
+      
   - name: sample_pipelines_image
     type: image
     imageName: "library/nginx"
