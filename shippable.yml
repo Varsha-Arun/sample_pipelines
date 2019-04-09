@@ -29,7 +29,7 @@ resources:
     configuration:
       files:
         only: echo.sh
-      integrationName: docker-int
+      integrationName: docker
     initialVersion:
       fileName: test
       fileDtTm: test
