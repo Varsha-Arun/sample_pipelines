@@ -24,15 +24,15 @@ resources:
       sha: master
        
   - name: sample_pipelines_file
-     type: file
-     fileLocation: echo.sh
-     configuration:
-       files:
-         only: echo.sh
-       integrationName: docker-int
-     initialVersion:
-       fileName: test
-       fileDtTm: test
+    type: file
+    fileLocation: echo.sh
+    configuration:
+      files:
+        only: echo.sh
+      integrationName: docker-int
+    initialVersion:
+      fileName: test
+      fileDtTm: test
       
   - name: sample_pipelines_image
     type: image
