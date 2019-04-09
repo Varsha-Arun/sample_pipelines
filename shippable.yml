@@ -1,12 +1,12 @@
 resources:
   - name: sample_pipelines_gitrepo
     type: gitRepo
-    repoPath: Varsha-Arun/sample_pipelines
+    repoPath: Varsha-Arun/sample-script
     configuration:
       integrationName: github
       branches:
         except: "*test"
-        only: "kermit-pipelines"
+        only: "master"
       tags:
         except: none
         only: none   
