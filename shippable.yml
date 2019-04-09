@@ -6,7 +6,7 @@ resources:
       integrationName: github
       branches:
         except: "*test"
-        only: "master"
+        only: "kermit-pipelines"
       tags:
         except: none
         only: none   
