@@ -79,7 +79,7 @@ pipelines:
                tag: master
         requires:
           integrations:
-            - artifactory
+            - artifactorytest
         triggeredBy:
           steps:
             - test2
