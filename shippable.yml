@@ -1,12 +1,11 @@
 resources:
-  - name: sample_pipelines_gitrepo
+  - name: sample_scriptrepo
     type: gitRepo
     repoPath: Varsha-Arun/sample-script
     configuration:
       integrationName: github
       branches:
-        except: "*test"
-        only: "master"
+        only: master
       tags:
         except: none
         only: none   
@@ -22,43 +21,9 @@ resources:
         - dont_know_2
     initialVersion:
       sha: master
-       
-  - name: sample_pipelines_file
-    type: file
-    fileLocation: echo.sh
-    configuration:
-      files:
-        only: echo.sh
-      integrationName: docker
-    initialVersion:
-      fileName: test
-      fileDtTm: test
-      
-  - name: sample_pipelines_image
-    type: image
-    imageName: "shippabledocker/sample_python"
-    configuration:
-      integrationName: docker
-    initialVersion:
-      imageTag: latest
-       
-  - name: sample_pipelines_webhook
-    type: webhook
-    configuration:
-      integrationName: github
-    initialVersion:
-      payload: text-sample
-       
-  - name: sample_pipelines_cluster
-    type: cluster
-    configuration:
-      integrationName: kube-clusters
-      bastionHostIP: 1.2.3.4
-      bastionUser: sshUser
-      bastionIntegrationName: sshKey-int
-      
+  
 pipelines:
-  - name: pipeline1
+  - name: pipeline_1
     setup:
       environmentVariables:
         normal:
@@ -67,119 +32,79 @@ pipelines:
         encrypted:
           - SECURE_ENV1: test_value-pipe-1
           - SECURE_ENV2: test_value-pipe-2
-      runtime: onHost-pipe
+      #runtime: onHost-pipe
       
-    steps:
-      - name: step1-runsh
+      - name: build-test
         type: bash
-        configuration:
-          affinityGroup: test_group 
         setup:
-          environmentVariables:
-            normal:
-              - ENV1: value1
-              - ENV2: value2
-            encrypted:
-              - SECURE_ENV1: test_value
-              - SECURE_ENV2: test_value
-          runtime: onHost
-        execution:
-          onExecute:
-            - echo "executing task command 1"
-            - echo "executing task command 2"
-
-      - name: main_step-runsh
-        type: bash
-        configuration:
-          affinityGroup: test_group 
-          priority: 9999
-          timeoutSeconds: 40
-          cache: true
-        setup:
-          environmentVariables:
-            normal:
-              - ENV1: value1
-              - ENV2: value2
-            encrypted:
-              - SECURE_ENV1: test_value
-              - SECURE_ENV2: test_value
-          runtime: onHost
-        requires:
-          #resources:
-           # - someStateResource
-            #- someVersionResource
-          #steps:
-           # - nightlyJob
-            #- cronJob
-          integrations:
-            - github
-       # triggeredBy:
-         # resources:
-         #   - sample_pipelines_gitrepo
-         # steps:
-          #  - in_trigger_step
-        execution:
-          onStart:
-            - echo "Prepping build environment"
-          onExecute:
-            - echo "executing task command 1"
-            - echo "executing task command 2"
-          onSuccess:
-            - echo "Job well done!"
-          onFailure:
-            - echo "uh oh, something went wrong"
-          onComplete: #always
-            - echo "Cleaning up some stuff"
-          onCancel:
-            - echo "Someone cancelled the job"
-        outputResources:
-          - sample_pipelines_file
-          - sample_pipelines_webhook
-          
-      - name: step2-runsh
-        type: bash
-        configuration:
-          affinityGroup: test_group 
-          priority: 9999
-          timeoutSeconds: 40
-          cache: true
-        setup:
-          environmentVariables:
-            normal:
-              - ENV1: value11
-              - ENV2: value21
-            encrypted:
-              - SECURE_ENV1: test_value1
-              - SECURE_ENV2: test_value1
-          runtime: onHost
-        requires:
-          #resources:
-           # - someStateResource
-            #- someVersionResource
-          #steps:
-           # - nightlyJob
-            #- cronJob
-          integrations:
-            - github
+          runtime:
+            type: image
+            image:
+             custom:
+               name: drydock/u16all
+               tag: master
         triggeredBy:
           resources:
-            - sample_pipelines_image
-          steps:
-            - main_step-runsh
+            - sample_scriptrepo
         execution:
-          onStart:
-            - echo "Prepping build environment"
           onExecute:
-            - echo "executing task command 1"
-            - echo "executing task command 2"
-          onSuccess:
-            - echo "Job well done!"
-          onFailure:
-            - echo "uh oh, something went wrong"
-          onComplete: #always
-            - echo "Cleaning up some stuff"
-          onCancel:
-            - echo "Someone cancelled the job"
-        outputResources:
-          - sample_pipelines_file
-          - sample_pipelines_webhook
+            - pushd $res_app_resourcePath/gitRepo
+            - docker build -t sample_scriptrepo:latest .
+
+      - name: test2
+        type: bash
+        setup:
+          runtime:
+            type: image
+            image:
+             custom:
+               name: drydock/u16all
+               tag: master
+        triggeredBy:
+          steps:
+            - build-test
+        execution:
+          onExecute:
+            - docker run --name "test_app" app:latest bash -c "pwd"
+            - docker rm -fv "test_app"
+
+      - name: push-test3
+        type: bash
+        setup:
+          runtime:
+            type: image
+            image:
+             custom:
+               name: drydock/u16all
+               tag: master
+        requires:
+          integrations:
+            - artifactory
+        triggeredBy:
+          steps:
+            - test2
+        execution:
+          onExecute:
+            - docker login -u $int_art_username -p $int_art_password $int_art_url
+            - artIp=$(echo $int_art_url | awk -F[/:] '{print $4}')
+            - artPort=$(echo $int_art_url | awk -F[/:] '{print $5}')
+            - echo "$artIp:$artPort"
+            - docker tag app:latest $artIp:$artPort/demo/app:$STEP_ID
+            - docker push $artIp:$artPort/demo/app:$STEP_ID
+
+      - name: job2
+        type: bash
+        setup:
+          runtime:
+            type: image
+            image:
+             custom:
+               name: drydock/u16all
+               tag: master
+
+        triggeredBy:
+          steps:
+            - build-test
+        execution:
+          onExecute:
+            - echo "job2...."
