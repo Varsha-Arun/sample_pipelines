@@ -39,8 +39,7 @@ pipelines:
             - sample_scriptrepo
         execution:
           onExecute:
-            - pushd $res_app_resourcePath/gitRepo
-            - docker build -t sample_scriptrepo:latest .
+            - echo "hello"
 
       - name: test2
         type: bash
@@ -56,8 +55,7 @@ pipelines:
             - build-test
         execution:
           onExecute:
-            - docker run --name "test_app" app:latest bash -c "pwd"
-            - docker rm -fv "test_app"
+            - echo "test2"
 
       - name: push-test3
         type: bash
@@ -76,12 +74,7 @@ pipelines:
             - test2
         execution:
           onExecute:
-            - docker login -u $int_art_username -p $int_art_password $int_art_url
-            - artIp=$(echo $int_art_url | awk -F[/:] '{print $4}')
-            - artPort=$(echo $int_art_url | awk -F[/:] '{print $5}')
-            - echo "$artIp:$artPort"
-            - docker tag app:latest $artIp:$artPort/demo/app:$STEP_ID
-            - docker push $artIp:$artPort/demo/app:$STEP_ID
+            - echo "push-Test3"
 
       - name: job2
         type: bash
@@ -92,10 +85,9 @@ pipelines:
              custom:
                name: drydock/u16all
                tag: master
-
         triggeredBy:
           steps:
             - build-test
         execution:
           onExecute:
-            - echo "job2...."
+            - echo "job2"
