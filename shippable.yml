@@ -41,7 +41,7 @@ pipelines:
           onExecute:
             - echo "hello"
             
-      - name: testjob2
+      - name: test-job2
         type: bash
         setup:
           runtime:
