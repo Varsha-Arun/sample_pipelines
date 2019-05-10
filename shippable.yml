@@ -50,7 +50,7 @@ pipelines:
         execution:
           onExecute:
             - echo "hello"
-            - sleep 2m
+            - sleep 1m
             
       - name: testjob2
         type: bash
@@ -87,7 +87,7 @@ pipelines:
         execution:
           onExecute:
             - echo "step3"
-            - sleep 3m
+            - sleep 1m
             
       - name: testjob4
         type: bash
@@ -106,7 +106,7 @@ pipelines:
         execution:
           onExecute:
             - echo "step4"   
-            - sleep 3m
+            - sleep 1m
 
   - name: pipeline_2
     steps:    
@@ -127,7 +127,7 @@ pipelines:
         execution:
           onExecute:
             - echo "hello"
-            - sleep 2m
+            - sleep 1m
             
      # - name: test2
      #   type: bash
