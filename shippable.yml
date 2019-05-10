@@ -21,6 +21,14 @@ resources:
         - dont_know_2
     initialVersion:
       sha: master
+      
+  - name: nodeImg
+    type: image
+    imageName: shippabledocker/sample_node
+    configuration:
+      integrationName: dockerInt
+    initialVersion:
+      imageTag: latest
   
 pipelines:
   - name: pipeline_1
@@ -81,7 +89,7 @@ pipelines:
             - echo "step3"
             - sleep 3m
             
-      - name: test-job4
+      - name: testjob4
         type: bash
         configuration:
           priority: 1
@@ -92,6 +100,9 @@ pipelines:
              custom:
                name: drydock/u16all
                tag: master
+        triggeredBy:
+          steps:
+            - nodeImg
         execution:
           onExecute:
             - echo "step4"   
@@ -99,7 +110,7 @@ pipelines:
 
   - name: pipeline_2
     steps:    
-      - name: build-test
+      - name: buildTest
         type: bash
         configuration:
           priority: 11
