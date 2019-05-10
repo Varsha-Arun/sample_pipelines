@@ -101,7 +101,7 @@ pipelines:
                name: drydock/u16all
                tag: master
         triggeredBy:
-          steps:
+          resources:
             - nodeImg
         execution:
           onExecute:
