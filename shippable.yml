@@ -27,6 +27,8 @@ pipelines:
     steps:    
       - name: testjob1
         type: bash
+        configuration:
+          priority: 2
         setup:
           runtime:
             type: image
@@ -43,6 +45,8 @@ pipelines:
             
       - name: test-job2
         type: bash
+       # configuration:
+        #  priority: 3
         setup:
           runtime:
             type: image
@@ -61,6 +65,8 @@ pipelines:
     steps:    
       - name: build-test
         type: bash
+        configuration:
+          priority: 1
         setup:
           runtime:
             type: image
