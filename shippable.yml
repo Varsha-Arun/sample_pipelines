@@ -29,6 +29,14 @@ resources:
       integrationName: dockerInt
     initialVersion:
       imageTag: latest
+      
+  - name: nodeImg2
+    type: image
+    imageName: shippabledocker/sample_node
+    configuration:
+      integrationName: dockerInt
+    initialVersion:
+      imageTag: latest
   
 pipelines:
   - name: pipeline_1
@@ -36,7 +44,7 @@ pipelines:
       - name: testjob1
         type: bash
         configuration:
-          priority: 3
+          priority: 4
         setup:
           runtime:
             type: image
@@ -50,7 +58,7 @@ pipelines:
         execution:
           onExecute:
             - echo "hello"
-            - sleep 1m
+            - sleep 3m
             
       - name: testjob2
         type: bash
@@ -73,7 +81,7 @@ pipelines:
       - name: testjob3
         type: bash
         configuration:
-          priority: 2
+          priority: 3
         setup:
           runtime:
             type: image
@@ -92,7 +100,7 @@ pipelines:
       - name: testjob4
         type: bash
         configuration:
-          priority: 1
+          priority: 2
         setup:
           runtime:
             type: image
@@ -103,6 +111,25 @@ pipelines:
         triggeredBy:
           resources:
             - nodeImg
+        execution:
+          onExecute:
+            - echo "step4"   
+            - sleep 1m
+            
+      - name: testjob5
+        type: bash
+        configuration:
+          priority: 1
+        setup:
+          runtime:
+            type: image
+            image:
+             custom:
+               name: drydock/u16all
+               tag: master
+        triggeredBy:
+          resources:
+            - nodeImg2
         execution:
           onExecute:
             - echo "step4"   
