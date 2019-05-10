@@ -44,7 +44,7 @@ pipelines:
             - echo "hello"
             - sleep 2m
             
-      - name: test-job2
+      - name: testjob2
         type: bash
        # configuration:
         #  priority: 3
@@ -62,7 +62,7 @@ pipelines:
           onExecute:
             - echo "step2"
             
-      - name: test-job3
+      - name: testjob3
         type: bash
         configuration:
           priority: 2
@@ -73,9 +73,9 @@ pipelines:
              custom:
                name: drydock/u16all
                tag: master
-    #    triggeredBy:
-     #     steps:
-      #      - testjob1
+        triggeredBy:
+          steps:
+            - testjob1
         execution:
           onExecute:
             - echo "step3"
