@@ -28,7 +28,7 @@ pipelines:
       - name: testjob1
         type: bash
         configuration:
-          priority: 2
+          priority: 3
         setup:
           runtime:
             type: image
@@ -61,13 +61,48 @@ pipelines:
         execution:
           onExecute:
             - echo "step2"
+            
+      - name: test-job3
+        type: bash
+        configuration:
+          priority: 2
+        setup:
+          runtime:
+            type: image
+            image:
+             custom:
+               name: drydock/u16all
+               tag: master
+    #    triggeredBy:
+     #     steps:
+      #      - testjob1
+        execution:
+          onExecute:
+            - echo "step3"
+            - sleep 3m
+            
+      - name: test-job4
+        type: bash
+        configuration:
+          priority: 1
+        setup:
+          runtime:
+            type: image
+            image:
+             custom:
+               name: drydock/u16all
+               tag: master
+        execution:
+          onExecute:
+            - echo "step4"   
+            - sleep 3m
 
   - name: pipeline_2
     steps:    
       - name: build-test
         type: bash
         configuration:
-          priority: 1
+          priority: 11
         setup:
           runtime:
             type: image
