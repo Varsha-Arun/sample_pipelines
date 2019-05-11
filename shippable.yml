@@ -41,7 +41,7 @@ resources:
 pipelines:
   - name: pipeline_1
     steps:    
-      - name: testjob1
+      - name: test-job1
         type: bash
         configuration:
           priority: 4
