@@ -41,5 +41,5 @@ pipelines:
             - sample_scriptrepo
         execution:
           onExecute:
-            - echo "hello"
+            - echo "hello!"
  
