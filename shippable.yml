@@ -3,7 +3,7 @@ resources:
     type: gitRepo
     repoPath: Varsha-Arun/sample-script
     configuration:
-      integrationName: github
+      integrationName: varsha_github
       branches:
         only: master
       tags:
