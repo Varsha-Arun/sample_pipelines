@@ -29,6 +29,7 @@ pipelines:
         type: bash
         configuration:
           priority: 4
+          nodePool: kermit_u18_pool
         setup:
           runtime:
             type: image
