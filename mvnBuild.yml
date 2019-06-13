@@ -53,11 +53,14 @@ pipelines:
         configuration:
           nodePool: varsha_u16
           integrations:
-            - name: varsha_artifactory
+            - name: varsha_slack
           inputSteps:
             - name: mvnBuild_sample
           outputResources:
             - name: mvnBuild_info
+        execution:
+          onSuccess:
+            - send_notifications varsha_slack
       
 #       - name: promote_build_go
 #         type: PromoteBuild
