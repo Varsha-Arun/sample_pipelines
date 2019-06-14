@@ -28,9 +28,13 @@ pipelines:
           integrations:
             - name: varsha_artifactory
             - name: varsha_slack
-#           runtime:            
-#             type: image
-#             image:
+           runtime:            
+             type: image
+             image:
+               auto:
+                 language: java
+                 versions:
+                   - openjdk8
 #               custom:
 #                 name: drydock/u16java
 #                 tag: master
