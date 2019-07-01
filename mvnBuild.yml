@@ -11,7 +11,14 @@ resources:
     configuration:
       gitProvider: varsha_github
       path: Varsha-Arun/project-examples
- 
+
+  - name: mavenBuild_infopromoted
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: varsha_artifactory
+      buildName: maven_promote_build_varsha
+      buildNumber: 3
+      
 pipelines:
   - name: varshamaven
     steps:
