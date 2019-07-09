@@ -187,72 +187,72 @@ pipelines:
           onComplete:
             - echo "Oh Yeah Done affinity group"
           
-      - name: utility_c7
-        type: Bash
-        configuration:
-          timeoutSeconds: 360
-          #nodePool: kermit_centos_pool
-          inputResources:
-            - name: utility_scriptRepo
-            - name: webhookInt
-          integrations:
-            - name: varsha_slack
-        execution:
-          onExecute:
-            - printenv
-          #  - docker pull drydock/c7node:master
-           # - docker rm $(docker stop $(docker ps -a -q --filter ancestor=shashiavtc/webapp:req-res --format="{{.ID}}"))
-           # - docker run -p 49160:8080 -d shashiavtc/webapp:req-res
-           # - curl -i http://localhost:49160/?data=hi
-            - add_run_variable imageTag="firstTest"
+#       - name: utility_c7
+#         type: Bash
+#         configuration:
+#           timeoutSeconds: 360
+#           #nodePool: kermit_centos_pool
+#           inputResources:
+#             - name: utility_scriptRepo
+#             - name: webhookInt
+#           integrations:
+#             - name: varsha_slack
+#         execution:
+#           onExecute:
+#             - printenv
+#           #  - docker pull drydock/c7node:master
+#            # - docker rm $(docker stop $(docker ps -a -q --filter ancestor=shashiavtc/webapp:req-res --format="{{.ID}}"))
+#            # - docker run -p 49160:8080 -d shashiavtc/webapp:req-res
+#            # - curl -i http://localhost:49160/?data=hi
+#             - add_run_variable imageTag="firstTest"
 
-            - pushd $res_utility_scriptRepo_resourcePath
+#             - pushd $res_utility_scriptRepo_resourcePath
 
-            - save_run_state test.sh my_file
-            - restore_run_state my_file test.sh
+#             - save_run_state test.sh my_file
+#             - restore_run_state my_file test.sh
 
-            - popd
+#             - popd
 
-            - bump_semver v1.0.1 major
-            - bump_semver v0.0.1 patch
+#             - bump_semver v1.0.1 major
+#             - bump_semver v0.0.1 patch
 
-            - compare_git --resource utility_scriptRepo --commit-range HEAD~3..HEAD test.sh
+#             - compare_git --resource utility_scriptRepo --commit-range HEAD~3..HEAD test.sh
 
-            - update_commit_status utility_scriptRepo --status processing --message "updated in utility step" --context $STEP_NAME
+#             - update_commit_status utility_scriptRepo --status processing --message "updated in utility step" --context $STEP_NAME
 
-            - switch_env nodejs 8.16.0
+#             - switch_env nodejs 8.16.0
 
-            - pushd $res_utility_scriptRepo_resourcePath
+#             - pushd $res_utility_scriptRepo_resourcePath
 
-            - read_json packages.json "name"
-            - openssl genrsa -out key.pem 1024 
-            - openssl rsa -in key.pem -text -noout
-            - openssl rsa -in key.pem -pubout -out pub.pem 
-            - openssl rsa -in pub.pem -pubin -text -noout 
+#             - read_json packages.json "name"
+#             - openssl genrsa -out key.pem 1024 
+#             - openssl rsa -in key.pem -text -noout
+#             - openssl rsa -in key.pem -pubout -out pub.pem 
+#             - openssl rsa -in pub.pem -pubin -text -noout 
 
-            - encrypt_string "secretValue" --key pub.pem
-            - encrypted=$(encrypt_string "secretValue" --key pub.pem)
-            - echo "$encrypted"
-            - decrypt_string "$encrypted" --key key.pem
+#             - encrypt_string "secretValue" --key pub.pem
+#             - encrypted=$(encrypt_string "secretValue" --key pub.pem)
+#             - echo "$encrypted"
+#             - decrypt_string "$encrypted" --key key.pem
 
-            - encrypt_file --output encrypted.txt crypt.txt --key pub.pem
-            - cat encrypted.txt
-            - decrypt_file encrypted.txt --output decrypted.txt --key key.pem
-            - cat decrypted.txt
-            - replace_envs example.env sample.env
+#             - encrypt_file --output encrypted.txt crypt.txt --key pub.pem
+#             - cat encrypted.txt
+#             - decrypt_file encrypted.txt --output decrypted.txt --key key.pem
+#             - cat decrypted.txt
+#             - replace_envs example.env sample.env
 
-            - cat sample.env
-            - cat example.env
+#             - cat sample.env
+#             - cat example.env
 
-            - cache_files echo.sh my_file
-            - restore_cache my_file echo.sh
+#             - cache_files echo.sh my_file
+#             - restore_cache my_file echo.sh
 
-            - popd
-            - send_notification varsha_slack
+#             - popd
+#             - send_notification varsha_slack
 
-            - execute_command echo $res_utility_scriptRepo_resourcePath
-          onComplete:
-            - echo "Oh Yeah Done centOS 7!!"
+#             - execute_command echo $res_utility_scriptRepo_resourcePath
+#           onComplete:
+#             - echo "Oh Yeah Done centOS 7!!"
       
       - name: utility_u18
         type: Bash
