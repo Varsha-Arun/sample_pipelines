@@ -82,8 +82,8 @@ pipelines:
             - echo "-------------------------------------------- IMAGE RESOURCE -------------------------------------------------"
             - add_run_variables imageTag="firstTest"
 
-            - pushd $res_imagePython_2_resourcePath
-
+            #- pushd $res_imagePython_2_resourcePath
+            - cd $res_imagePython_2_resourcePath
             - add_pipeline_variables imageName="shippabledocker/ship_plv2pyt" imageTag="tip"
 
             - popd
