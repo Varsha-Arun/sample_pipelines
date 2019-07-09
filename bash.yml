@@ -18,27 +18,24 @@ resources:
       
   - name: imageDocker_1
     type: Image
-    imageName: shippabledocker/sample-node
     configuration:
-      integrationName: varsha_docker
-    version:
+      registry: varsha_docker
+      imageName: shippabledocker/sample-node
       imageTag: latest
   
   - name: imagePrivate
     type: Image
-    imageName: shippabledocker/sample_node_pvt
+    imageName: 
     configuration:
-      integrationName: varsha_docker
-    version:
-      imageTag: masterpyt
+      registry: varsha_docker
+      imageName: shippabledocker/sample_node_pvt
+      imageTag: masterpyt 
       
   - name: imagePython_2
     type: Image
-    imageName: shippabledocker/u16phpall
     configuration:
-      integrationName: varsha_docker
-      #autoPull: false
-    version:
+      registry: varsha_docker
+      imageName: shippabledocker/u16phpall
       imageTag: test7.1
   
   - name: webhookInt
