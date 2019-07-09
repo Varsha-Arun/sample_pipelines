@@ -85,8 +85,8 @@ pipelines:
             #- pushd $res_imagePython_2_resourcePath
             - cd $res_imagePython_2_resourcePath
             - add_pipeline_variables imageName="shippabledocker/ship_plv2pyt" imageTag="tip"
-
-            - popd
+            - cd 
+           # - popd
             - echo "------------------------------------------- DONE WITH IMAGE RESOURCE -----------------------------------------"
 
             - echo "-------------------------------------------- GITREPO RESOURCE ----------------------------------------------"
@@ -128,7 +128,7 @@ pipelines:
             - cache_files echo.sh my_cache
            # - restore_cache my_file echo.sh
             - popd
-
+            
             - echo "------------------------------------------ DONE WITH GITREPO RESOURCE --------------------------------------------------------------------------------"
 
             - bump_semver v1.0.1 major
