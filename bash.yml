@@ -94,7 +94,7 @@ pipelines:
             - source example.env
             - echo $TEST
             - ls -la
-            - save_run_state test.sh my_file
+            #########   REMOVED   ########- save_run_state test.sh my_file
 
             - read_json packages.json "name"
 
