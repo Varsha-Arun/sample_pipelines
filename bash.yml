@@ -125,8 +125,8 @@ pipelines:
             - echo "$res_utility_scriptRepo_isPrerelease"
             - echo "$SAMPLE"
 
-            - cache_files echo.sh my_cache
-           # - restore_cache my_file echo.sh
+            - add_cache_files echo.sh my_cache
+           # - restore_cache_files my_file echo.sh
             - popd
             
             - echo "------------------------------------------ DONE WITH GITREPO RESOURCE --------------------------------------------------------------------------------"
