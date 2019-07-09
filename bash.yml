@@ -267,7 +267,7 @@ pipelines:
           inputResources:
             - name: utility_scriptRepo
           outputResources:
-            - name:webhookIntExternal
+            - name: webhookIntExternal
         execution:
           onExecute:
             - printenv
