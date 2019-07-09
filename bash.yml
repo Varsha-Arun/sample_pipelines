@@ -148,7 +148,7 @@ pipelines:
 
             - execute_command echo $res_utility_scriptRepo_resourcePath
           #  - retry_command "git clone git@bitbucket.org:shiptest-rc-me/testprivate.git" #worked
-            - replicate_resource imageDocker_1 imagePython_2 #throws error
+            #- replicate_resource imageDocker_1 imagePython_2 #throws error
 
             - printenv
             - docker images
