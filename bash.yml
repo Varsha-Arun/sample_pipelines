@@ -124,7 +124,8 @@ pipelines:
             - echo "$BRANCH"
             - echo "$res_utility_scriptRepo_isPrerelease"
             - echo "$SAMPLE"
-
+            
+            - add_pipeline_files cachefile.txt u16_pipeline_files
             - add_cache_files echo.sh my_cache
            # - restore_cache_files my_file echo.sh
             - popd
@@ -177,7 +178,7 @@ pipelines:
 
             #########   REMOVED   ######## #- restore_run_state my_file test.sh
 
-            - restore_cache my_cache echo.sh
+            - restore_cache_files my_cache echo.sh
 
            # - popd
 
