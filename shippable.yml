@@ -1,19 +1,8 @@
-# Language setting
-language: python
-
-# Version number
-python:
-  - 2.7
-
-build:
-  pre_ci_boot:
-    image_name: "drydock/u16all" #drydockaarch64/u16
-    image_tag: master
-    pull: true
-    
-  ci:
-    - python --version
-    - lsb_release -a
-    - docker --version
-    - docker info
-    - docker ps 
+pipelines:
+  - name: varshabash12
+    steps:
+      - name: testReport_u1612
+        type: Bash
+        execution:
+          onExecute:
+            - printenv
