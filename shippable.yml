@@ -3,6 +3,17 @@ pipelines:
     steps:
       - name: testReport_u1612
         type: Bash
+        configuration:
+          runtime:            
+            type: host #image
+#             image:
+#               auto:
+#                 language: java
+#                 versions:
+#                   - openjdk8
+#               custom:
+#                 name: drydock/u16java
+#                 tag: master
         execution:
           onExecute:
             - printenv
