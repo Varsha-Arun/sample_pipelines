@@ -52,7 +52,28 @@ resources:
       
 pipelines:
   - name: Varsha_pipeline
-    steps:  
+    steps: 
+    
+      - name: utility_u18test
+        type: Bash
+        configuration:
+          timeoutSeconds: 360
+          nodePool: node-RHEL-7
+          inputSteps:
+            - name: utility_u16
+          inputResources:
+            - name: utility_scriptRepo
+        execution:
+          onExecute:
+            - printenv
+            - pwd
+
+            - pushd $res_utility_scriptRepo_resourcePath
+            - pwd
+            - ls
+
+            - popd 
+            
       - name: utility_u16
         type: Bash
         configuration:
@@ -62,6 +83,8 @@ pipelines:
           inputResources:
               - name: utility_scriptRepo
               - name: imagePrivate
+          inputSteps:
+              - name: utility_u18test
           integrations:
               - name: varsha_slack
               - name: varshaJira
@@ -327,6 +350,6 @@ pipelines:
           onComplete:
             - echo "Oh Yeah Done ubuntu 18!"
           
-
+      
         
         
