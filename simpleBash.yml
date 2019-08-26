@@ -1,1 +1,46 @@
+resources:
 
+  - name: utility_scriptRepo
+    type: GitRepo
+    configuration:
+      path: Varsha-Arun/sample-script
+      branches:
+        include: master
+      gitProvider: varsha_github
+
+pipelines:
+
+  - name: varsha_simpleBash1
+    steps:   
+      - name: u18BashStep
+        type: Bash
+        configuration:
+          nodePool: custom_u18NodePool
+          integrations:
+            - name: varsha_aws
+          inputResources:
+            - name: utility_scriptRepo
+        #  outputResources:
+        #    - name: webhookIntExternal
+        execution:
+          onExecute:
+            - printenv
+            
+  - name: varsha_simpleBash2
+    steps:   
+      - name: u18BashStep
+        type: Bash
+        configuration:
+          nodePool: custom_u18NodePool
+          timeoutSeconds: 360
+          integrations:
+            - name: varsha_aws
+          inputSteps:
+            - name: varsha_simpleBash1
+          inputResources:
+            - name: utility_scriptRepo
+        #  outputResources:
+        #    - name: webhookIntExternal
+        execution:
+          onExecute:
+            - printenv
