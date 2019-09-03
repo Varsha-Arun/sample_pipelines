@@ -70,4 +70,3 @@ pipelines:
         execution:
           onExecute:
             - printenv
-            
