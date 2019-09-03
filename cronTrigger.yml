@@ -14,7 +14,7 @@ resources:
   - name: cron_trigger
     type: CronTrigger
     configuration: 
-      interval: "30 * * * *"
+      interval: "* 6 * * *"
       
 pipelines:
   - name: varsha_pipelinegh
