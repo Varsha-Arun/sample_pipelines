@@ -1,4 +1,16 @@
 resources:
+  - name: varsha_glRepo
+    type: GitRepo
+    configuration:
+      gitProvider: varsha_gl
+      path: varsha-arun/jfrog_pipelines
+  
+  - name: varsha_bbRepo
+    type: GitRepo
+    configuration:
+      gitProvider: varsha_bb
+      path: shiptest-rc-me/jfrog-pipelines
+      
   - name: cron_trigger
     type: CronTrigger
     configuration: 
@@ -11,7 +23,9 @@ pipelines:
         type: Bash
         configuration:
           inputResources: 
-            - name: cron_trigger
+           # - name: cron_trigger
+            - name: varsha_bbRepo
+            - name: varsha_glRepo
           environmentVariables:
             ENV1: value1
             ENV2: value2
