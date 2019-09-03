@@ -16,10 +16,10 @@ resources:
     configuration: 
       interval: "* 6 * * *"
       
-  - name: cron_trigger20mins
-    type: CronTrigger
-    configuration: 
-      interval: "*/20  * * *"
+ # - name: cron_trigger20mins
+ #   type: CronTrigger
+  #  configuration: 
+ #     interval: "*/20  * * *"
       
   - name: cron_triggerdayOfMonthly4th
     type: CronTrigger
@@ -62,7 +62,7 @@ pipelines:
         type: Bash
         configuration:
           inputResources: 
-            - name: cron_trigger20mins
+            #- name: cron_trigger20mins
             - name: cron_triggerdayOfMonthly4th
             - name: cron_triggerMonthSep
             - name: cron_triggerdayOfWeekWed
