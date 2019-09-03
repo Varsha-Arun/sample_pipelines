@@ -55,3 +55,16 @@ pipelines:
             - docker images
             - test "$ENV1" == "value1"
             - test "$ENV2" == "value2"
+            
+      - name: cronTrigger_gh2
+        type: Bash
+        configuration:
+          inputResources: 
+            - name: cron_trigger20mins
+            - name: cron_triggerdayOfMonthly4th
+            - name: cron_triggerMonthSep
+            - name: cron_triggerdayOfWeekWed
+        execution:
+          onExecute:
+            - printenv
+            
