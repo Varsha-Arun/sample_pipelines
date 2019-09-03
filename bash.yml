@@ -50,6 +50,11 @@ resources:
       webhookName: varsha_externalWebhook
       payload: "data=test_update"
       
+  - name: cron_trigger
+    type: CronTrigger
+    configuration: 
+      interval: "*/2 * * * *"
+      
 pipelines:
   - name: Varsha_pipeline
     steps: 
