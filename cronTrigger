@@ -1,0 +1,23 @@
+resources:
+  - name: cron_trigger
+    type: CronTrigger
+    configuration: 
+      interval: "*/2 * * * *"
+      
+pipelines:
+  - name: varsha_pipelinegh
+    steps:  
+      - name: cronTrigger_gh
+        type: Bash
+        configuration:
+          inputResources:
+            - cron_trigger
+          environmentVariables:
+            ENV1: value1
+            ENV2: value2
+        execution:
+          onExecute:
+            - printenv
+            - docker images
+            - test "$ENV1" == "value1"
+            - test "$ENV2" == "value2"
