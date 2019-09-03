@@ -56,7 +56,6 @@ pipelines:
             - test "$ENV1" == "value1"
             - test "$ENV2" == "value2"
  
-pipelines:
   - name: varsha_cronTrigger
     steps:
       - name: cronTrigger_gh2
