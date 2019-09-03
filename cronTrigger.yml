@@ -21,15 +21,15 @@ resources:
   #  configuration: 
  #     interval: "*/20  * * *"
       
-  - name: cron_triggerdayOfMonthly4th
+  - name: cron_triggerdayOfMonthly3th
     type: CronTrigger
     configuration: 
-      interval: "* 13 4 * *"
+      interval: "* 14 3 * *"
       
-  - name: cron_triggerMonthSep
+  - name: cron_triggerMonthSept
     type: CronTrigger
     configuration: 
-      interval: "*/2 13 3 9 *"
+      interval: "*/2 14 3 9 *"
   
   - name: cron_triggerdayOfWeekWed
     type: CronTrigger
@@ -63,8 +63,8 @@ pipelines:
         configuration:
           inputResources: 
             #- name: cron_trigger20mins
-            - name: cron_triggerdayOfMonthly4th
-            - name: cron_triggerMonthSep
+            - name: cron_triggerdayOfMonthly3th
+            - name: cron_triggerMonthSept
             - name: cron_triggerdayOfWeekWed
         execution:
           onExecute:
