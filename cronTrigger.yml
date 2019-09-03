@@ -16,6 +16,26 @@ resources:
     configuration: 
       interval: "* 6 * * *"
       
+  - name: cron_trigger20mins
+    type: CronTrigger
+    configuration: 
+      interval: "*/20  * * *"
+      
+  - name: cron_triggerdayOfMonthly4th
+    type: CronTrigger
+    configuration: 
+      interval: "* 13 4 * *"
+      
+  - name: cron_triggerMonthSep
+    type: CronTrigger
+    configuration: 
+      interval: "*/2 13 3 9 *"
+  
+  - name: cron_triggerdayOfWeekWed
+    type: CronTrigger
+    configuration: 
+      interval: "* * * * 3"
+      
 pipelines:
   - name: varsha_pipelinegh
     steps:  
