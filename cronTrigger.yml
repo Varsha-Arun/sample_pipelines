@@ -60,12 +60,12 @@ pipelines:
     steps:
       - name: cronTrigger_gh2
         type: Bash
-        configuration:
-          inputResources: 
+       #configuration:
+         # inputResources: 
             #- name: cron_trigger20mins
-            - name: cron_triggerdayOfMonthly3th
-            - name: cron_triggerMonthSept
-            - name: cron_triggerdayOfWeekWed
+           # - name: cron_triggerdayOfMonthly3th
+            #- name: cron_triggerMonthSept
+           # - name: cron_triggerdayOfWeekWed
         execution:
           onExecute:
             - printenv
