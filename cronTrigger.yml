@@ -11,30 +11,30 @@ resources:
   #    gitProvider: varsha_bb
   #    path: shiptest-rc-me/jfrog-pipelines
       
-  - name: cron_trigger
-    type: CronTrigger
-    configuration: 
-      interval: "* 6 * * *"
+ # - name: cron_trigger
+ #   type: CronTrigger
+ #   configuration: 
+ #     interval: "* 6 * * *"
       
  # - name: cron_trigger20mins
  #   type: CronTrigger
   #  configuration: 
  #     interval: "*/20  * * *"
       
-  - name: cron_triggerdayOfMonthly3th
-    type: CronTrigger
-    configuration: 
-      interval: "* 14 3 * *"
+ # - name: cron_triggerdayOfMonthly3th
+ #   type: CronTrigger
+ #   configuration: 
+ #     interval: "* 14 3 * *"
       
-  - name: cron_triggerMonthSept
-    type: CronTrigger
-    configuration: 
-      interval: "*/2 14 3 9 *"
+ # - name: cron_triggerMonthSept
+ #   type: CronTrigger
+ #   configuration: 
+ #     interval: "*/2 14 3 9 *"
   
-  - name: cron_triggerdayOfWeekWed
-    type: CronTrigger
-    configuration: 
-      interval: "* * * * 3"
+ # - name: cron_triggerdayOfWeekWed
+ #   type: CronTrigger
+ #   configuration: 
+ #     interval: "* * * * 3"
       
 pipelines:
   - name: varsha_pipelinegh
