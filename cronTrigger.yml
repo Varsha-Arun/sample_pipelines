@@ -55,7 +55,9 @@ pipelines:
             - docker images
             - test "$ENV1" == "value1"
             - test "$ENV2" == "value2"
-            
+ 
+pipelines:
+  - name: varsha_cronTrigger
       - name: cronTrigger_gh2
         type: Bash
         configuration:
