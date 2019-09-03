@@ -58,6 +58,7 @@ pipelines:
  
 pipelines:
   - name: varsha_cronTrigger
+    steps:
       - name: cronTrigger_gh2
         type: Bash
         configuration:
