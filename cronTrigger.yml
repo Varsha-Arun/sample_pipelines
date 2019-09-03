@@ -11,10 +11,10 @@ resources:
       gitProvider: varsha_bb
       path: shiptest-rc-me/jfrog-pipelines
       
-  - name: cron_trigger
-    type: CronTrigger
-    configuration: 
-      interval: "*/2 * * * *"
+  #- name: cron_trigger
+   # type: CronTrigger
+   # configuration: 
+   #   interval: "*/2 * * * *"
       
 pipelines:
   - name: varsha_pipelinegh
