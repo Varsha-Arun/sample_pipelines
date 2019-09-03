@@ -70,29 +70,29 @@ pipelines:
           onExecute:
             - printenv
             
-      - name: a
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: cronTrigger_gh2
-        execution:
-          onExecute:
-            - printenv
+#       - name: a
+#         type: Bash
+#         configuration:
+#           inputSteps:
+#             - name: cronTrigger_gh2
+#         execution:
+#           onExecute:
+#             - printenv
       
-      - name: b
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: a
-        execution:
-          onExecute:
-            - printenv
+#       - name: b
+#         type: Bash
+#         configuration:
+#           inputSteps:
+#             - name: a
+#         execution:
+#           onExecute:
+#             - printenv
       
-      - name: a1
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: a
-        execution:
-          onExecute:
-            - printenv
+#       - name: a1
+#         type: Bash
+#         configuration:
+#           inputSteps:
+#             - name: a
+#         execution:
+#           onExecute:
+#             - printenv
