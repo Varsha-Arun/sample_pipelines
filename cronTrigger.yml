@@ -66,8 +66,6 @@ pipelines:
             - name: cron_triggerdayOfMonthly4th
             - name: cron_triggerMonthSep
             - name: cron_triggerdayOfWeekWed
-          inputSteps:
-            - name: cronTrigger_gh
         execution:
           onExecute:
             - printenv
