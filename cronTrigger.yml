@@ -5,11 +5,11 @@ resources:
       gitProvider: varsha_gl
       path: varsha-arun/jfrog_pipelines
   
-  - name: varsha_bbRepo
-    type: GitRepo
-    configuration:
-      gitProvider: varsha_bb
-      path: shiptest-rc-me/jfrog-pipelines
+ # - name: varsha_bbRepo
+  #  type: GitRepo
+  #  configuration:
+  #    gitProvider: varsha_bb
+  #    path: shiptest-rc-me/jfrog-pipelines
       
   - name: cron_trigger
     type: CronTrigger
