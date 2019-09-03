@@ -10,8 +10,8 @@ pipelines:
       - name: cronTrigger_gh
         type: Bash
         configuration:
-          inputResources:
-            - cron_trigger
+          inputResources: 
+            - name: cron_trigger
           environmentVariables:
             ENV1: value1
             ENV2: value2
