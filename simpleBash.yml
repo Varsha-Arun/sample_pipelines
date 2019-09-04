@@ -8,13 +8,13 @@ resources:
         include: master
       gitProvider: varsha_github
 
-  - name: utility_bb
-    type: GitRepo
-    configuration:
-      path: shiptest-rc-me/jfrog-pipelines
-      branches:
-        include: master
-      gitProvider: varsha_bb
+ # - name: utility_bb
+  #  type: GitRepo
+  #  configuration:
+  #    path: shiptest-rc-me/jfrog-pipelines
+  #    branches:
+  #      include: master
+  #    gitProvider: varsha_bb
       
   - name: utility_gl
     type: GitRepo
