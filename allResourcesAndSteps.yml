@@ -1,0 +1,56 @@
+resources:
+
+  - name: utility_scriptRepo
+    type: GitRepo
+    configuration:
+      path: Varsha-Arun/sample-script
+      branches:
+        include: master
+      gitProvider: varsha_github
+      
+ # - name: varsha_bbRepo
+  #  type: GitRepo
+  #  configuration:
+  #    gitProvider: varsha_bb
+  #    path: shiptest-rc-me/jfrog-pipelines
+      
+  - name: cron_trigger
+    type: CronTrigger
+    configuration: 
+      interval: "1 10 4 9 *"
+      
+      
+pipelines:
+
+  - name: varsha_simpleBash1
+    steps:   
+      - name: u18BashStep1
+        type: Bash
+        configuration:
+          nodePool: custom_u18NodePool
+          integrations:
+            - name: varsha_aws
+          inputResources:
+            - name: utility_scriptRepo
+        #  outputResources:
+        #    - name: webhookIntExternal
+        execution:
+          onExecute:
+            - printenv
+ 
+      - name: u18BashStep2
+        type: Bash
+        configuration:
+          nodePool: custom_u18NodePool
+          timeoutSeconds: 360
+          integrations:
+            - name: varsha_aws
+          inputSteps:
+            - name: u18BashStep1
+          inputResources:
+            - name: utility_scriptRepo
+        #  outputResources:
+        #    - name: webhookIntExternal
+        execution:
+          onExecute:
+            - printenv
