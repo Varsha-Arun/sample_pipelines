@@ -16,13 +16,13 @@ resources:
   #      include: master
   #    gitProvider: varsha_bb
       
-  - name: utility_gl
-    type: GitRepo
-    configuration:
-      path: varsha-arun/jfrog_pipelines
-      branches:
-        include: master
-      gitProvider: varsha_gl
+ # - name: utility_gl
+ #   type: GitRepo
+ #   configuration:
+ #     path: varsha-arun/jfrog_pipelines
+ #     branches:
+ #       include: master
+ #     gitProvider: varsha_gl
       
 pipelines:
 
@@ -31,7 +31,7 @@ pipelines:
       - name: u18BashStep1
         type: Bash
         configuration:
-          nodePool: custom_u18NodePool
+          nodePool: ubuntu16_node
           integrations:
             - name: varsha_aws
           inputResources:
@@ -45,7 +45,7 @@ pipelines:
       - name: u18BashStep2
         type: Bash
         configuration:
-          nodePool: custom_u18NodePool
+          nodePool: ubuntu16_node
           timeoutSeconds: 360
           integrations:
             - name: varsha_aws
