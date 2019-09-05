@@ -22,7 +22,7 @@ resources:
       path: varsha-arun/jfrog_pipelines
       branches:
         include: master
-      gitProvider: varsha_gl
+      gitProvider: varsha_github
       
 pipelines:
 
