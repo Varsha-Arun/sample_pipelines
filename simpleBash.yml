@@ -16,13 +16,13 @@ resources:
   #      include: master
   #    gitProvider: varsha_bb
       
- # - name: utility_gl
- #   type: GitRepo
- #   configuration:
- #     path: varsha-arun/jfrog_pipelines
- #     branches:
- #       include: master
- #     gitProvider: varsha_gl
+  - name: utility_gl
+    type: GitRepo
+    configuration:
+      path: varsha-arun/jfrog_pipelines
+      branches:
+        include: master
+      gitProvider: varsha_gl
       
 pipelines:
 
@@ -36,6 +36,7 @@ pipelines:
             - name: varsha_aws
           inputResources:
             - name: utility_scriptRepo
+            - name: utility_gl
         #  outputResources:
         #    - name: webhookIntExternal
         execution:
