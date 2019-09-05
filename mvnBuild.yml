@@ -26,7 +26,7 @@ pipelines:
         type: MvnBuild
         configuration:
           affinityGroup: mavenbuild
-          nodePool: ubuntu16
+          nodePool: ubuntu16_node
           sourceLocation: ./artifactory-maven-plugin-example
           mvnCommand: clean install -f ./pom.xml
           configFileLocation: .
@@ -64,7 +64,7 @@ pipelines:
         type: PublishBuildInfo
         configuration:
           affinityGroup: mavenbuild
-          nodePool: ubuntu16
+          nodePool: ubuntu16_node
           integrations:
             - name: varsha_slack
           inputSteps:
@@ -79,7 +79,7 @@ pipelines:
         type: PromoteBuild
         configuration:
           affinityGroup: mavenbuild
-          nodePool: ubuntu16
+          nodePool: ubuntu16_node
           targetRepository: test-maven-local # required 
           includeDependencies: true    # default false
           status: "promote_success" # for mvn_build_promoted" # optional
