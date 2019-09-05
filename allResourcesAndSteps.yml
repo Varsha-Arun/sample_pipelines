@@ -71,7 +71,7 @@ resources:
   - name: s_remoteFile
     type: RemoteFile
     configuration:     
-      source: varsha_external
+      source: varsha_aws
   
   - name: s_vmCluster
     type: VmCluster
@@ -83,7 +83,7 @@ resources:
   - name: s_webhook
     type: Webhook
     configuration:
-      integrationName: varsha_external
+      webhookName: varsha_external
       payload: "test"
  # - name: varsha_bbRepo
   #  type: GitRepo
