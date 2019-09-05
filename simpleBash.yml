@@ -41,6 +41,9 @@ pipelines:
         #    - name: webhookIntExternal
         execution:
           onExecute:
+            - pushd $res_utility_scriptRepo_resourcePath
+            - ./echo.sh
+            - popd
             - printenv
  
       - name: u18BashStep2
