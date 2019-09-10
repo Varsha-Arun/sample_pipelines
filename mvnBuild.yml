@@ -46,8 +46,8 @@ pipelines:
 #               custom:
 #                 name: drydock/u16java
 #                 tag: master
-           outputResources:
-             - name: mavenBuild_info
+          outputResources:
+            - name: mavenBuild_info
         execution:
           onStart:
            # - apt install default-jdk
