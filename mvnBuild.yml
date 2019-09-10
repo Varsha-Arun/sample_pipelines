@@ -46,6 +46,8 @@ pipelines:
 #               custom:
 #                 name: drydock/u16java
 #                 tag: master
+           outputResources:
+             - name: mavenBuild_info
         execution:
           onStart:
            # - apt install default-jdk
@@ -57,38 +59,39 @@ pipelines:
            # - popd
             - javac -version
             - mvn --version
+            - printenv
           onSuccess:
             - send_notifications varsha_slack
             
-      - name: mavenBuild_publish
-        type: PublishBuildInfo
-        configuration:
-          affinityGroup: mavenbuild
-          nodePool: ubuntu16
-          integrations:
-            - name: varsha_slack
-          inputSteps:
-            - name: mavenBuild_sample
-          outputResources:
-            - name: mavenBuild_info
-        execution:
-          onSuccess:
-            - send_notifications varsha_slack
+#       - name: mavenBuild_publish
+#         type: PublishBuildInfo
+#         configuration:
+#           affinityGroup: mavenbuild
+#           nodePool: ubuntu16
+#           integrations:
+#             - name: varsha_slack
+#           inputSteps:
+#             - name: mavenBuild_sample
+#           outputResources:
+#             - name: mavenBuild_info
+#         execution:
+#           onSuccess:
+#             - send_notifications varsha_slack
       
-      - name: maven_build_promoted
-        type: PromoteBuild
-        configuration:
-          affinityGroup: mavenbuild
-          nodePool: ubuntu16
-          targetRepository: test-maven-local # required 
-          includeDependencies: true    # default false
-          status: "promote_success" # for mvn_build_promoted" # optional
-          comment: "maven build" # for mvn_build_promoted" # optional
-          copy: true #optional - no need to have delete access it wont delete from base repo just moves copy to target repo
-          inputResources:
-            - name: mavenBuild_info #required
-          outputResources:
-            - name: mavenBuild_infopromoted #required
+#       - name: maven_build_promoted
+#         type: PromoteBuild
+#         configuration:
+#           affinityGroup: mavenbuild
+#           nodePool: ubuntu16
+#           targetRepository: test-maven-local # required 
+#           includeDependencies: true    # default false
+#           status: "promote_success" # for mvn_build_promoted" # optional
+#           comment: "maven build" # for mvn_build_promoted" # optional
+#           copy: true #optional - no need to have delete access it wont delete from base repo just moves copy to target repo
+#           inputResources:
+#             - name: mavenBuild_info #required
+#           outputResources:
+#             - name: mavenBuild_infopromoted #required
 
 #       - name: bundle_go_publish
 #         type: CreateReleaseBundle
