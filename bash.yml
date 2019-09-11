@@ -8,7 +8,7 @@ resources:
         include: master
       gitProvider: varsha_github
       
-  - name: mvnBuild_info
+  - name: mvnBuild_infoTest
     type: BuildInfo
     configuration:
       sourceArtifactory: varsha_artifactory
@@ -25,7 +25,7 @@ pipelines:
 #           affinityGroup: u16grp
 #           nodePool: ubuntu16
           inputResources:
-            - name: mvnBuild_info
+            - name: mvnBuild_infoTest
 #               - name: utility_scriptRepo
 #               - name: imagePrivate
 #           inputSteps:
