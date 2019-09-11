@@ -69,3 +69,6 @@ pipelines:
             - name: r_Aql
           outputResources:
             - name: r_ReleaseBundle
+        execution:
+          onStart:
+            - printenv
