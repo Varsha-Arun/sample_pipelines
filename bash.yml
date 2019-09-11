@@ -19,14 +19,14 @@ resources:
     type: Aql
     configuration:
       sourceArtifactory: varsha_artifactory
-      query: ""
-#       addedProperties:
-#         key1: value1
-#         key2: value2
-#       mappings:
-#         - name: mapping1
-#           input: testInput  
-#           output: testInput
+      query: items.find({"@mvn_sample_build_varsha":{"$eq":"artifactory"}}) #items.find({"@build.name":{"$eq":"artifactory"}})
+       addedProperties:
+         key1: value1
+         key2: value2
+       mappings:
+         - name: mapping1
+           input: testInput  
+           output: testInput
           
 pipelines:
   - name: Varsha_pipeline
@@ -46,8 +46,8 @@ pipelines:
 #           outputResources:
 #               - name: webhookInt
           environmentVariables:
-            ENV1: value1
-            ENV2: value2
+            ENV1: 1Bash
+            ENV2: 2Bash
         execution:
           onExecute:
             - printenv
