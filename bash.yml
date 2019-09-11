@@ -8,12 +8,12 @@ resources:
         include: master
       gitProvider: varsha_github
       
-  - name: mvnBuild_infoTest
+  - name: r_BuildInfo
     type: BuildInfo
     configuration:
       sourceArtifactory: varsha_artifactory
       buildName: mvn_sample_build_varsha
-      buildNumber: 9
+      buildNumber: 1
    
   - name: r_Aql
     type: Aql
