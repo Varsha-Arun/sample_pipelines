@@ -31,7 +31,7 @@ resources:
   - name: r_ReleaseBundle
     type: ReleaseBundle
     configuration:
-      sourceDistribution: varsha_dist
+      sourceDistribution: bindu_dist
       name: test_varsha_updated
       version: version1
       
