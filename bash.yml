@@ -19,7 +19,7 @@ resources:
     type: Aql
     configuration:
       sourceArtifactory: varsha_artifactory
-      #query: items.find({"@mvn_sample_build_varsha":{"$eq":"artifactory"}}) #items.find({"@build.name":{"$eq":"artifactory"}})
+      query: items.find({"@mvn_sample_build_varsha":{"$eq":"artifactory"}}) #items.find({"@build.name":{"$eq":"artifactory"}})
       addedProperties:
         key1: value1
         key2: value2
@@ -33,7 +33,7 @@ resources:
     configuration:
       sourceDistribution: varsha_dist
       name: test_varsha_updated
-      version: 1
+      version: version1
       
 pipelines:
   - name: Varsha_pipeline
@@ -64,7 +64,7 @@ pipelines:
         configuration:
           #inherits from bash
           releaseBundleName: test_varsha
-          releaseBundleVersion: 1
+          releaseBundleVersion: version1
           inputResources:
             - name: r_Aql
           outputResources:
