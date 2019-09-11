@@ -14,29 +14,37 @@ resources:
   #    sourceArtifactory: varsha_artifactory
   #    buildName: mvn_sample_build_varsha
   #    buildNumber: 9
-      
+   
+  - name: r_Aql
+    type: Aql
+    configuration:
+      sourceArtifactory: varsha_artifactory
+      query: ""
+#       addedProperties:
+#         key1: value1
+#         key2: value2
+#       mappings:
+#         - name: mapping1
+#           input: testInput  
+#           output: testInput
+          
 pipelines:
   - name: Varsha_pipeline
     steps: 
       - name: utility_u16
         type: Bash
         configuration:
-#           timeoutSeconds: 360
-#           affinityGroup: u16grp
-#           nodePool: ubuntu16
           inputResources:
-            - name: mvnBuild_infoTest
+            - name: r_BuildInfo
+            - name: r_Aql
 #               - name: utility_scriptRepo
 #               - name: imagePrivate
 #           inputSteps:
 #               - name: utility_u18test
 #           integrations:
 #               - name: varsha_slack
-#               - name: varshaJira
-#               - name: varsha_internalWebhook
 #           outputResources:
 #               - name: webhookInt
-#               - name: utility_testRepo
           environmentVariables:
             ENV1: value1
             ENV2: value2
