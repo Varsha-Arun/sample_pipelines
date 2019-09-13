@@ -6,7 +6,7 @@ resources:
       path: jpline/sample-script
       branches:
         include: master
-      gitProvider: varsha_kube
+      gitProvider: varsha_github
   
   - name: r_Image
     type: Image
