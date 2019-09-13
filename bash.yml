@@ -23,10 +23,10 @@ resources:
       addedProperties:
         key1: value1
         key2: value2
-      mappings:
-        - name: mapping1
-          input: testInput  
-          output: testInput
+#       mappings:
+#         - name: mapping1
+#           input: testInput  
+#           output: testInput
   
   - name: r_ReleaseBundle
     type: ReleaseBundle
