@@ -1,28 +1,5 @@
 resources:
-
-  - name: utility_scriptRepo
-    type: GitRepo
-    configuration:
-      path: jpline/sample-script
-      branches:
-        include: master
-      gitProvider: varsha_github
   
-  - name: r_Image
-    type: Image
-    configuration:
-       registry: varsha_docker
-       imageName: shippabledocker/sample_python
-#        imageTag: latest
-#        autoPull: <boolean> (default false)
-       
-  - name: r_BuildInfo
-    type: BuildInfo
-    configuration:
-      sourceArtifactory: varsha_artifactory
-      buildName: mvn_sample_build_varsha
-      buildNumber: 1
-   
   - name: r_Aql
     type: Aql
     configuration:
@@ -31,11 +8,78 @@ resources:
       addedProperties:
         key1: value1
         key2: value2
-#       mappings:
-#         - name: mapping1
-#           input: testInput  
-#           output: testInput
+      mappings:
+        - name: mapping1
+          input: testInput  
+          output: testInput
+       
+  - name: r_BuildInfo
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: varsha_artifactory
+      buildName: mvn_sample_build_varsha
+      buildNumber: 1
   
+  - name: r_DistributionRule
+    type: DistributionRule
+    configuration:     
+      sourceDistribution: varsha_distribution 
+      serviceName: *
+      siteName: *
+      cityName: *
+      countryCodes:
+        - IN
+        - US
+  
+  - name: r_FileSpec
+    type: FileSpec
+    configuration:      
+      sourceArtifactory: varsha_artifactory 
+      pattern: *test* # required, either this or aql
+      aql: <string> # required, either this or pattern
+      target: <string> # [required for upload files]
+      props: <string> # optional
+      recursive: true # optional
+      flat: true # optional
+      excludePatterns: <string> # optional
+      archiveEntries: <string> # optional
+      buildName: mvnBuildVarsha # optional
+      buildNumber: 1 # optional
+      sortBy: <string> # optional
+      sortOrder: <string> # optional
+      limit: 1 # optional
+      offset: 1 # optional
+      
+  - name: r_GitRepo
+    type: GitRepo
+    configuration:
+      gitProvider: varsha_github
+      path: Varsha-Arun/sample-script
+      branches: # optional
+        include: master
+        exclude: test
+      files:  # optional
+        include: test.sh
+        exclude: echo.sh
+      tags:  # optional
+        include: *tag*
+        exclude: *release*
+      buildOn:  # optional
+         commit: true
+         pullRequestCreate: true
+         pullRequestClose: true
+         releaseCreate: true
+         tagCreate: true
+      shallowDepth: 1  # optional 
+      
+  - name: r_Image
+    type: Image
+    configuration:
+       registry: varsha_docker
+       imageName: shippabledocker/sample_python
+       imageTag: latest
+       autoPull: true  #(default false)
+
   - name: r_ReleaseBundle
     type: ReleaseBundle
     configuration:
