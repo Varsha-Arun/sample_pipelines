@@ -12,8 +12,8 @@ resources:
     type: Image
     configuration:
        registry: varsha_docker
-#        imageName: shippabledocker/sample_python
-       imageTag: latest
+       imageName: shippabledocker/sample_python
+#        imageTag: latest
 #        autoPull: <boolean> (default false)
        
   - name: r_BuildInfo
