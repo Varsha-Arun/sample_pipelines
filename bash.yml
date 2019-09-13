@@ -6,7 +6,7 @@ resources:
       path: jpline/sample-script
       branches:
         include: master
-      gitProvider: varsha_github
+      gitProvider: varsha_kube
       
   - name: r_BuildInfo
     type: BuildInfo
