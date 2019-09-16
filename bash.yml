@@ -24,9 +24,9 @@ resources:
     type: DistributionRule
     configuration:     
       sourceDistribution: varsha_distribution 
-      serviceName: *
-      siteName: *
-      cityName: *
+      serviceName: "*"
+      siteName: "*"
+      cityName: "*"
       countryCodes:
         - IN
         - US
