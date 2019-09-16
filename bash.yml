@@ -71,6 +71,28 @@ resources:
          releaseCreate: true
          tagCreate: true
       shallowDepth: 1  # optional 
+  
+  - name: r_GitRepobbs
+    type: GitRepo
+    configuration:
+      gitProvider: varsha_bbs
+      path: KER/sample_pipelines
+      branches: # optional
+        include: master
+        exclude: test
+      files:  # optional
+        include: pipelines.yml
+        exclude: echo.sh
+      tags:  # optional
+        include: *tag*
+        exclude: *release*
+      buildOn:  # optional
+         commit: true
+         pullRequestCreate: true
+         pullRequestClose: true
+         releaseCreate: true
+         tagCreate: true
+      shallowDepth: 1  # optional 
       
   - name: r_Image
     type: Image
@@ -97,12 +119,13 @@ pipelines:
             - name: r_BuildInfo
             - name: r_Aql
             - name: r_Image
+            - name: r_GitRepobbs
 #               - name: utility_scriptRepo
 #               - name: imagePrivate
 #           inputSteps:
 #               - name: utility_u18test
-#           integrations:
-#               - name: varsha_slack
+          integrations:
+              - name: varsha_bbs
 #           outputResources:
 #               - name: webhookInt
           environmentVariables:
