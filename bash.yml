@@ -62,8 +62,8 @@ resources:
         include: test.sh
         exclude: echo.sh
       tags:  # optional
-        include: *tag*
-        exclude: *release*
+        include: "*tag*"
+        exclude: "*release*"
       buildOn:  # optional
          commit: true
          pullRequestCreate: true
