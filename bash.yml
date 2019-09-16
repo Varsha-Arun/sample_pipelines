@@ -93,7 +93,12 @@ resources:
          releaseCreate: true
          tagCreate: true
       shallowDepth: 1  # optional 
-      
+  
+  - name: r_InternalWebhook
+    type: InternalWebhook
+    configuration:
+      webhookName: varsha_internalWebhook
+
   - name: r_Image
     type: Image
     configuration:
@@ -126,8 +131,8 @@ pipelines:
 #               - name: utility_u18test
           integrations:
               - name: varsha_bbs
-#           outputResources:
-#               - name: webhookInt
+          outputResources:
+              - name: r_InternalWebhook
           environmentVariables:
             ENV1: 1Bash
             ENV2: 2Bash
@@ -137,6 +142,36 @@ pipelines:
           onExecute:
             - printenv
       
+      - name: utility_u16_in
+        type: Bash
+        configuration:
+          inputResources:
+            - name: r_InternalWebhook
+#               - name: utility_scriptRepo
+#               - name: imagePrivate
+#           inputSteps:
+#               - name: utility_u18test
+          integrations:
+              - name: varsha_bbs
+        execution:
+          onStart:
+            - printenv
+          onExecute:
+            - printenv
+      
+      - name: utility_u16_webhook
+        type: Bash
+        configuration:
+          inputResources:
+            - name: r_Aql
+          integrations:
+              - name: varsha_internalWebhook
+        execution:
+          onStart:
+            - printenv
+          onExecute:
+            - printenv
+            
       - name: s_CreateReleaseBundle
         type: CreateReleaseBundle
         configuration:
@@ -147,6 +182,7 @@ pipelines:
             - name: r_Aql
           outputResources:
             - name: r_ReleaseBundle
+            
         execution:
           onStart:
             - printenv
