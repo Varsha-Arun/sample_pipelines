@@ -1,187 +1,187 @@
 resources:
   
-  - name: r_Aql
-    type: Aql
-    configuration:
-      sourceArtifactory: varsha_artifactory
-      query: items.find({"@mvn_sample_build_varsha":{"$eq":"artifactory"}}) #items.find({"@build.name":{"$eq":"artifactory"}})
-      addedProperties:
-        key1: value1
-        key2: value2
-      mappings:
-        - name: mapping1
-          input: testInput  
-          output: testInput
-       
-  - name: r_BuildInfo
-    type: BuildInfo
-    configuration:
-      sourceArtifactory: varsha_artifactory
-      buildName: mvn_sample_build_varsha
-      buildNumber: 1
-  
-  - name: r_DistributionRule
-    type: DistributionRule
-    configuration:     
-      sourceDistribution: varsha_distribution 
-      serviceName: "*"
-      siteName: "*"
-      cityName: "*"
-      countryCodes:
-        - IN
-        - US
-  
-  - name: r_FileSpec
-    type: FileSpec
-    configuration:      
-      sourceArtifactory: varsha_artifactory 
-      pattern: "test" # required, either this or aql
-#       aql: <string> # required, either this or pattern
-#       target: <string> # [required for upload files]
-#       props: <string> # optional
-      recursive: true # optional
-      flat: true # optional
-#       excludePatterns: <string> # optional
-#       archiveEntries: <string> # optional
-#       buildName: mvnBuildVarsha # optional
-#       buildNumber: 1 # optional
-#       sortBy: <string> # optional
-#       sortOrder: <string> # optional
-      limit: 1 # optional
-      offset: 1 # optional
-      
-  - name: r_GitRepo
-    type: GitRepo
-    configuration:
-      gitProvider: varsha_github
-      path: Varsha-Arun/sample-script
-      branches: # optional
-        include: master
-        exclude: test
-      files:  # optional
-        include: test.sh
-        exclude: echo.sh
-#       tags:  # optional
-#         include: tag
-#         exclude: release
-      buildOn:  # optional
-         commit: true
-         pullRequestCreate: true
-         pullRequestClose: true
-         releaseCreate: true
-         tagCreate: true
-      shallowDepth: 1  # optional 
-  
-  - name: r_GitRepobbs
-    type: GitRepo
-    configuration:
-      gitProvider: varsha_bbs
-      path: KER/sample_pipelines
-      branches: # optional
-        include: master
-        exclude: test
-      files:  # optional
-        include: pipelines.yml
-        exclude: echo.sh
-      tags:  # optional
-        include: "tag"
-        exclude: "release"
-      buildOn:  # optional
-         commit: true
-         pullRequestCreate: true
-         pullRequestClose: true
-         releaseCreate: true
-         tagCreate: true
-      shallowDepth: 1  # optional 
-  
-#   - name: r_InternalWebhook
-#     type: InternalWebhook
+#   - name: r_Aql
+#     type: Aql
 #     configuration:
-#       webhookName: varsha_internalWebhook
-
-  - name: r_Image
-    type: Image
+#       sourceArtifactory: varsha_artifactory
+#       query: items.find({"@mvn_sample_build_varsha":{"$eq":"artifactory"}}) #items.find({"@build.name":{"$eq":"artifactory"}})
+#       addedProperties:
+#         key1: value1
+#         key2: value2
+#       mappings:
+#         - name: mapping1
+#           input: testInput  
+#           output: testInput
+       
+#   - name: r_BuildInfo
+#     type: BuildInfo
+#     configuration:
+#       sourceArtifactory: varsha_artifactory
+#       buildName: mvn_sample_build_varsha
+#       buildNumber: 1
+  
+#   - name: r_DistributionRule
+#     type: DistributionRule
+#     configuration:     
+#       sourceDistribution: varsha_distribution 
+#       serviceName: "*"
+#       siteName: "*"
+#       cityName: "*"
+#       countryCodes:
+#         - IN
+#         - US
+  
+#   - name: r_FileSpec
+#     type: FileSpec
+#     configuration:      
+#       sourceArtifactory: varsha_artifactory 
+#       pattern: "test" # required, either this or aql
+# #       aql: <string> # required, either this or pattern
+# #       target: <string> # [required for upload files]
+# #       props: <string> # optional
+#       recursive: true # optional
+#       flat: true # optional
+# #       excludePatterns: <string> # optional
+# #       archiveEntries: <string> # optional
+# #       buildName: mvnBuildVarsha # optional
+# #       buildNumber: 1 # optional
+# #       sortBy: <string> # optional
+# #       sortOrder: <string> # optional
+#       limit: 1 # optional
+#       offset: 1 # optional
+      
+#   - name: r_GitRepo
+#     type: GitRepo
+#     configuration:
+#       gitProvider: varsha_github
+#       path: Varsha-Arun/sample-script
+#       branches: # optional
+#         include: master
+#         exclude: test
+#       files:  # optional
+#         include: test.sh
+#         exclude: echo.sh
+# #       tags:  # optional
+# #         include: tag
+# #         exclude: release
+#       buildOn:  # optional
+#          commit: true
+#          pullRequestCreate: true
+#          pullRequestClose: true
+#          releaseCreate: true
+#          tagCreate: true
+#       shallowDepth: 1  # optional 
+  
+#   - name: r_GitRepobbs
+#     type: GitRepo
+#     configuration:
+#       gitProvider: varsha_bbs
+#       path: KER/sample_pipelines
+#       branches: # optional
+#         include: master
+#         exclude: test
+#       files:  # optional
+#         include: pipelines.yml
+#         exclude: echo.sh
+#       tags:  # optional
+#         include: "tag"
+#         exclude: "release"
+#       buildOn:  # optional
+#          commit: true
+#          pullRequestCreate: true
+#          pullRequestClose: true
+#          releaseCreate: true
+#          tagCreate: true
+#       shallowDepth: 1  # optional 
+  
+  - name: r_InternalWebhook
+    type: InternalWebhook
     configuration:
-       registry: varsha_docker
-       imageName: shippabledocker/sample_python
-       imageTag: latest
-       autoPull: true  #(default false)
+      webhookName: varsha_internalWebhook
 
-  - name: r_ReleaseBundle
-    type: ReleaseBundle
-    configuration:
-      sourceDistribution: bindu_dist
-      name: test_varsha_updated
-      version: version1
+#   - name: r_Image
+#     type: Image
+#     configuration:
+#        registry: varsha_docker
+#        imageName: shippabledocker/sample_python
+#        imageTag: latest
+#        autoPull: true  #(default false)
+
+#   - name: r_ReleaseBundle
+#     type: ReleaseBundle
+#     configuration:
+#       sourceDistribution: bindu_dist
+#       name: test_varsha_updated
+#       version: version1
       
 pipelines:
   - name: Varsha_pipeline
     steps: 
-      - name: utility_u16
-        type: Bash
-        configuration:
-          inputResources:
-            - name: r_BuildInfo
-            - name: r_Aql
-            - name: r_Image
-            - name: r_GitRepobbs
-#               - name: utility_scriptRepo
-#               - name: imagePrivate
-#           inputSteps:
-#               - name: utility_u18test
-          integrations:
-              - name: varsha_bbs
-#           outputResources:
-#               - name: r_InternalWebhook
-          environmentVariables:
-            ENV1: 1Bash
-            ENV2: 2Bash
-        execution:
-          onStart:
-            - printenv
-          onExecute:
-            - printenv
-      
-#       - name: utility_u16_in
+#       - name: utility_u16
 #         type: Bash
 #         configuration:
-# #           inputResources:
-# #             - name: r_InternalWebhook
+#           inputResources:
+#             - name: r_BuildInfo
+#             - name: r_Aql
+#             - name: r_Image
+#             - name: r_GitRepobbs
 # #               - name: utility_scriptRepo
 # #               - name: imagePrivate
 # #           inputSteps:
 # #               - name: utility_u18test
 #           integrations:
 #               - name: varsha_bbs
+#           outputResources:
+#               - name: r_InternalWebhook
+#           environmentVariables:
+#             ENV1: 1Bash
+#             ENV2: 2Bash
 #         execution:
 #           onStart:
 #             - printenv
 #           onExecute:
 #             - printenv
       
-      - name: utility_u16_webhook
+      - name: utility_u16_in
         type: Bash
         configuration:
           inputResources:
-            - name: r_Aql
-          integrations:
-              - name: varsha_internalWebhook
+            - name: r_InternalWebhook
+#               - name: utility_scriptRepo
+#               - name: imagePrivate
+#           inputSteps:
+#               - name: utility_u18test
+#           integrations:
+#               - name: varsha_bbs
         execution:
           onStart:
             - printenv
           onExecute:
             - printenv
+      
+#       - name: utility_u16_webhook
+#         type: Bash
+#         configuration:
+#           inputResources:
+#             - name: r_Aql
+#           integrations:
+#               - name: varsha_internalWebhook
+#         execution:
+#           onStart:
+#             - printenv
+#           onExecute:
+#             - printenv
             
-      - name: s_CreateReleaseBundle
-        type: CreateReleaseBundle
-        configuration:
-          #inherits from bash
-          releaseBundleName: test_varsha
-          releaseBundleVersion: version1
-          inputResources:
-            - name: r_Aql
-          outputResources:
-            - name: r_ReleaseBundle
-        execution:
-          onStart:
-            - printenv
+#       - name: s_CreateReleaseBundle
+#         type: CreateReleaseBundle
+#         configuration:
+#           #inherits from bash
+#           releaseBundleName: test_varsha
+#           releaseBundleVersion: version1
+#           inputResources:
+#             - name: r_Aql
+#           outputResources:
+#             - name: r_ReleaseBundle
+#         execution:
+#           onStart:
+#             - printenv
