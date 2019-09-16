@@ -35,18 +35,18 @@ resources:
     type: FileSpec
     configuration:      
       sourceArtifactory: varsha_artifactory 
-      pattern: *test* # required, either this or aql
-      aql: <string> # required, either this or pattern
-      target: <string> # [required for upload files]
-      props: <string> # optional
+      pattern: "test" # required, either this or aql
+#       aql: <string> # required, either this or pattern
+#       target: <string> # [required for upload files]
+#       props: <string> # optional
       recursive: true # optional
       flat: true # optional
-      excludePatterns: <string> # optional
-      archiveEntries: <string> # optional
+#       excludePatterns: <string> # optional
+#       archiveEntries: <string> # optional
       buildName: mvnBuildVarsha # optional
       buildNumber: 1 # optional
-      sortBy: <string> # optional
-      sortOrder: <string> # optional
+#       sortBy: <string> # optional
+#       sortOrder: <string> # optional
       limit: 1 # optional
       offset: 1 # optional
       
