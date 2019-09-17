@@ -100,7 +100,7 @@ resources:
       webhookName: varsha_internalWebhook
 
   - name: r_ExternalWebhook
-    Type: ExternalWebhook
+    type: ExternalWebhook
     configuration:
       webhookName: varsha_externalWebhook
 #       method: <GET|PUT|POST|DELETE|PATCH> #default POST
