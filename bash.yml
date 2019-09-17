@@ -99,6 +99,17 @@ resources:
     configuration:
       webhookName: varsha_internalWebhook
 
+  - name: r_ExternalWebhook
+    Type: ExternalWebhook
+    configuration:
+      webhookName: varsha_externalWebhook
+#       method: <GET|PUT|POST|DELETE|PATCH> #default POST
+#       Parameters: <query string to be added>
+#       path: “/api/v1/issues”
+#       headers:
+#         Content-type: <valid request content types> 
+#         accept: xyc
+  
 #   - name: r_Image
 #     type: Image
 #     configuration:
@@ -117,30 +128,31 @@ resources:
 pipelines:
   - name: Varsha_pipeline
     steps: 
-#       - name: utility_u16
-#         type: Bash
-#         configuration:
+      - name: utility_u16
+        type: Bash
+        configuration:
 #           inputResources:
 #             - name: r_BuildInfo
 #             - name: r_Aql
 #             - name: r_Image
 #             - name: r_GitRepobbs
-# #               - name: utility_scriptRepo
-# #               - name: imagePrivate
-# #           inputSteps:
-# #               - name: utility_u18test
-#           integrations:
-#               - name: varsha_bbs
-#           outputResources:
-#               - name: r_InternalWebhook
-#           environmentVariables:
-#             ENV1: 1Bash
-#             ENV2: 2Bash
-#         execution:
-#           onStart:
-#             - printenv
-#           onExecute:
-#             - printenv
+#               - name: utility_scriptRepo
+#               - name: imagePrivate
+#           inputSteps:
+#               - name: utility_u18test
+          integrations:
+              - name: varsha_bbs
+          outputResources:
+              - name: r_InternalWebhook
+              - name: r_ExternalWebhook
+          environmentVariables:
+            ENV1: 1Bash
+            ENV2: 2Bash
+        execution:
+          onStart:
+            - printenv
+          onExecute:
+            - printenv
       
       - name: utility_u16_in
         type: Bash
