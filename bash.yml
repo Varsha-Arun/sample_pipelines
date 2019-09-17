@@ -104,12 +104,12 @@ resources:
     configuration:
       webhookName: varsha_externalWebhook
 #       method: <GET|PUT|POST|DELETE|PATCH> #default POST
-#       Parameters: <query string to be added>
-#       path: “/api/v1/issues”
-#       headers:
-#         Content-type: <valid request content types> 
-#         accept: xyc
-  
+      path: "/v1/projectIntegrations/8/hook"
+      parameters: "name=pipelinesHook"
+      headers:
+        content-type: application/json
+        accept: test-header
+        
 #   - name: r_Image
 #     type: Image
 #     configuration:
@@ -140,8 +140,8 @@ pipelines:
 #               - name: imagePrivate
 #           inputSteps:
 #               - name: utility_u18test
-          integrations:
-              - name: varsha_bbs
+#           integrations:
+#               - name: varsha_bbs
           outputResources:
               - name: r_InternalWebhook
               - name: r_ExternalWebhook
