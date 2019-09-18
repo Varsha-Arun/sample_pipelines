@@ -174,7 +174,7 @@ pipelines:
 #                 options:
 #                 autoPull: true # default true; pulls image before run
           inputResources:
-            - name: r_GitRepo
+            - name: r_InternalWebhook
           inputSteps:
               - name: utility_u16
           integrations:
