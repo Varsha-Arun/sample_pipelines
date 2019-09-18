@@ -156,6 +156,7 @@ pipelines:
             - set_payload r_InternalWebhook "{\"testInternal\":webhook}"
             - pushd $res_r_GitRepo_resourcePath
             - set_payload r_ExternalWebhook payload.json --file
+            - set_payload r_InternalWebhook "{\"testExternal\":webhook}"
             - popd
       
       - name: utility_u16_in
