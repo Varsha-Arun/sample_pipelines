@@ -136,9 +136,8 @@ pipelines:
         type: image #<image/host>
         image:
           auto:
-            language: 
-              - nodejs
-            versions: 
+            language: nodejs
+            versions:
               - 8.16.0
 #           custom:
 #             name: shippabledocker/sample_node
