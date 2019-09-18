@@ -127,7 +127,71 @@ resources:
       
 pipelines:
   - name: Varsha_pipeline
+    configuration:
+      environmentVariables:
+        readOnly:
+          ENV1: value1
+          ENV2: value2    
+      runtime:       
+        type: image #<image/host>
+        image:
+          auto:
+            language: nodejs
+            versions: 8.16.0
+#           custom:
+#             name: shippabledocker/sample_node
+#             tag: latest
+#             registry: varsha_docker
+#             sourceRepository: <artifactory source repo>
+#             region: <aws ECR region> 
+#             options:
+#             autoPull: true
     steps: 
+      - name: pipelines_Bash
+        type: Bash
+        configuration:
+          affinityGroup: bldGroup 
+          priority: 2
+          timeoutSeconds: 300
+          nodePool: ubuntu16
+          chronological: true
+          environmentVariables:
+            ENV1: 1Bash
+            ENV2: 2Bash
+          runtime:            
+            type: host #<image/host>
+#             image:
+#               auto:
+#                 language: go
+#                 Versions: 1.12.5
+#               custom:
+#                 name: shippabledocker/sample_python
+#                 tag: latest
+#                 registry: varsha_docker #art
+#                 sourceRepository: docker # required if registry is artifactory
+#                 region: <string> # required if registry is AWS
+#                 options:
+#                 autoPull: true # default true; pulls image before run
+          inputResources:
+            - name: r_GitRepo
+          inputSteps:
+              - name: utility_u16
+          integrations:
+              - name: varsha_github
+          outputResources:
+              - name: r_GitRepo
+        execution:
+          onStart:
+            - printenv
+          onExecute:
+            - printenv
+          onComplete: #always
+            - echo "Cleaning up some stuff"  
+          onSuccess:
+            - echo "Job well done!"
+          onFailure:
+            - echo "uh oh, something went wrong"  
+          
       - name: utility_u16
         type: Bash
         configuration:
