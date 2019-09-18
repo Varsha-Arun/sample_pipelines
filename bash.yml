@@ -50,26 +50,26 @@ resources:
 #       limit: 1 # optional
 #       offset: 1 # optional
       
-#   - name: r_GitRepo
-#     type: GitRepo
-#     configuration:
-#       gitProvider: varsha_github
-#       path: Varsha-Arun/sample-script
-#       branches: # optional
-#         include: master
+  - name: r_GitRepo
+    type: GitRepo
+    configuration:
+      gitProvider: varsha_github
+      path: Varsha-Arun/sample-script
+      branches: # optional
+        include: master
 #         exclude: test
 #       files:  # optional
 #         include: test.sh
 #         exclude: echo.sh
-# #       tags:  # optional
-# #         include: tag
-# #         exclude: release
-#       buildOn:  # optional
-#          commit: true
-#          pullRequestCreate: true
-#          pullRequestClose: true
-#          releaseCreate: true
-#          tagCreate: true
+#       tags:  # optional
+#         include: tag
+#         exclude: release
+      buildOn:  # optional
+         commit: true
+         pullRequestCreate: true
+         pullRequestClose: true
+         releaseCreate: true
+         tagCreate: true
 #       shallowDepth: 1  # optional 
   
 #   - name: r_GitRepobbs
@@ -131,11 +131,11 @@ pipelines:
       - name: utility_u16
         type: Bash
         configuration:
-#           inputResources:
+          inputResources:
 #             - name: r_BuildInfo
 #             - name: r_Aql
 #             - name: r_Image
-#             - name: r_GitRepobbs
+            - name: r_GitRepo
 #               - name: utility_scriptRepo
 #               - name: imagePrivate
 #           inputSteps:
@@ -153,6 +153,10 @@ pipelines:
             - printenv
           onExecute:
             - printenv
+            - set_payload r_InternalWebhook "{\"testInternal\":webhook}"
+            - pushd $res_r_GitRepo_resourcePath
+            - set_payload r_ExternalWebhook payload.json --file
+            - popd
       
       - name: utility_u16_in
         type: Bash
