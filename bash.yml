@@ -154,9 +154,10 @@ pipelines:
           onExecute:
             - printenv
             - set_payload r_InternalWebhook "{\"testInternal\":webhook}"
+            - set_payload r_InternalWebhook "{\"test\":value}"
             - pushd $res_r_GitRepo_resourcePath
             - set_payload r_ExternalWebhook payload.json --file
-            - set_payload r_InternalWebhook "{\"testExternal\":webhook}"
+            - set_payload r_ExternalWebhook "{\"testExternal\":webhook}"
             - popd
       
       - name: utility_u16_in
