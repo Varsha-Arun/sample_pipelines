@@ -225,22 +225,22 @@ pipelines:
             - set_payload r_ExternalWebhook "{\"testExternal\":webhook}"
             - popd
       
-      - name: utility_u16_in
-        type: Bash
-        configuration:
-          inputResources:
-            - name: r_InternalWebhook
-#               - name: utility_scriptRepo
-#               - name: imagePrivate
-#           inputSteps:
-#               - name: utility_u18test
-#           integrations:
-#               - name: varsha_bbs
-        execution:
-          onStart:
-            - printenv
-          onExecute:
-            - printenv
+#       - name: utility_u16_in
+#         type: Bash
+#         configuration:
+#           inputResources:
+#             - name: r_InternalWebhook
+# #               - name: utility_scriptRepo
+# #               - name: imagePrivate
+# #           inputSteps:
+# #               - name: utility_u18test
+# #           integrations:
+# #               - name: varsha_bbs
+#         execution:
+#           onStart:
+#             - printenv
+#           onExecute:
+#             - printenv
       
 #       - name: utility_u16_webhook
 #         type: Bash
