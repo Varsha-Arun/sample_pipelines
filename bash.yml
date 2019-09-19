@@ -109,6 +109,7 @@ resources:
       headers:
         content-type: application/json
         accept: test-header
+        host: application/json
         
 #   - name: r_Image
 #     type: Image
