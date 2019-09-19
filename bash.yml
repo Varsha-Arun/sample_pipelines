@@ -127,18 +127,18 @@ resources:
       
 pipelines:
   - name: Varsha_pipeline
-    configuration:
-      environmentVariables:
-        readOnly:
-          ENV1: value1
-          ENV2: value2    
-      runtime:       
-        type: image #<image/host>
-        image:
-          auto:
-            language: nodejs
-            versions:
-              - 8.16.0
+#     configuration:
+#       environmentVariables:
+#         readOnly:
+#           ENV1: value1
+#           ENV2: value2    
+#       runtime:       
+#         type: image #<image/host>
+#         image:
+#           auto:
+#             language: nodejs
+#             versions:
+#               - 8.16.0
 #           custom:
 #             name: shippabledocker/sample_node
 #             tag: latest
