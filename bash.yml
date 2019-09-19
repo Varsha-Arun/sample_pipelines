@@ -223,13 +223,13 @@ pipelines:
             - printenv
           onExecute:
             - printenv
-            #- set_payload r_InternalWebhook "{\"testInternal\":webhook}"
-            #- set_payload r_InternalWebhook "{\"test\":value}"
+            - set_payload r_InternalWebhook "{\"testInternal\":webhook}"
+            - set_payload r_InternalWebhook "{\"test\":value}"
             - cd $res_r_GitRepo_resourcePath
-           # - set_payload r_ExternalWebhook payload.json --file
-           # - set_payload r_ExternalWebhook "{\"testExternal\":webhook}"
+            - set_payload r_ExternalWebhook payload.json --file
+            - set_payload r_ExternalWebhook "{\"testExternal\":webhook}"
             - echo "AQL RESOURCE###############################################################AQL RESOURCE"
-            - write_output r_Aql "query=builds.find({"module.dependency.item.@license":{"$nmatch":"Apache-*"}})" "addedProperties={"key1":"value1","key2":"value2","key3":"value3"}" "mappings_1_input=testInputStep" "mappings_len=2" "mappings_0_name=mapping2step" 
+            - write_output r_Aql "query=builds.find({"module.dependency.item.@license":{"$nmatch":"Apache-*"}})" "addedProperties={"key1":"value1","key2":"value2","key3":"value3"}" "mappings_1_input=testInputStep" "mappings_len=2" "mappings_1_name=mapping2step" 
 #             res_r_Aql_isTrigger=false 
 #             res_r_Aql_mappings_0_input=testInput
 #             res_r_Aql_mappings_0_name=mapping1
