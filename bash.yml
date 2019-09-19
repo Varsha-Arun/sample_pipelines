@@ -197,7 +197,7 @@ pipelines:
 #           inputResources:
 #             - name: r_BuildInfo
 #             - name: r_Aql
-# #             - name: r_Image
+            - name: r_GitRepo
 #             - name: r_InternalWebhook
 #               - name: utility_scriptRepo
 #               - name: imagePrivate
