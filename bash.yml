@@ -103,12 +103,12 @@ resources:
     type: ExternalWebhook
     configuration:
       webhookName: varsha_externalWebhook
-#       method: <GET|PUT|POST|DELETE|PATCH> #default POST
-#       path: "/v1/projectIntegrations/8/hook"
-#       parameters: "name=pipelinesHook"
-#       headers:
-#         content-type: application/json
-#         accept: test-header
+      method: PUT #<GET|PUT|POST|DELETE|PATCH> #default POST
+      path: "/v1/projectIntegrations/9/hook"
+      parameters: "test"
+      headers:
+        content-type: application/json
+        accept: test-header
         
 #   - name: r_Image
 #     type: Image
