@@ -179,7 +179,6 @@ pipelines:
               - name: utility_u16
           integrations:
               - name: varsha_github
-          
         execution:
           onStart:
             - printenv
@@ -195,7 +194,7 @@ pipelines:
       - name: utility_u16
         type: Bash
         configuration:
-          inputResources:
+#           inputResources:
 #             - name: r_BuildInfo
 #             - name: r_Aql
 # #             - name: r_Image
