@@ -221,8 +221,6 @@ pipelines:
             - cd $res_r_GitRepo_resourcePath
             - set_payload r_ExternalWebhook payload.json --file
             - set_payload r_ExternalWebhook "{\"testExternal\":webhook}"
-            - popd
-            
       
 #       - name: utility_u16_in
 #         type: Bash
