@@ -1,9 +1,9 @@
-resources:
-  - name: test_gitRepo
-    type: GitRepo
-    configuration:
-      path: Varsha-Arun/sample_script
-      gitProvider: varsha_github
+# resources:
+#   - name: test_gitRepo
+#     type: GitRepo
+#     configuration:
+#       path: Varsha-Arun/sample_script
+#       gitProvider: varsha_github
  
 pipelines:
   - name: varsha_jenkins
