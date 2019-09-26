@@ -1,0 +1,25 @@
+resources:
+  - name: test_gitRepo
+    type: GitRepo
+    configuration:
+      path: Varsha-Arun/sample_script
+      gitProvider: varsha_github
+ 
+pipelines:
+  - name: varsha_jenkins
+    steps:   
+      - name: stepB
+        type: Bash
+        execution:
+          onExecute:
+            - echo "executing stepB..."
+
+      - name: testJenkins_2
+        type: Jenkins
+        configuration:
+          integrations:
+            - name: varsha_jenkins
+          inputSteps:
+            - name: stepB
+#           outputResources:
+#             - name: testRes
