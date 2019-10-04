@@ -80,7 +80,7 @@ resources:
 #       targets:
 #         - 9.9.9.9
   
-  - name: MyInternalWebhookResource
+  - name: r_internalWebhook
     type: InternalWebhook
     configuration:
       webhookName: internal_webhook
@@ -120,7 +120,7 @@ pipelines:
 #             - name: s_kubeCluster
 #             - name: s_remoteFile
 #             - name: s_vmCluster
-            - name: s_webhook
+            - name: r_internalWebhook
         execution:
           onExecute:
             - printenv
@@ -235,7 +235,7 @@ pipelines:
         configuration:
 #           nodePool: ubuntu16_node
           inputResources:
-            - name: s_webhook
+            - name: r_internalWebhook
         execution:
           onExecute:
             - printenv 
