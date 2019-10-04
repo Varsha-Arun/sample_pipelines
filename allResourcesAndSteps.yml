@@ -83,7 +83,7 @@ resources:
   - name: MyInternalWebhookResource
     type: InternalWebhook
     configuration:
-      webhookName: 
+      webhookName: internal_webhook
       
  # - name: varsha_bbRepo
   #  type: GitRepo
