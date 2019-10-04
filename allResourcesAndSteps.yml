@@ -1,100 +1,100 @@
 resources:
 
-  - name: utility_scriptRepo
-    type: GitRepo
-    configuration:
-      path: Varsha-Arun/sample-script
-      branches:
-        include: master
-      gitProvider: varsha_github
+#   - name: utility_scriptRepo
+#     type: GitRepo
+#     configuration:
+#       path: Varsha-Arun/sample-script
+#       branches:
+#         include: master
+#       gitProvider: varsha_github
   
-  - name: s_aql
-    type: Aql
-    configuration:
-      sourceArtifactory: varsha_artifactory
-      query: items.find({"@build.name":{"$eq":"artifactory"}})
-      addedProperties:
-        key1: value1
-        key2: value2
-      mappings:
-        - name: mapping1
-          input: IN
-          output: test
+#   - name: s_aql
+#     type: Aql
+#     configuration:
+#       sourceArtifactory: varsha_artifactory
+#       query: items.find({"@build.name":{"$eq":"artifactory"}})
+#       addedProperties:
+#         key1: value1
+#         key2: value2
+#       mappings:
+#         - name: mapping1
+#           input: IN
+#           output: test
   
-  - name: s_fileSpec
-    type: FileSpec
-    configuration:     
-      sourceArtifactory: varsha_artifactory
+#   - name: s_fileSpec
+#     type: FileSpec
+#     configuration:     
+#       sourceArtifactory: varsha_artifactory
       
-  - name: s_buildInfo
-    type: BuildInfo
-    configuration:
-      sourceArtifactory: varsha_artifactory
-      buildName: test
-      buildNumber: 1
+#   - name: s_buildInfo
+#     type: BuildInfo
+#     configuration:
+#       sourceArtifactory: varsha_artifactory
+#       buildName: test
+#       buildNumber: 1
    
-  - name: s_release_bundle
-    type: ReleaseBundle
-    configuration:
-      sourceDistribution: varsha_dist
-      name: signed_release_bundle_gradle
-      version: v3.0.0
-      isSigned: true
+#   - name: s_release_bundle
+#     type: ReleaseBundle
+#     configuration:
+#       sourceDistribution: varsha_dist
+#       name: signed_release_bundle_gradle
+#       version: v3.0.0
+#       isSigned: true
   
-  - name: s_distribution_rule
-    type: DistributionRule
-    configuration:
-      sourceDistribution: varsha_dist
-      cityName: '*'
-      serviceName: '*'
-      siteName: '*'
-      countryCodes:
-        - IN
+#   - name: s_distribution_rule
+#     type: DistributionRule
+#     configuration:
+#       sourceDistribution: varsha_dist
+#       cityName: '*'
+#       serviceName: '*'
+#       siteName: '*'
+#       countryCodes:
+#         - IN
   
-  - name: s_image
-    type: Image
-    configuration:
-      registry: varsha_docker
-#       sourceRepository:    <name of the artifactory repo>   # required if registry is Artifactory
-      imageName: shippabledocker/sample_python
-      imageTag: latest
-#       autoPull: true
+#   - name: s_image
+#     type: Image
+#     configuration:
+#       registry: varsha_docker
+# #       sourceRepository:    <name of the artifactory repo>   # required if registry is Artifactory
+#       imageName: shippabledocker/sample_python
+#       imageTag: latest
+# #       autoPull: true
   
-  - name: s_kubeCluster
-    type: KubeCluster
-    configuration:
-      kubernetesConfig: varsha_kube
-      bastionHostIP: 3.3.3.3
-      bastionUser:  test
-      bastionIntegrationName: varsha_sshkey
+#   - name: s_kubeCluster
+#     type: KubeCluster
+#     configuration:
+#       kubernetesConfig: varsha_kube
+#       bastionHostIP: 3.3.3.3
+#       bastionUser:  test
+#       bastionIntegrationName: varsha_sshkey
   
-  - name: s_remoteFile
-    type: RemoteFile
-    configuration:     
-      source: varsha_aws
+#   - name: s_remoteFile
+#     type: RemoteFile
+#     configuration:     
+#       source: varsha_aws
   
-  - name: s_vmCluster
-    type: VmCluster
-    configuration:
-      sshKey: varsha_sshkey
-      targets:
-        - 9.9.9.9
+#   - name: s_vmCluster
+#     type: VmCluster
+#     configuration:
+#       sshKey: varsha_sshkey
+#       targets:
+#         - 9.9.9.9
   
-  - name: s_webhook
-    type: Webhook
+  - name: MyInternalWebhookResource
+    type: InternalWebhook
     configuration:
-      webhookName: varsha_internal
-      payload: "test"
+      webhookName: 
+      
  # - name: varsha_bbRepo
   #  type: GitRepo
   #  configuration:
   #    gitProvider: varsha_bb
   #    path: shiptest-rc-me/jfrog-pipelines
       
-  - name: cron_trigger
-    type: CronTrigger
-    configuration: 
-      interval: "1 10 4 9 *"
+#   - name: cron_trigger
+#     type: CronTrigger
+#     configuration: 
+#       interval: "1 10 4 9 *"
       
       
 pipelines:
@@ -104,136 +104,136 @@ pipelines:
       - name: u18BashStep1
         type: Bash
         configuration:
-          nodePool: ubuntu16_node
-          integrations:
-            - name: varsha_aws
-          inputResources:
-            - name: cron_trigger
+#           nodePool: ubuntu16_node
+#           integrations:
+#             - name: varsha_aws
+#           inputResources:
+#             - name: cron_trigger
           outputResources:
-            - name: utility_scriptRepo
-            - name: s_aql
-            - name: s_fileSpec
-            - name: s_buildInfo
-            - name: s_release_bundle
-            - name: s_distribution_rule
-            - name: s_image
-            - name: s_kubeCluster
-            - name: s_remoteFile
-            - name: s_vmCluster
+#             - name: utility_scriptRepo
+#             - name: s_aql
+#             - name: s_fileSpec
+#             - name: s_buildInfo
+#             - name: s_release_bundle
+#             - name: s_distribution_rule
+#             - name: s_image
+#             - name: s_kubeCluster
+#             - name: s_remoteFile
+#             - name: s_vmCluster
             - name: s_webhook
         execution:
           onExecute:
             - printenv
  
-      - name: utility_scriptRepoStep
-        type: Bash
-        configuration:
-          nodePool: ubuntu16_node
-          timeoutSeconds: 360
-#           integrations:
-#             - name: varsha_aws
-#           inputSteps:
-#             - name: u18BashStep1
-          inputResources:
-            - name: utility_scriptRepo
-        execution:
-          onExecute:
-            - printenv
+#       - name: utility_scriptRepoStep
+#         type: Bash
+#         configuration:
+#           nodePool: ubuntu16_node
+#           timeoutSeconds: 360
+# #           integrations:
+# #             - name: varsha_aws
+# #           inputSteps:
+# #             - name: u18BashStep1
+#           inputResources:
+#             - name: utility_scriptRepo
+#         execution:
+#           onExecute:
+#             - printenv
 
-      - name: s_aqlStep
-        type: Bash
-        configuration:
-          nodePool: ubuntu16_node
-          inputResources:
-            - name: s_aql
-        execution:
-          onExecute:
-            - printenv
+#       - name: s_aqlStep
+#         type: Bash
+#         configuration:
+#           nodePool: ubuntu16_node
+#           inputResources:
+#             - name: s_aql
+#         execution:
+#           onExecute:
+#             - printenv
             
-      - name: s_fileSpecStep
-        type: Bash
-        configuration:
-          nodePool: ubuntu16_node
-          inputResources:
-            - name: s_fileSpec
-        execution:
-          onExecute:
-            - printenv
+#       - name: s_fileSpecStep
+#         type: Bash
+#         configuration:
+#           nodePool: ubuntu16_node
+#           inputResources:
+#             - name: s_fileSpec
+#         execution:
+#           onExecute:
+#             - printenv
             
-      - name: s_buildInfoStep
-        type: Bash
-        configuration:
-          nodePool: ubuntu16_node
-          inputResources:
-            - name: s_buildInfo
-        execution:
-          onExecute:
-            - printenv
+#       - name: s_buildInfoStep
+#         type: Bash
+#         configuration:
+#           nodePool: ubuntu16_node
+#           inputResources:
+#             - name: s_buildInfo
+#         execution:
+#           onExecute:
+#             - printenv
                  
-      - name: s_release_bundleStep
-        type: Bash
-        configuration:
-          nodePool: ubuntu16_node
-          inputResources:
-            - name: s_release_bundle
-        execution:
-          onExecute:
-            - printenv
+#       - name: s_release_bundleStep
+#         type: Bash
+#         configuration:
+#           nodePool: ubuntu16_node
+#           inputResources:
+#             - name: s_release_bundle
+#         execution:
+#           onExecute:
+#             - printenv
             
-      - name: s_distribution_ruleStep
-        type: Bash
-        configuration:
-          nodePool: ubuntu16_node
-          inputResources:
-            - name: s_distribution_rule
-        execution:
-          onExecute:
-            - printenv
+#       - name: s_distribution_ruleStep
+#         type: Bash
+#         configuration:
+#           nodePool: ubuntu16_node
+#           inputResources:
+#             - name: s_distribution_rule
+#         execution:
+#           onExecute:
+#             - printenv
             
-      - name: s_imageStep
-        type: Bash
-        configuration:
-          nodePool: ubuntu16_node
-          inputResources:
-            - name: s_image
-        execution:
-          onExecute:
-            - printenv
+#       - name: s_imageStep
+#         type: Bash
+#         configuration:
+#           nodePool: ubuntu16_node
+#           inputResources:
+#             - name: s_image
+#         execution:
+#           onExecute:
+#             - printenv
                
-      - name: s_kubeClusterStep
-        type: Bash
-        configuration:
-          nodePool: ubuntu16_node
-          inputResources:
-            - name: s_kubeCluster
-        execution:
-          onExecute:
-            - printenv   
+#       - name: s_kubeClusterStep
+#         type: Bash
+#         configuration:
+#           nodePool: ubuntu16_node
+#           inputResources:
+#             - name: s_kubeCluster
+#         execution:
+#           onExecute:
+#             - printenv   
                     
-      - name: s_remoteFileStep
-        type: Bash
-        configuration:
-          nodePool: ubuntu16_node
-          inputResources:
-            - name: s_remoteFile
-        execution:
-          onExecute:
-            - printenv 
+#       - name: s_remoteFileStep
+#         type: Bash
+#         configuration:
+#           nodePool: ubuntu16_node
+#           inputResources:
+#             - name: s_remoteFile
+#         execution:
+#           onExecute:
+#             - printenv 
                      
-      - name: s_vmClusterStep
-        type: Bash
-        configuration:
-          nodePool: ubuntu16_node
-          inputResources:
-            - name: s_vmCluster
-        execution:
-          onExecute:
-            - printenv 
+#       - name: s_vmClusterStep
+#         type: Bash
+#         configuration:
+#           nodePool: ubuntu16_node
+#           inputResources:
+#             - name: s_vmCluster
+#         execution:
+#           onExecute:
+#             - printenv 
                         
       - name: s_webhookStep
         type: Bash
         configuration:
-          nodePool: ubuntu16_node
+#           nodePool: ubuntu16_node
           inputResources:
             - name: s_webhook
         execution:
