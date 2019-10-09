@@ -31,7 +31,7 @@ pipelines:
       - name: u18BashStep1
         type: Bash
         configuration:
-          nodePool: ubuntu16_node
+#           nodePool: ubuntu16_node
 #           integrations:
 #             - name: varsha_aws
           inputResources:
@@ -49,8 +49,8 @@ pipelines:
       - name: u18BashStep2
         type: Bash
         configuration:
-          nodePool: ubuntu16_node
-          timeoutSeconds: 360
+#           nodePool: ubuntu16_node
+#           timeoutSeconds: 360
 #           integrations:
 #             - name: varsha_aws
           inputSteps:
