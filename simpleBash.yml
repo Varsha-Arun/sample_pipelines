@@ -1,12 +1,12 @@
-resources:
+# resources:
 
-  - name: utility_scriptRepo
-    type: GitRepo
-    configuration:
-      path: Varsha-Arun/sample-script
-      branches:
-        include: master
-      gitProvider: varsha_github
+#   - name: utility_scriptRepo
+#     type: GitRepo
+#     configuration:
+#       path: Varsha-Arun/sample-script
+#       branches:
+#         include: master
+#       gitProvider: varsha_github
 
  # - name: utility_bb
   #  type: GitRepo
@@ -16,13 +16,13 @@ resources:
   #      include: master
   #    gitProvider: varsha_bb
       
-  - name: utility_gl
-    type: GitRepo
-    configuration:
-      path: varsha-arun/jfrog_pipelines
-      branches:
-        include: master
-      gitProvider: varsha_github
+#   - name: utility_gl
+#     type: GitRepo
+#     configuration:
+#       path: varsha-arun/jfrog_pipelines
+#       branches:
+#         include: master
+#       gitProvider: varsha_github
       
 pipelines:
 
@@ -30,35 +30,35 @@ pipelines:
     steps:   
       - name: u18BashStep1
         type: Bash
-        configuration:
-#           nodePool: ubuntu16_node
-#           integrations:
-#             - name: varsha_aws
-          inputResources:
-            - name: utility_scriptRepo
-            - name: utility_gl
-        #  outputResources:
-        #    - name: webhookIntExternal
+#         configuration:
+# #           nodePool: ubuntu16_node
+# #           integrations:
+# #             - name: varsha_aws
+#           inputResources:
+#             - name: utility_scriptRepo
+#             - name: utility_gl
+#         #  outputResources:
+#         #    - name: webhookIntExternal
         execution:
           onExecute:
-            - pushd $res_utility_scriptRepo_resourcePath
-            - ./echo.sh
-            - popd
+#             - pushd $res_utility_scriptRepo_resourcePath
+#             - ./echo.sh
+#             - popd
             - printenv
  
-      - name: u18BashStep2
-        type: Bash
-        configuration:
-#           nodePool: ubuntu16_node
-#           timeoutSeconds: 360
-#           integrations:
-#             - name: varsha_aws
-          inputSteps:
-            - name: u18BashStep1
-          inputResources:
-            - name: utility_scriptRepo
-        #  outputResources:
-        #    - name: webhookIntExternal
-        execution:
-          onExecute:
-            - printenv
+#       - name: u18BashStep2
+#         type: Bash
+#         configuration:
+# #           nodePool: ubuntu16_node
+# #           timeoutSeconds: 360
+# #           integrations:
+# #             - name: varsha_aws
+#           inputSteps:
+#             - name: u18BashStep1
+#           inputResources:
+#             - name: utility_scriptRepo
+#         #  outputResources:
+#         #    - name: webhookIntExternal
+#         execution:
+#           onExecute:
+#             - printenv
