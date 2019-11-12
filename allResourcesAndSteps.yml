@@ -119,6 +119,62 @@ pipelines:
           onExecute:
             - printenv
             
+      - name: allIntegrationsInput1
+        type: Bash
+        configuration:
+          integrations:
+            - name: varsha_airbreak
+            - name: varsha_artifactory
+            - name: varsha_aws
+            - name: varsha_azureKeys
+            - name: varsha_bbs
+            - name: varsha_bitbucket
+            - name: varsha_dist
+            - name: varsha_do
+            - name: varsha_docker
+            - name: varsha_fileServer
+        execution:
+          onExecute:
+            - printenv
+            - name: varsha_simpleBash1
+
+      - name: allIntegrationsInput2
+        type: Bash
+        configuration:
+          integrations:
+            - name: varsha_airbreak
+            - name: varsha_artifactory
+            - name: varsha_aws
+            - name: varsha_azureKeys
+            - name: varsha_bbs
+            - name: varsha_bitbucket
+            - name: varsha_dist
+            - name: varsha_do
+            - name: varsha_docker
+            - name: varsha_fileServer
+        execution:
+          onExecute:
+            - printenv
+            - name: varsha_simpleBash1
+
+      - name: allIntegrationsInput3
+        type: Bash
+        configuration:
+          integrations:
+            - name: varsha_airbreak
+            - name: varsha_artifactory
+            - name: varsha_aws
+            - name: varsha_azureKeys
+            - name: varsha_bbs
+            - name: varsha_bitbucket
+            - name: varsha_dist
+            - name: varsha_do
+            - name: varsha_docker
+            - name: varsha_fileServer
+        execution:
+          onExecute:
+            - printenv
+            
      # - name: u18BashStep1
      #   type: Bash
       #  configuration:
