@@ -80,10 +80,10 @@ resources:
 #       targets:
 #         - 9.9.9.9
   
-  - name: r_internalWebhook
-    type: InternalWebhook
-    configuration:
-      webhookName: internal_webhook
+ # - name: r_internalWebhook
+ #   type: InternalWebhook
+ #   configuration:
+ #     webhookName: internal_webhook
       
  # - name: varsha_bbRepo
   #  type: GitRepo
