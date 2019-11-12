@@ -119,15 +119,15 @@ pipelines:
           onExecute:
             - printenv
             
-      - name: u18BashStep1
-        type: Bash
-        configuration:
+     # - name: u18BashStep1
+     #   type: Bash
+      #  configuration:
 #           nodePool: ubuntu16_node
 #           integrations:
 #             - name: varsha_aws
 #           inputResources:
 #             - name: cron_trigger
-          outputResources:
+        #  outputResources:
 #             - name: utility_scriptRepo
 #             - name: s_aql
 #             - name: s_fileSpec
@@ -138,11 +138,11 @@ pipelines:
 #             - name: s_kubeCluster
 #             - name: s_remoteFile
 #             - name: s_vmCluster
-            - name: r_internalWebhook
-        execution:
-          onExecute:
-            - printenv
- 
+       #     - name: r_internalWebhook
+       # execution:
+       #   onExecute:
+        #    - printenv
+ #
 #       - name: utility_scriptRepoStep
 #         type: Bash
 #         configuration:
@@ -248,12 +248,12 @@ pipelines:
 #           onExecute:
 #             - printenv 
                         
-      - name: s_webhookStep
-        type: Bash
-        configuration:
-#           nodePool: ubuntu16_node
-          inputResources:
-            - name: r_internalWebhook
-        execution:
-          onExecute:
-            - printenv 
+#       - name: s_webhookStep
+#         type: Bash
+#         configuration:
+# #           nodePool: ubuntu16_node
+#           inputResources:
+#             - name: r_internalWebhook
+#         execution:
+#           onExecute:
+#             - printenv 
