@@ -133,6 +133,8 @@ pipelines:
             - name: varsha_do
             - name: varsha_docker
             - name: varsha_fileServer
+          inputSteps:
+            - name: allIntegrationsInput
         execution:
           onExecute:
             - printenv
@@ -151,6 +153,8 @@ pipelines:
             - name: varsha_do
             - name: varsha_docker
             - name: varsha_fileServer
+          inputSteps:
+            - name: allIntegrationsInput
         execution:
           onExecute:
             - printenv
@@ -169,6 +173,8 @@ pipelines:
             - name: varsha_do
             - name: varsha_docker
             - name: varsha_fileServer
+          inputSteps:
+            - name: allIntegrationsInput
         execution:
           onExecute:
             - printenv
