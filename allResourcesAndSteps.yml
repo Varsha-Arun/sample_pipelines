@@ -100,7 +100,25 @@ resources:
 pipelines:
 
   - name: varsha_simpleBash1
-    steps:   
+    steps:
+      - name: allIntegrationsInput
+        type: Bash
+        configuration:
+          integrations:
+            - name: varsha_airbreak
+            - name: varsha_artifactory
+            - name: varsha_aws
+            - name: varsha_azureKeys
+            - name: varsha_bbs
+            - name: varsha_bitbucket
+            - name: varsha_dist
+            - name: varsha_do
+            - name: varsha_docker
+            - name: varsha_fileServer
+        execution:
+          onExecute:
+            - printenv
+            
       - name: u18BashStep1
         type: Bash
         configuration:
