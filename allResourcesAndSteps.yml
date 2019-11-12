@@ -136,7 +136,6 @@ pipelines:
         execution:
           onExecute:
             - printenv
-            - name: varsha_simpleBash1
 
       - name: allIntegrationsInput2
         type: Bash
@@ -155,7 +154,6 @@ pipelines:
         execution:
           onExecute:
             - printenv
-            - name: varsha_simpleBash1
 
       - name: allIntegrationsInput3
         type: Bash
