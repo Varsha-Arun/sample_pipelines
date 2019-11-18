@@ -118,6 +118,8 @@ pipelines:
         execution:
           onExecute:
             - printenv
+            - |
+              [ ! -z "$int_varsha_fileServer_name" ]
             
       - name: allIntegrationsInput1
         type: Bash
