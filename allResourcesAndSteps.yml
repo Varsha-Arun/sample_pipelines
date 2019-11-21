@@ -105,7 +105,7 @@ pipelines:
         type: Bash
         configuration:
           integrations:
-            - name: varsha_airbreak
+            - name: varsha_airbrake
             - name: varsha_artifactory
             - name: varsha_aws
             - name: varsha_azureKeys
@@ -125,7 +125,7 @@ pipelines:
         type: Bash
         configuration:
           integrations:
-            - name: varsha_airbreak
+            - name: varsha_airbrake
             - name: varsha_artifactory
             - name: varsha_aws
             - name: varsha_azureKeys
@@ -145,7 +145,7 @@ pipelines:
         type: Bash
         configuration:
           integrations:
-            - name: varsha_airbreak
+            - name: varsha_airbrake
             - name: varsha_artifactory
             - name: varsha_aws
             - name: varsha_azureKeys
@@ -165,7 +165,7 @@ pipelines:
         type: Bash
         configuration:
           integrations:
-            - name: varsha_airbreak
+            - name: varsha_airbrake
             - name: varsha_artifactory
             - name: varsha_aws
             - name: varsha_azureKeys
