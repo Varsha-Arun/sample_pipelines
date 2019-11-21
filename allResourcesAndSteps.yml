@@ -1,12 +1,12 @@
 resources:
 
-#   - name: utility_scriptRepo
-#     type: GitRepo
-#     configuration:
-#       path: Varsha-Arun/sample-script
-#       branches:
-#         include: master
-#       gitProvider: varsha_github
+   - name: utility_scriptRepo
+     type: GitRepo
+     configuration:
+       path: Varsha-Arun/sample-script
+       branches:
+         include: master
+       gitProvider: varsha_github
   
 #   - name: s_aql
 #     type: Aql
@@ -104,6 +104,8 @@ pipelines:
       - name: allIntegrationsInput
         type: Bash
         configuration:
+          inputResources:
+            - name: utility_scriptRepo
           integrations:
             - name: varsha_airbrake
             - name: varsha_artifactory
