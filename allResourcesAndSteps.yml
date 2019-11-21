@@ -7,6 +7,14 @@ resources:
        branches:
          include: master
        gitProvider: varsha_github
+
+   - name: test_GitRepo
+     type: GitRepo
+     configuration:
+       gitProvider: varsha_bbs
+       path: ~varshaa/sample_tests
+       branches:
+         include: master
   
 #   - name: s_aql
 #     type: Aql
@@ -106,6 +114,7 @@ pipelines:
         configuration:
           inputResources:
             - name: utility_scriptRepo
+            - name: test_GitRepo
           integrations:
             - name: varsha_airbrake
             - name: varsha_artifactory
