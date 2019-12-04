@@ -37,15 +37,15 @@ pipelines:
     steps:   
       - name: u18BashStep1
         type: Bash
-         configuration:
+        configuration:
 # #           nodePool: ubuntu16_node
 # #           integrations:
 # #             - name: varsha_aws
 #           inputResources:
 #             - name: utility_scriptRepo
 #             - name: utility_gl
-           outputResources:
-             - name: A_RunResourceVersions_Imagetest
+          outputResources:
+            - name: A_RunResourceVersions_Imagetest
         execution:
           onExecute:
 #             - pushd $res_utility_scriptRepo_resourcePath
