@@ -1,4 +1,11 @@
-# resources:
+resources:
+
+  - name: A_RunResourceVersions_Imagetest
+    type: Image
+    configuration:
+      registry: i_dockerRegistry
+      imageName: shippabledocker/sample_node_pvt
+      imageTag: master
 
 #   - name: utility_scriptRepo
 #     type: GitRepo
@@ -37,14 +44,15 @@ pipelines:
 #           inputResources:
 #             - name: utility_scriptRepo
 #             - name: utility_gl
-#         #  outputResources:
-#         #    - name: webhookIntExternal
+           outputResources:
+             - name: A_RunResourceVersions_Imagetest
         execution:
           onExecute:
 #             - pushd $res_utility_scriptRepo_resourcePath
 #             - ./echo.sh
 #             - popd
             - printenv
+            - write_output A_RunResourceVersions_Imagetest "imageTag=$run_id"
  
 #       - name: u18BashStep2
 #         type: Bash
