@@ -37,7 +37,7 @@ pipelines:
     steps:   
       - name: u18BashStep1
         type: Bash
-#         configuration:
+         configuration:
 # #           nodePool: ubuntu16_node
 # #           integrations:
 # #             - name: varsha_aws
