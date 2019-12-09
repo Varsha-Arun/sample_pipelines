@@ -72,7 +72,6 @@ pipelines:
 #             - printenv
 
 
-pipelines:
 
   - name: varsha_test
     steps:   
