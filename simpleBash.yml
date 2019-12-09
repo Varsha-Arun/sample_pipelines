@@ -7,13 +7,13 @@ resources:
       imageName: shippabledocker/sample_node_pvt
       imageTag: master
 
-#   - name: utility_scriptRepo
-#     type: GitRepo
-#     configuration:
-#       path: Varsha-Arun/sample-script
-#       branches:
-#         include: master
-#       gitProvider: varsha_github
+   - name: utility_scriptRepo
+     type: GitRepo
+     configuration:
+       path: Varsha-Arun/sample-script
+       branches:
+         include: master
+       gitProvider: varsha_github
 
  # - name: utility_bb
   #  type: GitRepo
