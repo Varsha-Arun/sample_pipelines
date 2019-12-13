@@ -39,8 +39,8 @@ pipelines:
         type: Bash
         configuration:
 # #           nodePool: ubuntu16_node
-# #           integrations:
-# #             - name: varsha_aws
+          integrations:
+            - name: varsha_art
 #           inputResources:
 #             - name: utility_scriptRepo
 #             - name: utility_gl
@@ -48,6 +48,9 @@ pipelines:
             - name: A_RunResourceVersions_Imagetest
         execution:
           onExecute:
+            - touch foo
+            - jfrog rt u foo test-generic-local/foo
+            #- jfrog rt del example-repo-local/foo
 #             - pushd $res_utility_scriptRepo_resourcePath
 #             - ./echo.sh
 #             - popd
