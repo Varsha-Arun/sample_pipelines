@@ -57,7 +57,7 @@ pipelines:
 #             - ./echo.sh
 #             - popd
             - printenv
-            - write_output A_RunResourceVersions_Imagetest "imageTag=$run_id"
+            - write_output A_RunResourceVersions_Imagetest "imageTag=$masterpyt"
  
 #       - name: u18BashStep2
 #         type: Bash
