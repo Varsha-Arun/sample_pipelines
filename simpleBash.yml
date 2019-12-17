@@ -7,6 +7,12 @@ resources:
       imageName: shippabledocker/sample_node_pvt
       imageTag: master
 
+  - name: S_Bash_0129_FileSpec
+    type: FileSpec
+    configuration:
+      sourceArtifactory: s_artifactory
+      pattern: example-repo-local/setup/sample.txt
+      
   - name: utility_scriptRepo
     type: GitRepo
     configuration:
@@ -84,7 +90,8 @@ pipelines:
         type: Bash
         configuration:
           inputResources:
-            - name: A_RunResourceVersions_Imagetest
+            #- name: A_RunResourceVersions_Imagetest
+            - name: S_Bash_0129_FileSpec
         execution:
           onExecute:
 #             - pushd $res_utility_scriptRepo_resourcePath
