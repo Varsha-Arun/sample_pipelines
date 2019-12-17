@@ -10,7 +10,7 @@ resources:
   - name: sample_FileSpec
     type: FileSpec
     configuration:
-      sourceArtifactory: s_artifactory
+      sourceArtifactory: varsha_art
       pattern: example-repo-local/setup/sample.txt
       
   - name: utility_scriptRepo
