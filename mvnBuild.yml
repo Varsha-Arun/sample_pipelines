@@ -38,7 +38,7 @@ pipelines:
           configFileName: mvn-art-config
           inputResources:
             - name: maven_repo
-            - name: script_gitrepo
+           # - name: script_gitrepo
           integrations:
             - name: varsha_art
             - name: varsha_slack
@@ -48,7 +48,7 @@ pipelines:
               auto:
                 language: java
                 versions:
-                  - openjdk8
+                  - openjdk11
 #               custom:
 #                 name: drydock/u16java
 #                 tag: master
