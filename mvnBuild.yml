@@ -12,11 +12,11 @@ resources:
       gitProvider: varsha_github
       path: Varsha-Arun/project-examples
 
-  - name: script_gitrepo
-    type: GitRepo
-    configuration:
-      gitProvider: varsha_github
-      path: Varsha-Arun/script_repo
+#   - name: script_gitrepo
+#     type: GitRepo
+#     configuration:
+#       gitProvider: varsha_github
+#       path: Varsha-Arun/script_repo
       
   - name: mavenBuild_infopromoted
     type: BuildInfo
