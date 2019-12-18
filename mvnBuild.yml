@@ -48,7 +48,7 @@ pipelines:
               auto:
                 language: java
                 versions:
-                  - 11
+                  - "11"
 #               custom:
 #                 name: drydock/u16java
 #                 tag: master
