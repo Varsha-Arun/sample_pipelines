@@ -2,7 +2,7 @@ resources:
   - name: mavenBuild_info
     type: BuildInfo
     configuration:
-      sourceArtifactory: varsha_artifactory
+      sourceArtifactory: varsha_art
       buildName: mvn_sample_build
       buildNumber: 1
       
@@ -21,7 +21,7 @@ resources:
   - name: mavenBuild_infopromoted
     type: BuildInfo
     configuration:
-      sourceArtifactory: varsha_artifactory
+      sourceArtifactory: varsha_art
       buildName: maven_promote_build_varsha
       buildNumber: 3
       
@@ -41,7 +41,7 @@ pipelines:
             - name: maven_repo
             - name: script_gitrepo
           integrations:
-            - name: varsha_artifactory
+            - name: varsha_art
             - name: varsha_slack
           runtime:            
             type: image
