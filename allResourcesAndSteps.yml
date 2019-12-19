@@ -187,17 +187,17 @@ pipelines:
       - name: allIntegrationsInput3
         type: Bash
         configuration:
-          integrations:
-            - name: varsha_airbrake
-            - name: varsha_artifactory
-            - name: varsha_aws
-            - name: varsha_azureKeys
-            - name: varsha_bbs
-            - name: varsha_bitbucket
-            - name: varsha_dist
-            - name: varsha_do
-            - name: varsha_docker
-            - name: varsha_fileServer
+#           integrations:
+#             - name: varsha_airbrake
+#             - name: varsha_artifactory
+#             - name: varsha_aws
+#             - name: varsha_azureKeys
+#             - name: varsha_bbs
+#             - name: varsha_bitbucket
+#             - name: varsha_dist
+#             - name: varsha_do
+#             - name: varsha_docker
+#             - name: varsha_fileServer
           inputSteps:
             - name: allIntegrationsInput
           outputResources:
