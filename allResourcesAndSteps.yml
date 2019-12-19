@@ -22,7 +22,7 @@ resources:
        webhookName: varsha_outgoingtest
        method: POST #<GET|PUT|POST|DELETE|PATCH> #default POST
       # Parameters: <query string to be added>
-       path: “http://192.168.50.4:30000/v1/projectIntegrations/482/hook”
+       path: “/v1/projectIntegrations/482/hook”
       # headers:
       #   Content-type:<valid request content types> 
       #   accept: xyc
