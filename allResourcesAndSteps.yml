@@ -15,6 +15,17 @@ resources:
        path: ~varshaa/sample_tests
        branches:
          include: master
+         
+   - name: r_OutgoingWebhook
+     type: OutgoingWebhook
+     configuration:
+       webhookName: varsha_outgoingtest
+       method: POST #<GET|PUT|POST|DELETE|PATCH> #default POST
+       #Parameters: <query string to be added>
+       path: “/services/T0KNGPCD7/BJW6LDH55/I7vLNvXvLdNlI1hoZnrHjGfe”
+      # headers:
+      #   Content-type:<valid request content types> 
+      #   accept: xyc
   
 #   - name: s_aql
 #     type: Aql
@@ -131,6 +142,7 @@ pipelines:
             - printenv
             - |
               [ ! -z "$int_varsha_fileServer_name" ]
+           
             
       - name: allIntegrationsInput1
         type: Bash
@@ -188,9 +200,12 @@ pipelines:
             - name: varsha_fileServer
           inputSteps:
             - name: allIntegrationsInput
+          outputResources:
+            - name: r_OutgoingWebhook
         execution:
           onExecute:
             - printenv
+            - set_payload r_OutgoingWebhook "{\"test\":\"payload\"}"
             
      # - name: u18BashStep1
      #   type: Bash
