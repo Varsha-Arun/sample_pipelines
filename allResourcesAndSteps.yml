@@ -153,6 +153,8 @@ pipelines:
         configuration:
           inputResources:
             - name: S_Bash_0397_FileSpec
+          inputSteps:
+            - name: allIntegrationsInput3
         execution:
           onExecute:
             - echo "executing step..."
