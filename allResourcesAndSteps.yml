@@ -22,7 +22,7 @@ resources:
      configuration:
        sourceArtifactory: varsha_art
        pattern: "example-repo-local/setup/" # required, either this or aql
-       target: "54676"
+     #  target: "54676"
       
    - name: utility_scriptRepo
      type: GitRepo
