@@ -7,6 +7,7 @@ resources:
        branches:
          include: master
        gitProvider: varsha_github
+       shallowDepth: 4
 
    - name: test_GitRepo
      type: GitRepo
