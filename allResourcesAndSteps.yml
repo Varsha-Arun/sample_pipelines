@@ -23,7 +23,7 @@ resources:
        sourceArtifactory: varsha_art
        pattern: example-repo-local/setup # required, either this or aql
        #aql: items.find({"repo": "example-repo-local/"}) # required, either this or pattern
-       props: "key=value"
+      # props: "key=value"
        recursive: false
        #flat: true
        #excludePatterns: "*.sha1"
