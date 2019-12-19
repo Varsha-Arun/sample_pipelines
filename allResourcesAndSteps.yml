@@ -17,7 +17,7 @@ resources:
      # limit: 1
      # offset: 3
      
-   - name: S_Bash_0133_FileSpec
+   - name: S_Bash_0133_FileSpectest
      type: FileSpec
      configuration:
        sourceArtifactory: varsha_art
