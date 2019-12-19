@@ -212,7 +212,7 @@ pipelines:
         execution:
           onExecute:
             - printenv
-            - set_payload r_OutgoingWebhook "{\"test\":\"payload\"}"
+            - set_payload r_OutgoingWebhook "{\"test\":\"payload123\"}"
             
      # - name: u18BashStep1
      #   type: Bash
