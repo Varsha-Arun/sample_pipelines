@@ -17,23 +17,23 @@ resources:
      # limit: 1
      # offset: 3
      
-  - name: S_Bash_0133_FileSpec
-    type: FileSpec
-    configuration:
-      sourceArtifactory: s_artifactory
-      pattern: example-repo-local/setup # required, either this or aql
-      #aql: items.find({"repo": "example-repo-local/"}) # required, either this or pattern
-      props: "key=value"
-      recursive: false
-      #flat: true
-      #excludePatterns: "*.sha1"
-      #archiveEntries: "artifactory"
-     # buildName: test
-    #  buildNumber: 10
-      #sortBy: size
-      #sortOrder: desc
-      #limit: 1
-     # offset: 3
+   - name: S_Bash_0133_FileSpec
+     type: FileSpec
+     configuration:
+       sourceArtifactory: s_artifactory
+       pattern: example-repo-local/setup # required, either this or aql
+       #aql: items.find({"repo": "example-repo-local/"}) # required, either this or pattern
+       props: "key=value"
+       recursive: false
+       #flat: true
+       #excludePatterns: "*.sha1"
+       #archiveEntries: "artifactory"
+      # buildName: test
+     #  buildNumber: 10
+       #sortBy: size
+       #sortOrder: desc
+       #limit: 1
+      # offset: 3
 
 
    - name: S_Bash_0433_FileSpectest
