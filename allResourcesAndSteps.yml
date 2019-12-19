@@ -20,7 +20,7 @@ resources:
    - name: S_Bash_0433_FileSpectest
      type: FileSpec
      configuration:
-       sourceArtifactory: s_artifactory
+       sourceArtifactory: varsha_art
        pattern: "example-repo-local/setup/" # required, either this or aql
        target: "@#$arti"
       
