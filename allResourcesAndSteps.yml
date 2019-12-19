@@ -1,6 +1,6 @@
 resources:
 
-   - name: S_Bash_0397_FileSpec
+   - name: S_Bash_0397_FileSpectest
      type: FileSpec
      configuration:
        sourceArtifactory: varsha_art
@@ -16,6 +16,13 @@ resources:
      # sortOrder: desc
      # limit: 1
      # offset: 3
+     
+   - name: S_Bash_0433_FileSpectest
+     type: FileSpec
+     configuration:
+       sourceArtifactory: s_artifactory
+       pattern: "example-repo-local/setup/" # required, either this or aql
+       target: "@#$arti"
       
    - name: utility_scriptRepo
      type: GitRepo
@@ -148,16 +155,28 @@ pipelines:
             
     steps:
     
-      - name: S_Bash_0397
+      - name: S_Bash_0397test
         type: Bash
         configuration:
           inputResources:
-            - name: S_Bash_0397_FileSpec
+            - name: S_Bash_0397_FileSpectest
           inputSteps:
             - name: allIntegrationsInput3
         execution:
           onExecute:
             - echo "executing step..."
+            
+      - name: S_Bash_0433test
+        type: Bash
+        configuration:
+          inputResources:
+            - name: S_Bash_0433_FileSpectest
+          inputSteps:
+            - name: allIntegrationsInput3
+        execution:
+          onExecute:
+            - echo "executing step..."
+            
       - name: allIntegrationsInput
         type: Bash
         configuration:
