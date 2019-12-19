@@ -126,17 +126,17 @@ pipelines:
           inputResources:
             - name: utility_scriptRepo
             - name: test_GitRepo
-          integrations:
-            - name: varsha_airbrake
-            - name: varsha_artifactory
-            - name: varsha_aws
-            - name: varsha_azureKeys
-            - name: varsha_bbs
-            - name: varsha_bitbucket
-            - name: varsha_dist
-            - name: varsha_do
-            - name: varsha_docker
-            - name: varsha_fileServer
+#           integrations:
+#             - name: varsha_airbrake
+#             - name: varsha_artifactory
+#             - name: varsha_aws
+#             - name: varsha_azureKeys
+#             - name: varsha_bbs
+#             - name: varsha_bitbucket
+#             - name: varsha_dist
+#             - name: varsha_do
+#             - name: varsha_docker
+#             - name: varsha_fileServer
         execution:
           onExecute:
             - printenv
@@ -147,17 +147,17 @@ pipelines:
       - name: allIntegrationsInput1
         type: Bash
         configuration:
-          integrations:
-            - name: varsha_airbrake
-            - name: varsha_artifactory
-            - name: varsha_aws
-            - name: varsha_azureKeys
-            - name: varsha_bbs
-            - name: varsha_bitbucket
-            - name: varsha_dist
-            - name: varsha_do
-            - name: varsha_docker
-            - name: varsha_fileServer
+#           integrations:
+#             - name: varsha_airbrake
+#             - name: varsha_artifactory
+#             - name: varsha_aws
+#             - name: varsha_azureKeys
+#             - name: varsha_bbs
+#             - name: varsha_bitbucket
+#             - name: varsha_dist
+#             - name: varsha_do
+#             - name: varsha_docker
+#             - name: varsha_fileServer
           inputSteps:
             - name: allIntegrationsInput
         execution:
@@ -167,17 +167,17 @@ pipelines:
       - name: allIntegrationsInput2
         type: Bash
         configuration:
-          integrations:
-            - name: varsha_airbrake
-            - name: varsha_artifactory
-            - name: varsha_aws
-            - name: varsha_azureKeys
-            - name: varsha_bbs
-            - name: varsha_bitbucket
-            - name: varsha_dist
-            - name: varsha_do
-            - name: varsha_docker
-            - name: varsha_fileServer
+#           integrations:
+#             - name: varsha_airbrake
+#             - name: varsha_artifactory
+#             - name: varsha_aws
+#             - name: varsha_azureKeys
+#             - name: varsha_bbs
+#             - name: varsha_bitbucket
+#             - name: varsha_dist
+#             - name: varsha_do
+#             - name: varsha_docker
+#             - name: varsha_fileServer
           inputSteps:
             - name: allIntegrationsInput
         execution:
