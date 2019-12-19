@@ -21,12 +21,17 @@ resources:
      configuration:
        webhookName: varsha_outgoingtest
        method: POST #<GET|PUT|POST|DELETE|PATCH> #default POST
-       #Parameters: <query string to be added>
-       path: “/services/T0KNGPCD7/BJW6LDH55/I7vLNvXvLdNlI1hoZnrHjGfe”
+      # Parameters: <query string to be added>
+       path: “/v1/projectIntegrations/482/hook”
       # headers:
       #   Content-type:<valid request content types> 
       #   accept: xyc
   
+   - name: r_IncomingWebhook
+     type: IncomingWebhook
+     configuration:
+       webhookName: varsha_incomingwebhookbasic
+       
 #   - name: s_aql
 #     type: Aql
 #     configuration:
@@ -167,6 +172,8 @@ pipelines:
       - name: allIntegrationsInput2
         type: Bash
         configuration:
+          inputResources:
+            - name: r_IncomingWebhook
 #           integrations:
 #             - name: varsha_airbrake
 #             - name: varsha_artifactory
