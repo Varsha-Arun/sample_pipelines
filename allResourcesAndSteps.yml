@@ -9,13 +9,13 @@ resources:
        gitProvider: varsha_github
        shallowDepth: 4
 
-   - name: test_GitRepo
-     type: GitRepo
-     configuration:
-       gitProvider: varsha_bbs
-       path: ~varshaa/sample_tests
-       branches:
-         include: master
+ #  - name: test_GitRepo
+  #   type: GitRepo
+  #   configuration:
+  #     gitProvider: varsha_bbs
+  #     path: ~varshaa/sample_tests
+   #    branches:
+   #      include: master
          
    - name: r_OutgoingWebhook
      type: OutgoingWebhook
@@ -131,7 +131,7 @@ pipelines:
         configuration:
           inputResources:
             - name: utility_scriptRepo
-            - name: test_GitRepo
+            #- name: test_GitRepo
 #           integrations:
 #             - name: varsha_airbrake
 #             - name: varsha_artifactory
