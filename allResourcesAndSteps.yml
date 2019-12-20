@@ -31,7 +31,7 @@ resources:
        #archiveEntries: "artifactory"
       # buildName: test
      #  buildNumber: 10
-       sortBy: size
+       sortBy: "size"
        sortOrder: desc
        #limit: 1
        #offset: 3
