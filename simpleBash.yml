@@ -56,8 +56,8 @@ pipelines:
           onExecute:
             - touch foo
             - echo hello > sample.txt
-            - jfrog rt u foo test-generic-local/foo
-            - jfrog rt u foo example-repo-local/setup/sample.txt
+           # - jfrog rt u foo test-generic-local/foo
+            - jfrog rt u sample.txt example-repo-local/setup/sample.txt
             #- jfrog rt del example-repo-local/foo
 #             - pushd $res_utility_scriptRepo_resourcePath
 #             - ./echo.sh
