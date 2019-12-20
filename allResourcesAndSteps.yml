@@ -32,7 +32,7 @@ resources:
       # buildName: test
      #  buildNumber: 10
        #sortBy: Size
-       sortOrder: desc
+       #sortOrder: desc
        limit: 1
        offset: 3
 
