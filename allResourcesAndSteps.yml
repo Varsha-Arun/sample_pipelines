@@ -31,10 +31,10 @@ resources:
        #archiveEntries: "artifactory"
       # buildName: test
      #  buildNumber: 10
-       sortBy: Size
+       #sortBy: Size
        sortOrder: desc
-       #limit: 1
-       #offset: 3
+       limit: 1
+       offset: 3
 
 
    - name: S_Bash_0433_FileSpectest
