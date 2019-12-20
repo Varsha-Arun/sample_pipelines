@@ -207,6 +207,7 @@ pipelines:
         execution:
           onExecute:
             - echo "executing step..."
+            - printenv
             
       - name: allIntegrationsInput
         type: Bash
