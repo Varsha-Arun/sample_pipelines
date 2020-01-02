@@ -6,6 +6,8 @@ pipelines:
         configuration:
           runtime:            
             type: image #host
+            integrations:
+              - name: varsha_docker
             image:
 #               auto:
 #                 language: java
