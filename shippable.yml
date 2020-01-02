@@ -5,15 +5,15 @@ pipelines:
         type: Bash
         configuration:
           runtime:            
-            type: host #image
-#             image:
+            type: image #host
+              image:
 #               auto:
 #                 language: java
 #                 versions:
 #                   - openjdk8
-#               custom:
-#                 name: drydock/u16java
-#                 tag: master
+                custom:
+                  name: shippabledocker/sample_node_pvt
+                  tag: masterpyt
         execution:
           onExecute:
             - printenv
