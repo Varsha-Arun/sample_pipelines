@@ -6,17 +6,18 @@ pipelines:
         configuration:
           runtime:            
             type: image #host
-              image:
+            image:
 #               auto:
 #                 language: java
 #                 versions:
 #                   - openjdk8
-                custom:
-                  name: shippabledocker/sample_node_pvt
-                  tag: masterpyt
+              custom:
+                name: shippabledocker/sample_node_pvt
+                tag: masterpyt
         execution:
           onExecute:
             - printenv
+
 
       - name: test
         type: Bash
