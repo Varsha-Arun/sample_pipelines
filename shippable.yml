@@ -14,8 +14,8 @@ pipelines:
 #                 versions:
 #                   - openjdk8
               custom:
-                name: shippabledocker/sample_node_pvt
-                tag: masterpyt
+                name: shippabledocker/pipelinev2 #shippabledocker/sample_node_pvt
+                tag: deploy.1
         execution:
           onExecute:
             - printenv
