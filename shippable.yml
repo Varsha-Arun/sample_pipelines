@@ -4,10 +4,10 @@ pipelines:
       - name: testReport_u1612
         type: Bash
         configuration:
+          integrations:
+            - name: varsha_docker
           runtime:            
             type: image #host
-            integrations:
-              - name: varsha_docker
             image:
 #               auto:
 #                 language: java
