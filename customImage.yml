@@ -1,0 +1,21 @@
+  pipelines:
+  - name: varshabash12
+    steps:
+      - name: testReport_u1612
+        type: Bash
+        configuration:
+          integrations:
+            - name: varsha_docker
+          runtime:            
+            type: image #host
+            image:
+#               auto:
+#                 language: java
+#                 versions:
+#                   - openjdk8
+              custom:
+                name: shippabledocker/jfreq #shippabledocker/pipelinev2 #shippabledocker/sample_node_pvt
+                tag: latest #deploy.1 #masterpyt
+        execution:
+          onExecute:
+            - printenv
