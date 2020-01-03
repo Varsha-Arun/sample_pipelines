@@ -1,11 +1,34 @@
-  pipelines:
-  - name: varshabash12
+resources:
+  - name: custom_image_repo
+    type: GitRepo
+    configuration:
+      path: Varsha-Arun/sample-script
+      gitProvider: varsha_github 
+      
+pipelines:
+  - name: custom_image_pipelines
     steps:
-      - name: testReport_u1612
+      - name: push_custom_image
         type: Bash
         configuration:
           integrations:
             - name: varsha_docker
+          inputResources:
+            - name: custom_image_repo
+        execution:
+          onExecute:
+            - cd $res_custom_image_repo_resourcePath
+            - sudo docker build -t shippabledocker/jfreq:run_id .
+            - sudo docker push shippabledocker/jfreq:$run_id
+#           # - write_output custom_image_repo "imageTag=$run_id"
+
+      - name: using_custom_image
+        type: Bash
+        configuration:
+          integrations:
+            - name: varsha_art
+          inputSteps:
+            - name: push_custom_image
           runtime:            
             type: image #host
             image:
@@ -14,8 +37,11 @@
 #                 versions:
 #                   - openjdk8
               custom:
-                name: shippabledocker/jfreq #shippabledocker/pipelinev2 #shippabledocker/sample_node_pvt
-                tag: latest #deploy.1 #masterpyt
+                name: shippabledocker/jfreq
+                tag: $run_id
         execution:
           onExecute:
-            - printenv
+            - touch foo
+            - jfrog rt u foo test-generic-local/foo
+            - echo hello > sample.txt
+            - jfrog rt u sample.txt example-repo-local/setup/sample.txt
