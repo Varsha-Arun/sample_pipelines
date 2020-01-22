@@ -9,3 +9,5 @@ pipelines:
         execution:
           onExecute:
             - printenv
+            - export "key=$int_generic_json_string_test"
+            - echo "$key"
