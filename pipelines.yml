@@ -1,0 +1,11 @@
+pipelines:
+  - name: varsha_genericIntegration
+    steps: 
+      - name: genericIntegration_jsonToString
+        type: Bash
+        configuration:
+          integrations:
+            - name: generic_json_string
+        execution:
+          onExecute:
+            - printenv
