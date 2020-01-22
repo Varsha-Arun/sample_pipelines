@@ -10,4 +10,6 @@ pipelines:
           onExecute:
             - printenv
             - export "key=$int_generic_json_string_test"
+            - export value=JSON.parse(key)
             - echo "$key"
+            - echo "$value"
