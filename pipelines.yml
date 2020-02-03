@@ -436,164 +436,164 @@ pipelines:
 ###################################################### old c7 image tests ########################################################################################################################################################################################################################
 
 #pipelines:
-  - name: pipeline_automation
-    steps:
-      - name: c7cpp8_0_0
-        type: Bash
-        configuration:
-          runtime:
-            type: image
-            image:
-              auto:
-                language: cpp
-                versions:
-                  - "8.3.1"
-        execution:
-          onExecute:
-            - clang --version
-            - gcc --version
-           # - |
-           #   [[ "$(clang --version)" == *"$step_iamge_tag"* ]]
+#   - name: pipeline_automation
+#     steps:
+#       - name: c7cpp8_0_0
+#         type: Bash
+#         configuration:
+#           runtime:
+#             type: image
+#             image:
+#               auto:
+#                 language: cpp
+#                 versions:
+#                   - "8.3.1"
+#         execution:
+#           onExecute:
+#             - clang --version
+#             - gcc --version
+#            # - |
+#            #   [[ "$(clang --version)" == *"$step_iamge_tag"* ]]
               
-      - name: u18cpp7_0_1
-        type: Bash
-        configuration:
-          runtime:
-            type: image
-            image:
-              auto:
-                language: cpp
-                versions:
-                  - "7.0.1"
-          inputSteps:
-            - name: c7cpp8_0_0
-        execution:
-          onExecute:
-            - clang --version
-            - gcc --version
-            #- |
-            #  [[ "$(clang --version)" == *"9.0.0"* ]]
+#       - name: u18cpp7_0_1
+#         type: Bash
+#         configuration:
+#           runtime:
+#             type: image
+#             image:
+#               auto:
+#                 language: cpp
+#                 versions:
+#                   - "7.0.1"
+#           inputSteps:
+#             - name: c7cpp8_0_0
+#         execution:
+#           onExecute:
+#             - clang --version
+#             - gcc --version
+#             #- |
+#             #  [[ "$(clang --version)" == *"9.0.0"* ]]
               
-      - name: c7go1_12_6
-        type: Bash
-        configuration:
-          runtime:            
-            type: image
-            image:
-              auto:
-                language: go
-                versions: 
-                  - 1.12.6 
-          inputSteps:
-            - name: c7cpp8_0_0
-        execution:
-          onExecute:   
-            - source /root/.gvm/scripts/gvm
-            - gvm list
-            - gvm use 1.12
-            #- 
-            #- |
-            #  [[ "$(go version)" == *"$step_image_tag"* ]]
+#       - name: c7go1_12_6
+#         type: Bash
+#         configuration:
+#           runtime:            
+#             type: image
+#             image:
+#               auto:
+#                 language: go
+#                 versions: 
+#                   - 1.12.6 
+#           inputSteps:
+#             - name: c7cpp8_0_0
+#         execution:
+#           onExecute:   
+#             - source /root/.gvm/scripts/gvm
+#             - gvm list
+#             - gvm use 1.12
+#             #- 
+#             #- |
+#             #  [[ "$(go version)" == *"$step_image_tag"* ]]
               
               
-      - name: c7go1_11_11
-        type: Bash
-        configuration:
-          runtime:            
-            type: image
-            image:
-              auto:
-                language: go
-                versions: 
-                  - 1.11.11 
-          inputSteps:
-            - name: c7cpp8_0_0
-        execution:
-          onExecute:   
-            - source /root/.gvm/scripts/gvm
-            - gvm list
-            - gvm use 1.11
-            - |
-              [[ "$(go version)" == *"$step_image_tag"* ]]
+#       - name: c7go1_11_11
+#         type: Bash
+#         configuration:
+#           runtime:            
+#             type: image
+#             image:
+#               auto:
+#                 language: go
+#                 versions: 
+#                   - 1.11.11 
+#           inputSteps:
+#             - name: c7cpp8_0_0
+#         execution:
+#           onExecute:   
+#             - source /root/.gvm/scripts/gvm
+#             - gvm list
+#             - gvm use 1.11
+#             - |
+#               [[ "$(go version)" == *"$step_image_tag"* ]]
               
-      - name: c7java11
-        type: Bash
-        configuration:
-          runtime:
-            type: image
-            image:
-              auto:
-                language: java
-                versions:
-                  - "11"
-          inputSteps:
-            - name: c7cpp8_0_0
-        execution:
-          onExecute:
-            - java --version
-            - ant -version
-            - gradle --version
-            - mvn --version
-           # - |
-           #   [[ "$(java --version)" == *"$step_iamge_tag"* ]]
+#       - name: c7java11
+#         type: Bash
+#         configuration:
+#           runtime:
+#             type: image
+#             image:
+#               auto:
+#                 language: java
+#                 versions:
+#                   - "11"
+#           inputSteps:
+#             - name: c7cpp8_0_0
+#         execution:
+#           onExecute:
+#             - java --version
+#             - ant -version
+#             - gradle --version
+#             - mvn --version
+#            # - |
+#            #   [[ "$(java --version)" == *"$step_iamge_tag"* ]]
               
-      - name: c7java8
-        type: Bash
-        configuration:
-          runtime:
-            type: image
-            image:
-              auto:
-                language: java
-                versions:
-                  - "8"
-          inputSteps:
-            - name: c7cpp8_0_0
-        execution:
-          onExecute:
-            - java -version
-            - ant -version
-            - gradle --version
-            - mvn --version
-           # - var=$(java -version 2>&1 >/dev/null |  awk '{print $3}' | head -1)
-            #- |
-            #  [[ $var == *"1.8.0_222"* ]]
+#       - name: c7java8
+#         type: Bash
+#         configuration:
+#           runtime:
+#             type: image
+#             image:
+#               auto:
+#                 language: java
+#                 versions:
+#                   - "8"
+#           inputSteps:
+#             - name: c7cpp8_0_0
+#         execution:
+#           onExecute:
+#             - java -version
+#             - ant -version
+#             - gradle --version
+#             - mvn --version
+#            # - var=$(java -version 2>&1 >/dev/null |  awk '{print $3}' | head -1)
+#             #- |
+#             #  [[ $var == *"1.8.0_222"* ]]
               
-      - name: u18node10_16_3
-        type: Bash
-        configuration:
-          runtime:
-            type: image
-            image:
-              auto:
-                language: node
-                versions:
-                  - "10.16.3"
-          inputSteps:
-            - name: c7cpp8_0_0
-        execution:
-          onExecute:
-            - node --version
-            - npm --version
-            #- |
-           #   [[ "$(node --version)" == *"10.16.3"* ]] 
+#       - name: u18node10_16_3
+#         type: Bash
+#         configuration:
+#           runtime:
+#             type: image
+#             image:
+#               auto:
+#                 language: node
+#                 versions:
+#                   - "10.16.3"
+#           inputSteps:
+#             - name: c7cpp8_0_0
+#         execution:
+#           onExecute:
+#             - node --version
+#             - npm --version
+#             #- |
+#            #   [[ "$(node --version)" == *"10.16.3"* ]] 
               
-      - name: u18node8_16_0
-        type: Bash
-        configuration:
-          runtime:
-            type: image
-            image:
-              auto:
-                language: node
-                versions:
-                  - "8.16.0"
-          inputSteps:
-            - name: c7cpp8_0_0
-        execution:
-          onExecute:
-            - node --version
-            - npm --version
-            #- |
-            #  [[ "$(node -v)" == *"8.16.0"* ]]
+#       - name: u18node8_16_0
+#         type: Bash
+#         configuration:
+#           runtime:
+#             type: image
+#             image:
+#               auto:
+#                 language: node
+#                 versions:
+#                   - "8.16.0"
+#           inputSteps:
+#             - name: c7cpp8_0_0
+#         execution:
+#           onExecute:
+#             - node --version
+#             - npm --version
+#             #- |
+#             #  [[ "$(node -v)" == *"8.16.0"* ]]
               
