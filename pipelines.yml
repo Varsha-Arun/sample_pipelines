@@ -27,13 +27,8 @@ pipelines:
             - helm version --client
             - ansible --version
             - packer --version  
-            - eb --version
+        #    - eb --version
 
-
-# # ##node
-# # pipelines:
-# #   - name: pipelines_auto
-# #     steps:
       - name: new_pipeline1
         type: Bash
         configuration:
@@ -54,7 +49,7 @@ pipelines:
             - git --version
             - pip --version
             - virtualenv --version
-            - eb --version
+          #  - eb --version
             - az --version
             - jfrog --version
             - gcloud version
@@ -84,7 +79,7 @@ pipelines:
             - git --version
             - pip --version
             - virtualenv --version
-            - eb --version
+           # - eb --version
             - az --version
             - jfrog --version
             - gcloud version
@@ -113,7 +108,7 @@ pipelines:
             - git --version
             - pip --version
             - virtualenv --version
-            - eb --version
+           # - eb --version
             - az --version
             - jfrog --version
             - gcloud version
@@ -123,10 +118,6 @@ pipelines:
             - ansible --version
             - packer --version 
 
-# # # #ccp
-# # # pipelines:
-# # #   - name: pipelines_auto
-# # #     steps:
       - name: new_pipeline3
         type: Bash
         configuration:
@@ -147,7 +138,7 @@ pipelines:
             - git --version
             - pip --version
             - virtualenv --version
-            - eb --version
+          #  - eb --version
             - az --version
             - jfrog --version
             - gcloud version
@@ -177,7 +168,7 @@ pipelines:
             - git --version
             - pip --version
             - virtualenv --version
-            - eb --version
+            #- eb --version
             - az --version
             - jfrog --version
             - gcloud version
@@ -214,7 +205,7 @@ pipelines:
             - git --version
             - pip --version
             - virtualenv --version
-            - eb --version
+            #- eb --version
             - az --version
             - jfrog --version
             - gcloud version
@@ -247,7 +238,7 @@ pipelines:
             - git --version
             - pip --version
             - virtualenv --version
-            - eb --version
+            #- eb --version
             - az --version
             - jfrog --version
             - gcloud version
@@ -280,7 +271,7 @@ pipelines:
             - git --version
             - pip --version
             - virtualenv --version
-            - eb --version
+           # - eb --version
             - az --version
             - jfrog --version
             - gcloud version
@@ -290,11 +281,6 @@ pipelines:
             - ansible --version
             - packer --version
 
-
-# # #go 
-# # # pipelines:
-# # #   - name: pipelines_auto
-# # #     steps:
       - name: new_pipeline8
         type: Bash
         configuration:
@@ -316,7 +302,7 @@ pipelines:
             - git --version
             - pip --version
             - virtualenv --version
-            - eb --version
+           # - eb --version
             - az --version
             - jfrog --version
             - gcloud version
@@ -347,7 +333,7 @@ pipelines:
               - git --version
               - pip --version
               - virtualenv --version
-              - eb --version
+             # - eb --version
               - az --version
               - jfrog --version
               - gcloud version
@@ -378,7 +364,7 @@ pipelines:
             - git --version
             - pip --version
             - virtualenv --version
-            - eb --version
+          #  - eb --version
             - az --version
             - jfrog --version
             - gcloud version
