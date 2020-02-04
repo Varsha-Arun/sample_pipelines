@@ -3,8 +3,8 @@ pipelines:
     steps:
       - name: sampleBash
         type: Bash
-        configurations:
-          - nodePool: build_c7
+        configuration:
+          nodePool: build_c7
         execution:
           onExecute:
             - echo "Hello world"
