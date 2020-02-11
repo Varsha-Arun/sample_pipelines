@@ -31,6 +31,8 @@ pipelines:
       - name: S_Bash_0510_test
         type: Bash
         configuration:
+          inputSteps:
+            - name: S_Bash_0508_test
           inputResources:
             - name: S_Bash_0510_Image_test
         execution:
