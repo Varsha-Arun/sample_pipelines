@@ -15,7 +15,8 @@ pipelines:
             - name: test_sample_repo
         execution:
           onExecute:
-            - cd $res_test_sample_repo_resourcePath
+            - push $res_test_sample_repo_resourcePath
+            - ls
             - python -m py_compile calc.py
             - pip install --upgrade pip
             - hash -d pip
