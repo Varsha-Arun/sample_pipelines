@@ -11,7 +11,7 @@ class TestApplication(unittest.TestCase):
         Test that the addition of two integers returns the correct total
         """
         result = calc.add2(1, 2)
-        self.assertEqual(result, 5)
+        self.assertEqual(result, 3)
 
     def test_add_floats(self):
         """
@@ -34,7 +34,7 @@ class TestApplication(unittest.TestCase):
         concatenated string (in which the integer is converted to a string)
         """
         result = calc.add2('abc', 3)
-        self.assertEqual(result, 'abc3d')
+        self.assertEqual(result, 'abc3')
 
     def test_add_string_and_number(self):
         """
