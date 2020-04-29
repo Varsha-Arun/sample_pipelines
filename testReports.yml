@@ -8,7 +8,7 @@ resources:
         include: master
       
 pipelines:
-  - name: test_stepTestReports
+  - name: step_testReports
     steps:
       - name: testReporttest
         type: Bash
