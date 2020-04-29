@@ -4,6 +4,8 @@ resources:
     configuration:
       gitProvider: varsha_github
       path: Varsha-Arun/sample_pipelines
+      branches:
+        include: master
       
 pipelines:
   - name: test_stepTestReports
