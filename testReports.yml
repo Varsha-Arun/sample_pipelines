@@ -1,0 +1,24 @@
+resources:
+  - name: repo_test1
+    type: GitRepo
+    configuration:
+      gitProvider: varsha_github
+      path: Varsha-Arun/sample_pipelines
+      
+pipelines:
+  - name: test_stepTestReports
+    steps:
+      - name: testReporttest
+        type: Bash
+        configuration:
+          inputResources:
+            - name: repo_test1
+        execution:
+          onExecute:
+            - cd $res_repo_test1_resourcePath
+            - python -m py_compile tests/core/sampleExecutionFile/calc.py
+            - pip install --upgrade pip
+            - hash -d pip
+            - pip install pytest            
+            - py.test --verbose --junit-xml test-reports/results.xml tests/core/sampleExecutionFile/test_calc.py
+            - save_tests $res_script_repo1_resourcePath/test-reports/results.xml 
