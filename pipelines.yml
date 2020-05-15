@@ -1,0 +1,12 @@
+pipelines:
+
+  - name: pipelines_test
+    steps:
+      - name: S_Bash_test
+        type: Bash
+        configuration:
+          nodePool: gcp-test2384
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - printenv
