@@ -2,21 +2,21 @@ pipelines:
 
   - name: pipelines_test
     steps:
-      - name: S_Bash_test_2384
-        type: Bash
+#       - name: S_Bash_test_2384
+#         type: Bash
+#         configuration:
+#           nodePool: test-2384
+#         execution:
+#           onExecute:
+#             - echo "executing step..."
+#             - printenv
+
+
+      - name: win_test_2019
+        type: PowerShell
         configuration:
           nodePool: test-2384
         execution:
           onExecute:
-            - echo "executing step..."
-            - printenv
-
-
-#       - name: win_test
-#         type: PowerShell
-#         configuration:
-#           nodePool: azure-2384
-#         execution:
-#           onExecute:
-#             - Get-Variable | format-table
-#             - docker ps -a
+            - Get-Variable | format-table
+            - docker ps -a
