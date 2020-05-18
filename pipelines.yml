@@ -5,7 +5,7 @@ pipelines:
       - name: S_Bash_test
         type: Bash
         configuration:
-          nodePool: gcp-test2384
+          nodePool: c7-us-west-dynamic
         execution:
           onExecute:
             - echo "executing step..."
