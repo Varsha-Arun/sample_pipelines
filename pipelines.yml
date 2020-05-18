@@ -5,7 +5,7 @@ pipelines:
       - name: S_Bash_test
         type: Bash
         configuration:
-          nodePool: c7-us-west-dynamic
+          nodePool: azure_test
         execution:
           onExecute:
             - echo "executing step..."
