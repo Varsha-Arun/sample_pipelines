@@ -20,3 +20,4 @@ pipelines:
           onExecute:
             - Get-Variable | format-table
             - docker ps -a
+            - Start-Sleep -s 120
