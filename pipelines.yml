@@ -19,12 +19,12 @@ pipelines:
               
       - name: se3
         type: Bash
-          configuration:
-            inputSteps:
-              - name: se1
-          execution:
-            onExecute:
-              - printenv
+        configuration:
+          inputSteps:
+            - name: se1
+        execution:
+          onExecute:
+            - printenv
               
       - name: se4
         type: Bash
