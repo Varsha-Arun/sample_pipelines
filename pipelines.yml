@@ -1,0 +1,189 @@
+pipelines:
+  - name: series
+    steps:
+    
+      - name: se1
+        type: Bash
+          execution:
+            onExecute:
+              - printenv    
+              
+      - name: se2
+        type: Bash
+          configuration:
+            inputSteps:
+              - name: se1
+          execution:
+            onExecute:
+              - printenv
+              
+      - name: se3
+        type: Bash
+          configuration:
+            inputSteps:
+              - name: se1
+          execution:
+            onExecute:
+              - printenv
+              
+      - name: se4
+        type: Bash
+          configuration:
+            inputSteps:
+              - name: se1
+          execution:
+            onExecute:
+              - printenv
+             
+      - name: se5
+        type: Bash
+          configuration:
+            inputSteps:
+              - name: se1
+          execution:
+            onExecute:
+              - printenv
+                            
+      - name: se6
+        type: Bash
+          configuration:
+            inputSteps:
+              - name: se1
+          execution:
+            onExecute:
+              - printenv
+                            
+      - name: se7
+        type: Bash
+          configuration:
+            inputSteps:
+              - name: se1
+          execution:
+            onExecute:
+              - printenv
+                            
+      - name: se8
+        type: Bash
+          configuration:
+            inputSteps:
+              - name: se1
+          execution:
+            onExecute:
+              - printenv
+                            
+      - name: se9
+        type: Bash
+          configuration:
+            inputSteps:
+              - name: se1
+          execution:
+            onExecute:
+              - printenv
+                            
+      - name: se10
+        type: Bash
+          configuration:
+            inputSteps:
+              - name: se1
+          execution:
+            onExecute:
+              - printenv  
+              
+      - name: se11
+        type: Bash
+          configuration:
+            inputSteps:
+              - name: se1
+          execution:
+            onExecute:
+              - printenv
+                            
+      - name: se12
+        type: Bash
+          configuration:
+            inputSteps:
+              - name: se11
+          execution:
+            onExecute:
+              - printenv
+                            
+      - name: se13
+        type: Bash
+          configuration:
+            inputSteps:
+              - name: se12
+          execution:
+            onExecute:
+              - printenv  
+              
+      - name: se14
+        type: Bash
+          configuration:
+            inputSteps:
+              - name: se13
+          execution:
+            onExecute:
+              - printenv
+                           
+      - name: se15
+        type: Bash
+          configuration:
+            inputSteps:
+              - name: se14
+          execution:
+            onExecute:
+              - printenv
+                           
+      - name: se16
+        type: Bash
+          configuration:
+            inputSteps:
+              - name: se15
+          execution:
+            onExecute:
+              - printenv
+                           
+      - name: se17
+        type: Bash
+          configuration:
+            inputSteps:
+              - name: se16
+          execution:
+            onExecute:
+              - printenv
+                           
+      - name: se18
+        type: Bash
+          configuration:
+            inputSteps:
+              - name: se17
+          execution:
+            onExecute:
+              - printenv 
+              
+      - name: se19
+        type: Bash
+          configuration:
+            inputSteps:
+              - name: se18
+          execution:
+            onExecute:
+              - printenv
+                           
+      - name: se20
+        type: Bash
+          configuration:
+            inputSteps:
+              - name: se19
+          execution:
+            onExecute:
+              - printenv  
+              
+      - name: se21
+        type: Bash
+          configuration:
+            inputSteps:
+              - name: se20
+          execution:
+            onExecute:
+              - printenv
