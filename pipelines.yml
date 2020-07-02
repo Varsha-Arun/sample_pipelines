@@ -1,5 +1,5 @@
 pipelines:
-  - name: series
+  - name: seriesbigpipelinesname-withhyphennotunderscore
     steps:
     
       - name: se1
