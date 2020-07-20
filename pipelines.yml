@@ -1101,3 +1101,21 @@ pipelines:
         execution:
           onExecute:
             - printenv
+      
+      - name: simpleBash121
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash120
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash122
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash121
+        execution:
+          onExecute:
+            - printenv
