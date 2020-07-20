@@ -1,0 +1,1012 @@
+resources:
+  - name: same_gitRepo
+    type: GitRepo
+    configuration:
+      gitProvider: varsha_github
+      path: Varsha-Arun/pipelines   
+      branches:
+        include: simple
+      
+pipelines:
+  - name: simplePipelines
+    steps:
+
+      - name: simpleBash
+        type: Bash
+        configuration:
+          inputResources:
+            - name: same_gitRepo
+        execution:
+          onExecute:
+            - printenv
+            
+      - name: simpleBash1
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash3
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash4
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash5
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash6
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash7
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash8
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash9
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash10
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash11
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash12
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash13
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash14
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash15
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash16
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash17
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash18
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash19
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash20
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash21
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash22
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash23
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash24
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash25
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash26
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash27
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash28
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash29
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash30
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash
+        execution:
+          onExecute:
+            - printenv
+            
+      - name: simpleBash31
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash21
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash32
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash22
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash33
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash23
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash34
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash24
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash35
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash25
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash36
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash26
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash37
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash27
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash38
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash28
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash39
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash29
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash40
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash30
+        execution:
+          onExecute:
+            - printenv
+                        
+      - name: simpleBash41
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash21
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash42
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash22
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash43
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash23
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash44
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash24
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash45
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash25
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash46
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash26
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash47
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash27
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash48
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash28
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash49
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash29
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash50
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash30
+        execution:
+          onExecute:
+            - printenv
+                        
+      - name: simpleBash51
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash21
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash52
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash22
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash53
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash23
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash54
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash24
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash55
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash25
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash56
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash26
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash57
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash27
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash58
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash28
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash59
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash29
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash60
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash30
+        execution:
+          onExecute:
+            - printenv
+                    
+      - name: simpleBash61
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash21
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash62
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash22
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash63
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash23
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash64
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash24
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash65
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash25
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash66
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash26
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash67
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash27
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash68
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash28
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash69
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash29
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash70
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash30
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash71
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash21
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash72
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash22
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash73
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash23
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash74
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash24
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash75
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash25
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash76
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash26
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash77
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash27
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash78
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash28
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash79
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash29
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash80
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash30
+        execution:
+          onExecute:
+            - printenv
+            
+                        
+      - name: simpleBash81
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash21
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash82
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash22
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash83
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash23
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash84
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash24
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash85
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash25
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash86
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash26
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash87
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash27
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash88
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash28
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash89
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash29
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash90
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash30
+        execution:
+          onExecute:
+            - printenv
+                        
+      - name: simpleBash91
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash21
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash92
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash22
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash93
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash23
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash94
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash24
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash95
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash25
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash96
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash26
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash97
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash27
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash98
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash28
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash99
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash29
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash100
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash30
+        execution:
+          onExecute:
+            - printenv
+                        
+      - name: simpleBash101
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash21
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash102
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash22
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash103
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash23
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash104
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash24
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash105
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash25
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash106
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash26
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash107
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash27
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash108
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash28
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash109
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash29
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash110
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash30
+        execution:
+          onExecute:
+            - printenv
