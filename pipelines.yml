@@ -1010,3 +1010,95 @@ pipelines:
         execution:
           onExecute:
             - printenv
+            
+                                    
+      - name: simpleBash111
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash101
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash112
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash102
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash113
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash103
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash114
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash104
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash115
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash105
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash116
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash106
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash117
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash107
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash118
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash108
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash119
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash109
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: simpleBash120
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: simpleBash110
+        execution:
+          onExecute:
+            - printenv
+
