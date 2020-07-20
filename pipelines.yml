@@ -16,6 +16,7 @@ pipelines:
         configuration:
           inputResources:
             - name: same_gitRepo
+              trigger:false
         execution:
           onExecute:
             - printenv
