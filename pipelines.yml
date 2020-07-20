@@ -1178,7 +1178,7 @@ pipelines:
         type: Bash
         configuration:
           inputSteps:
-            - name: simpleBash130
+            - name: simpleBash128
         execution:
           onExecute:
             - printenv
