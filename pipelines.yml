@@ -6,11 +6,29 @@ resources:
       path: Varsha-Arun/pipelines   
       branches:
         include: simple
-      
+  
+  - name: pipelines_br_automation
+    type: GitRepo
+    configuration:
+      gitProvider: varsha_github
+      path: Varsha-Arun/pipelines   
+      branches:
+        include: simple
+        
 pipelines:
   - name: simplePipelines
     steps:
-
+      - name: simpleBash_br_automation
+        type: Bash
+        configuration:
+          inputResources:
+            - name: pipelines_br_automation
+              trigger: false
+            - name: same_gitRepo
+        execution:
+          onExecute:
+            - printenv
+            
       - name: simpleBash
         type: Bash
         configuration:
