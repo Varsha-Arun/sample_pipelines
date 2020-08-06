@@ -1,0 +1,9 @@
+pipelines:
+  - name: test_simple_var
+    steps:
+      - name: Bash_setup_var
+        type: Bash
+        execution:
+          onExecute:
+            - printenv
+    
