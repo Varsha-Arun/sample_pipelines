@@ -34,7 +34,7 @@ pipelines:
             - name: varsha_docker
 #             - name: varsha_gcp
 #             - name: varsha_aws
-            - name: art_v
+#             - name: art_v
         execution:
           onStart:
             - printenv
