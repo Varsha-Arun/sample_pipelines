@@ -28,6 +28,7 @@ pipelines:
             - name: Bash_setup_var
         execution:
           onExecute:
+            - docker images
             #images should be in this order it self
             - images=(docker.bintray.io/jfrog/pipelines-u18go docker.bintray.io/jfrog/pipelines-u18node docker.bintray.io/jfrog/pipelines-u18java docker.bintray.io/jfrog/pipelines-u18cpp)
             - javatags=(8 11 13 14)
