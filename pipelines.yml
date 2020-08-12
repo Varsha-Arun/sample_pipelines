@@ -209,8 +209,6 @@ pipelines:
             - name: art_v
         execution:
           onExecute:
-        execution:
-          onExecute:
             - printenv
           onComplete:
             - send_notification varsha_slack
