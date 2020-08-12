@@ -198,3 +198,15 @@ pipelines:
           onComplete:
             - send_notification varsha_slack
             - write_output imageTest "imageTag=master" 
+  
+      - name: nodePools_bash
+        type: Bash
+        configuration:
+          nodePool: new_node
+          inputSteps:
+            - name: utilityFunction3      
+        execution:
+          onExecute:
+            - printenv
+          onComplete:
+            - send_notification varsha_slack
