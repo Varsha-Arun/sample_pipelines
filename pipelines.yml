@@ -204,9 +204,15 @@ pipelines:
         configuration:
           nodePool: new_node
           inputSteps:
-            - name: utilityFunction3      
+            - name: utilityFunction3   
+          integrations:
+            - name: art_v
+        execution:
+          onExecute:
         execution:
           onExecute:
             - printenv
           onComplete:
             - send_notification varsha_slack
+            - echo automation > test.sh
+            - jfrog rt u test.sh example-repo-local/setup/test.sh
