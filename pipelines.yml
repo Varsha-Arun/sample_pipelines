@@ -48,6 +48,33 @@ pipelines:
           onExecute:
             - printenv
     
+      - name: Bash_setup_var2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: test_custom_image
+        execution:
+          onExecute:
+            - printenv
+            
+      - name: Bash_setup_var3
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: test_custom_image
+        execution:
+          onExecute:
+            - printenv
+      
+      - name: Bash_setup_var4
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: test_custom_image
+        execution:
+          onExecute:
+            - printenv
+            
       - name: d_AZ_u18_language
         type: Bash
         configuration:
