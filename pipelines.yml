@@ -13,10 +13,37 @@ resources:
        imageTag: master
        
 pipelines:
+
   - name: test_simple_var
     steps:
+      - name: test_custom_image
+        type: Bash
+        configuration:
+          runtime: # optional            
+            type: image
+            image: 
+              custom:
+                name: shippabledocker/jfreq
+                tag: latest
+#                 registry: art # optional integration for private registry
+#                 sourceRepository: docker # required if registry is artifactory
+#                 region: <string> # required if registry is AWS
+#                 options: <string> # optional
+#                 autoPull: <boolean> # optional, defaults to true; pulls
+          integrations: 
+            - name: varsha_docker
+#             - name: varsha_gcp
+#             - name: varsha_aws
+            - name: art_v
+        execution:
+          onStart:
+            - printenv
+            
       - name: Bash_setup_var
         type: Bash
+        configuration:
+          inputSteps:
+            - name: test_custom_image
         execution:
           onExecute:
             - printenv
