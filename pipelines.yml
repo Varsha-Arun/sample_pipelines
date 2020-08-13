@@ -202,7 +202,6 @@ pipelines:
       - name: nodePools_bash
         type: Bash
         configuration:
-          nodePool: new_node
           inputSteps:
             - name: utilityFunction3   
           integrations:
