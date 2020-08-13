@@ -10,7 +10,23 @@ resources:
     configuration:
       gitProvider: varsha_github
       path: Varsha-Arun/sample-script
-      
+      files:  # optional
+        include: echo.sh
+        exclude: install.sh
+      branches:  # optional
+        include: master
+        exclude: windowsImage
+      tags:  # optional
+        include: tag.*
+        exclude: release.*
+      buildOn:  # optional
+         commit: true
+         pullRequestCreate: true
+         pullRequestClose: true
+         releaseCreate: true
+         tagCreate: true
+#       shallowDepth: 2
+
   - name: imageTest
     type: Image
     configuration:
