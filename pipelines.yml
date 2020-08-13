@@ -5,6 +5,12 @@ resources:
       gitProvider: varsha_github
       path: Varsha-Arun/Org_test_Automation  
 
+  - name: varsha_sample
+    type: GitRepo
+    configuration:
+      gitProvider: varsha_github
+      path: Varsha-Arun/sample-script
+      
   - name: imageTest
     type: Image
     configuration:
@@ -13,7 +19,18 @@ resources:
        imageTag: master
        
 pipelines:
-
+  
+  - name: gitRepo_pipelines
+    steps:
+      - name: gitRepo_step
+        type: Bash
+        configuration:
+          inputResources:
+            - name: varsha_sample
+        execution:
+          onStart:
+            - printenv
+            
   - name: test_simple_var
     steps:
       - name: test_custom_image
