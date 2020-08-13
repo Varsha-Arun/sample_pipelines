@@ -210,6 +210,6 @@ pipelines:
           onExecute:
             - printenv
           onComplete:
-#             - send_notification varsha_slack
+            - send_notification varsha_slack
             - echo automation > test.sh
             - jfrog rt u test.sh example-repo-local/setup/test.sh
